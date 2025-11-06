@@ -1,0 +1,219 @@
+/*
+ * Custom Pointer System
+ * ---------------------
+ * Styles for the cinematic cursor orb that replaces the native pointer
+ * on devices that support hover and fine-grained pointing.
+ */
+
+body.has-custom-pointer {
+  cursor: none;
+}
+
+body.has-custom-pointer * {
+  cursor: none !important;
+}
+
+#pointer-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  z-index: 900;
+  opacity: 0;
+  transform: translate3d(-50%, -50%, 0);
+  transition: opacity 0.3s ease-out;
+  will-change: transform, opacity;
+  --cursor-color: rgba(245, 245, 245, 0.85);
+  --cursor-trail-offset-x: 0px;
+  --cursor-trail-offset-y: 0px;
+  --cursor-trail-scale: 1.15;
+}
+
+#pointer-cursor.is-visible {
+  opacity: 1;
+}
+
+#pointer-cursor.is-hidden {
+  opacity: 0;
+}
+
+#pointer-cursor::before,
+#pointer-cursor::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  pointer-events: none;
+}
+
+#pointer-cursor::before {
+  width: 28px;
+  height: 28px;
+  border: 1.6px solid rgba(245, 245, 245, 0.4);
+  background: rgba(245, 245, 245, 0.04);
+  box-shadow: 0 0 14px rgba(245, 245, 245, 0.18);
+  opacity: 0.95;
+  mix-blend-mode: normal;
+  transition: width 0.25s ease-out, height 0.25s ease-out,
+    border-color 0.25s ease-out, background 0.25s ease-out,
+    box-shadow 0.25s ease-out, opacity 0.2s ease-out, filter 0.25s ease-out,
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  animation: none;
+}
+
+#pointer-cursor::after {
+  width: 34px;
+  height: 34px;
+  opacity: 0;
+  background: rgba(245, 245, 245, 0.35);
+  filter: blur(18px);
+  transition: opacity 0.25s ease-out,
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), background 0.25s ease-out,
+    filter 0.25s ease-out;
+  transform: translate3d(
+      calc(-50% + var(--cursor-trail-offset-x)),
+      calc(-50% + var(--cursor-trail-offset-y)),
+      0
+    )
+    scale(var(--cursor-trail-scale));
+}
+
+#pointer-cursor.is-moving::before {
+  opacity: 1;
+  box-shadow: 0 0 18px rgba(245, 245, 245, 0.28);
+}
+
+/* === Default Outline State === */
+#pointer-cursor.is-default {
+  --cursor-trail-scale: 1.15;
+}
+
+#pointer-cursor.is-default::before {
+  border-color: rgba(245, 245, 245, 0.4);
+  background: rgba(245, 245, 245, 0.05);
+  box-shadow: 0 0 16px rgba(245, 245, 245, 0.24);
+  filter: none;
+}
+
+#pointer-cursor.is-default::after {
+  opacity: 0.08;
+  background: rgba(245, 245, 245, 0.25);
+  filter: blur(20px);
+}
+
+/* === Listening / Voice Interaction State === */
+#pointer-cursor.is-listening {
+  --cursor-trail-scale: 1.25;
+}
+
+#pointer-cursor.is-listening::before {
+  width: 36px;
+  height: 36px;
+  border-color: rgba(255, 127, 102, 0.25);
+  background: #ff7f66;
+  box-shadow: 0 0 20px rgba(255, 127, 102, 0.6);
+  filter: saturate(1.05);
+  animation: pointerPulse 1.6s ease-in-out infinite;
+}
+
+#pointer-cursor.is-listening::after {
+  width: 48px;
+  height: 48px;
+  opacity: 0.32;
+  background: rgba(255, 127, 102, 0.6);
+  filter: blur(26px);
+}
+
+/* === Explore / Accent Driven State === */
+#pointer-cursor.is-explore {
+  --cursor-trail-scale: 1.75;
+}
+
+#pointer-cursor.is-explore::before {
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: radial-gradient(
+      circle at 50% 20%,
+      rgba(255, 255, 255, 0.7),
+      transparent 55%
+    ),
+    radial-gradient(
+      circle at 50% 75%,
+      rgba(255, 255, 255, 0.18),
+      transparent 60%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.22),
+      rgba(255, 255, 255, 0.04)
+    );
+  box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.28),
+    inset 0 0 22px rgba(255, 255, 255, 0.16), 0 0 24px rgba(255, 255, 255, 0.22),
+    0 0 38px rgba(255, 255, 255, 0.12);
+  filter: saturate(1.35) brightness(1.08);
+  mix-blend-mode: screen;
+  animation: pointerGradient 6s ease-in-out infinite;
+}
+
+#pointer-cursor.is-explore::after {
+  width: 66px;
+  height: 66px;
+  opacity: 0.45;
+  background: radial-gradient(
+    circle at 45% 35%,
+    rgba(255, 255, 255, 0.35),
+    rgba(255, 255, 255, 0.05) 68%,
+    transparent 72%
+  );
+  box-shadow: 0 0 38px rgba(255, 255, 255, 0.2),
+    0 0 44px rgba(255, 255, 255, 0.18);
+  filter: blur(28px);
+  mix-blend-mode: screen;
+}
+
+/* === Visibility Tweaks === */
+#pointer-cursor.is-hidden::before,
+#pointer-cursor.is-hidden::after {
+  opacity: 0;
+}
+
+/* === Animations === */
+@keyframes pointerPulse {
+  0%,
+  100% {
+    transform: translate3d(-50%, -50%, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(-50%, -50%, 0) scale(1.22);
+  }
+}
+
+@keyframes pointerGradient {
+  0% {
+    filter: hue-rotate(0deg) saturate(1.15);
+  }
+
+  50% {
+    filter: hue-rotate(25deg) saturate(1.35);
+  }
+
+  100% {
+    filter: hue-rotate(0deg) saturate(1.15);
+  }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  #pointer-cursor,
+  #pointer-cursor::before,
+  #pointer-cursor::after {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
+}

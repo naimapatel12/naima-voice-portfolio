@@ -1,0 +1,2534 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Oracle AI — Case Study</title>
+    <!-- Site styles for header/footer -->
+    <link rel="stylesheet" href="./assets/styles/navbar.css" />
+    <link rel="stylesheet" href="./assets/styles/footer.css" />
+    <!-- Optional shared styles used site-wide -->
+    <link rel="stylesheet" href="./assets/styles/pointer.css" />
+    <link rel="stylesheet" href="./assets/styles/voice-button.css" />
+    <link rel="stylesheet" href="./assets/styles/projects.css" />
+    <link rel="stylesheet" href="./assets/styles/project-card.css" />
+    <link rel="stylesheet" href="./assets/styles/scroll-animations.css" />
+    <link rel="stylesheet" href="./assets/styles/project-navigation.css" />
+    <!-- IBM Plex Sans JP for body/tagline -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="theme-color" content="#050608" />
+    <style>
+      :root {
+        --bg: #050608;
+        --accent: #8df2cb;
+        --soft-white: rgba(255, 255, 255, 0.85);
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: #fff;
+        font-size: 0.95rem;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font-family: "IBM Plex Sans JP", system-ui, -apple-system, Segoe UI,
+          Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      }
+
+      /* HERO */
+      .hero {
+        position: relative;
+        min-height: 90vh; /* 3/4 viewport height */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        background: var(--bg);
+        isolation: isolate;
+      }
+
+      /* Marquee field */
+      .hero__marquees {
+        position: absolute;
+        inset: -30vh -10vw;
+        transform: rotate(-17deg);
+        z-index: 0;
+      }
+      .hero__stripe {
+        position: absolute;
+        left: -20vw;
+        width: 140vw;
+        height: 22vh;
+        background-repeat: repeat-x;
+        background-size: auto 100%;
+        opacity: 0.18;
+        filter: grayscale(1) contrast(1.05) brightness(0.8);
+        image-rendering: -webkit-optimize-contrast;
+        mask-image: linear-gradient(
+          to right,
+          transparent 0%,
+          black 10%,
+          black 90%,
+          transparent 100%
+        );
+        -webkit-mask-image: linear-gradient(
+          to right,
+          transparent 0%,
+          black 10%,
+          black 90%,
+          transparent 100%
+        );
+      }
+      .hero__stripe--1 {
+        top: 6vh;
+        background-image: url("assets/OracleAILine1.png");
+        animation: marquee-left 32s linear infinite;
+      }
+      .hero__stripe--2 {
+        top: 32vh;
+        background-image: url("assets/OracleAILine1.png");
+        animation: marquee-right 38s linear infinite;
+      }
+      .hero__stripe--3 {
+        top: 58vh;
+        background-image: url("assets/OracleAILine1.png");
+        animation: marquee-left 42s linear infinite;
+      }
+      .hero__stripe--4 {
+        top: 84vh;
+        background-image: url("assets/OracleAILine1.png");
+        animation: marquee-right 36s linear infinite;
+      }
+      .hero__stripe--5 {
+        top: 110vh;
+        background-image: url("assets/OracleAILine1.png");
+        animation: marquee-left 40s linear infinite;
+      }
+      .hero__stripe--6 {
+        top: 136vh;
+        background-image: url("assets/OracleAILine1.png");
+        animation: marquee-right 34s linear infinite;
+      }
+
+      @keyframes marquee-left {
+        0% {
+          background-position: 0 0;
+        }
+        100% {
+          background-position: -1200px 0;
+        }
+      }
+      @keyframes marquee-right {
+        0% {
+          background-position: 0 0;
+        }
+        100% {
+          background-position: 1200px 0;
+        }
+      }
+
+      /* Soft fade overlay */
+      .hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        background: linear-gradient(
+          to bottom,
+          rgba(5, 6, 8, 0.75) 0%,
+          rgba(5, 6, 8, 0.28) 35%,
+          rgba(5, 6, 8, 0.28) 60%,
+          rgba(5, 6, 8, 1) 100% /* fade to solid to blend into page */
+        );
+      }
+
+      /* Content */
+      .hero__content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        padding: 6vh 4vw;
+        max-width: 1000px;
+        margin: 0 auto;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center; /* ensure children, including h1, are centered */
+      }
+      .hero__logo {
+        width: min(18vw, 260px);
+        height: auto;
+        display: block;
+        margin: 0 auto 24px auto;
+      }
+      .hero__subheading {
+        margin: 0 auto;
+        max-width: 1000px;
+        text-align: center;
+        color: #fff;
+        font-weight: 500;
+        letter-spacing: 0.02em;
+        line-height: 1.25;
+        text-transform: none;
+        padding: 0;
+        font-family: "Hiragino Mincho ProN", "Hiragino Mincho Pro",
+          "Hiragino Mincho", "Yu Mincho", "游明朝", "Times New Roman", serif;
+        font-size: clamp(22px, 3.2vw, 36px);
+        display: inline-block;
+        align-self: center;
+        width: auto;
+      }
+      .hero__bar {
+        width: 120px;
+        height: 4px;
+        background: var(--accent);
+        border-radius: 999px;
+        margin: 24px auto 18px auto;
+        display: block;
+      }
+      .hero__tagline {
+        margin: 0 auto;
+        color: var(--soft-white);
+        font-size: clamp(14px, 1.4vw, 18px);
+        line-height: 1.6;
+        letter-spacing: 0.01em;
+        max-width: 820px;
+        text-align: center;
+        display: block;
+      }
+
+      /* Scroll down arrow */
+      .hero__scroll-arrow {
+        position: absolute;
+        bottom: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 3;
+        cursor: pointer;
+        animation: bounce 2s ease-in-out infinite;
+        transition: opacity 0.3s ease;
+        background: none;
+        border: none;
+        padding: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .hero__scroll-arrow:hover {
+        opacity: 1;
+      }
+
+      .hero__scroll-arrow:hover svg {
+        stroke: #fff;
+      }
+
+      .hero__scroll-arrow:focus {
+        outline: 2px solid var(--accent);
+        outline-offset: 4px;
+        border-radius: 4px;
+      }
+
+      .hero__scroll-arrow svg {
+        width: 32px;
+        height: 32px;
+        stroke: var(--accent);
+        stroke-width: 2;
+        fill: none;
+        pointer-events: none;
+        transition: stroke 0.3s ease;
+      }
+
+      @keyframes bounce {
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
+          transform: translateX(-50%) translateY(0);
+        }
+        40% {
+          transform: translateX(-50%) translateY(-15px);
+        }
+        60% {
+          transform: translateX(-50%) translateY(-8px);
+        }
+      }
+
+      /* Hard-center the subheading regardless of external styles */
+      .hero .hero__subheading {
+        text-align: center !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        width: max-content;
+        max-width: 95vw;
+        white-space: nowrap;
+        display: block !important;
+      }
+
+      /* ==========================
+         Case study body layout
+         ========================== */
+      .case-study {
+        padding: clamp(3rem, 6vw, 5rem) clamp(5rem, 10vw, 8rem);
+        max-width: 2000px; /* allow much wider spread */
+        margin: 0 auto;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      /* Grid setup: narrower left, larger body area */
+      .cs-section {
+        display: grid;
+        grid-template-columns: 200px 100px 1fr; /* was 220px 100px 1fr */
+        align-items: start;
+        justify-content: start;
+        max-width: 1600px;
+        margin: 0 auto;
+        position: relative;
+        padding: clamp(2rem, 4vw, 3.5rem) 0;
+        overflow: visible;
+      }
+
+      /* Section headings far to the left and smaller */
+      .cs-section__left {
+        grid-column: 1;
+        text-align: right;
+        padding-right: 2rem;
+        align-self: start; /* ✅ sticky works relative to full section height */
+        height: 100%;
+        overflow: visible;
+      }
+      .cs-sticky {
+        position: sticky;
+        top: 7rem;
+        align-self: start;
+        z-index: 2;
+        background: var(--bg);
+        padding-bottom: 1rem;
+      }
+      .cs-sticky h2 {
+        margin: 0;
+        padding-bottom: 0.01rem;
+        display: inline-block;
+        font-family: "IBM Plex Sans JP", system-ui, -apple-system, Segoe UI,
+          Roboto, Helvetica, Arial;
+        font-size: clamp(0.6rem, 0.72vw, 0.8rem);
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.55);
+      }
+
+      /* Body text expanded and more dominant */
+      .cs-section__right {
+        grid-column: 3;
+        max-width: 900px; /* make body section wide */
+        margin-left: 0;
+        padding-left: 0;
+        justify-self: start;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: clamp(1rem, 1.4vw, 1.25rem);
+        line-height: 1.65;
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 0.85rem;
+        padding-left: 0 !important;
+      }
+      .cs-section__right h3 {
+        margin: 4rem 0 0.75rem;
+        font-family: "Hiragino Mincho ProN", "Hiragino Mincho Pro", serif;
+        font-weight: 900;
+        text-transform: uppercase;
+        font-size: clamp(1.1rem, 1.8vw, 2rem);
+        letter-spacing: 0.005em;
+        color: #fff;
+      }
+      .cs-section__right p {
+        font-size: 0.95rem !important;
+        color: #e7e7e7;
+      }
+      .cs-section__right li {
+        font-size: 0.95rem !important;
+        color: #e7e7e7;
+      }
+      /* Small photo to the left of Key Takeaways text */
+      #takeaways .cs-section__left {
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-end;
+      }
+      #takeaways .takeaways-photo {
+        width: 140px;
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+      }
+      /* Centered, slightly larger variant when placed under body text */
+      #takeaways .cs-section__right .takeaways-photo {
+        width: 220px;
+        max-width: 100%;
+        display: block;
+        margin: 1.5rem auto 0 auto;
+        border-radius: 0 !important;
+      }
+      /* Pair layout for takeaways images */
+      #takeaways .takeaways-photos {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        margin-top: 1.5rem;
+        flex-wrap: wrap;
+        align-self: center;
+      }
+      #takeaways .takeaways-photos .takeaways-photo {
+        margin: 0;
+        height: 280px;
+        width: auto !important;
+        border-radius: 0 !important;
+      }
+      .cs-kicker {
+        display: inline-block;
+        padding: 0.25rem 0.6rem;
+        font-size: 0.75rem;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 999px;
+        color: rgba(255, 255, 255, 0.7);
+      }
+      .cs-callout {
+        margin-top: 0.5rem;
+        padding: 1rem 1.25rem;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.04);
+        border-radius: 1rem;
+      }
+
+      /* Section modifier: no left label */
+      .cs-section--no-label .cs-section__left {
+        display: none;
+      }
+      .cs-section--no-label {
+        grid-template-columns: 1fr;
+      }
+      .cs-section--no-label .cs-section__right {
+        grid-column: 1;
+      }
+
+      /* Content alignment modifier */
+      .cs-section__right--centered {
+        align-items: center;
+      }
+
+      /* Media grid for videos/images */
+      .media-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        margin-top: 3rem;
+      }
+
+      /* Modifier: 2-column variant (used for Insights 2x2 grid) */
+      .media-grid--two-cols {
+        grid-template-columns: repeat(2, 1fr);
+        margin-bottom: 3rem;
+      }
+
+      .media-grid-item {
+        width: 100%;
+      }
+
+      .media-grid-item__wrapper {
+        width: 100%;
+        overflow: hidden;
+        border-radius: 1rem;
+      }
+
+      .media-grid-item__media {
+        width: 100%;
+        display: block;
+      }
+
+      /* Media caption */
+      .media-caption {
+        color: white;
+        font-weight: 700;
+        font-family: "IBM Plex Sans JP", sans-serif;
+        margin-top: 0.75rem;
+        text-align: center;
+        font-size: 0.9rem;
+      }
+
+      /* Ideation section styling overrides */
+      #ideation .media-grid-item__wrapper {
+        border-radius: 0;
+      }
+
+      #ideation .media-full {
+        border-radius: 0;
+      }
+
+      #ideation .clickable-image:hover {
+        box-shadow: none;
+      }
+      /* Restore hover glow for Design Exploration images */
+      #ideation .clickable-image:hover {
+        box-shadow: 0 0 36px rgba(255, 255, 255, 0.35);
+      }
+
+      /* Design exploration section spacing */
+      #ideation h3 {
+        margin: 5rem 0 0.75rem;
+      }
+
+      /* =========================
+         FINAL DESIGNS SECTION
+         ========================= */
+      /* Final Designs spacing */
+      #final-designs .subsection-label {
+        margin-bottom: 0.5rem;
+      }
+      #final-designs .cs-section__right > .subsection-label + h3 {
+        margin-top: 0;
+      }
+
+      /* Full-width dashed rule matching tidbit.html */
+      #final-designs .cs-section__right {
+        position: relative;
+      }
+      #final-designs .cs-section__right::before {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 2px;
+        margin-bottom: 2.5rem;
+        background: repeating-linear-gradient(
+          to right,
+          rgba(141, 242, 203, 0.45) 0 8px,
+          rgba(141, 242, 203, 0.08) 8px 16px
+        );
+        animation: dash-move 6s linear infinite;
+        opacity: 0.65;
+      }
+
+      /* =========================
+         DESIGN PRINCIPLES LIST
+         ========================= */
+      .principles-list {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        margin-top: 2.5rem;
+      }
+      .principle-item {
+        display: grid;
+        grid-template-columns: 72px 1fr;
+        column-gap: 1.25rem;
+        align-items: start;
+      }
+      .principle-icon {
+        width: 72px;
+        height: auto;
+        display: block;
+        filter: grayscale(100%) brightness(1.15);
+        opacity: 0.9;
+      }
+      .principle-title {
+        margin: 0 0 0.5rem 0;
+        font-weight: 800;
+        color: #fff;
+        font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+      }
+      .principle-text {
+        margin: 0;
+        color: #e7e7e7;
+      }
+
+      @media (max-width: 780px) {
+        .principle-item {
+          grid-template-columns: 56px 1fr;
+          column-gap: 1rem;
+        }
+        .principle-icon {
+          width: 56px;
+        }
+      }
+
+      /* Centered video container */
+      .video-centered {
+        max-width: 400px;
+        margin: 3rem auto 0 auto;
+      }
+      
+      /* Larger video variant for final designs */
+      .video-centered--large {
+        max-width: 550px;
+      }
+
+      .video-centered__wrapper {
+        width: 100%;
+        overflow: hidden;
+        border-radius: 0;
+      }
+
+      .video-centered__media {
+        width: 100%;
+        display: block;
+        border-radius: 0;
+      }
+
+      /* Utility for full-width media inside right column */
+      .media-full {
+        width: 100%;
+        display: block;
+        border-radius: 1rem;
+      }
+
+      /* Deactivate sticky and stack at tablet and below */
+      @media (max-width: 960px) {
+        .case-study {
+          padding-left: 1.5rem !important;
+          padding-right: 1.5rem !important;
+        }
+        .cs-section {
+          grid-template-columns: 1fr;
+          gap: clamp(1.25rem, 3.5vw, 2.5rem);
+        }
+        .cs-section__left {
+          text-align: left;
+          padding-right: 0;
+        }
+        .cs-section__right {
+          margin-left: 0 !important;
+          padding-left: 0 !important;
+        }
+        .cs-sticky {
+          position: static;
+        }
+        .hero__stripe {
+          height: 18vh;
+        }
+        .hero__bar {
+          width: 96px;
+          height: 3px;
+        }
+        .hero .hero__subheading {
+          left: 0;
+          transform: none;
+          width: 100%;
+          white-space: normal;
+          max-width: 90%;
+        }
+      }
+
+      /* =========================
+         OVERVIEW META GRID
+         ========================= */
+      .overview-meta {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2rem;
+        padding-bottom: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .meta-item h4 {
+        font-family: "Hiragino Mincho ProN", "Hiragino Mincho Pro", serif;
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: clamp(1rem, 1.7vw, 2rem);
+        letter-spacing: 0.04em;
+        color: #fff;
+        margin: 0 0 0.4rem 0;
+      }
+
+      .meta-item p {
+        margin: 0;
+        font-size: 0.85rem;
+        line-height: 1.5;
+        color: #e7e7e7;
+      }
+
+      /* --- RESPONSIVE META GRID --- */
+      @media (max-width: 1024px) {
+        .overview-meta {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 1.5rem 2rem;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .overview-meta {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+        }
+      }
+
+      /* =========================
+         OVERVIEW SUBSECTIONS
+         ========================= */
+      .overview-subsection {
+        margin-top: 4rem;
+      }
+
+      .subsection-label {
+        display: inline-block;
+        font-size: 0.7rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.55);
+        margin-bottom: 1rem;
+        font-weight: 600;
+      }
+
+      .overview-subsection h3 {
+        margin-top: 0.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .overview-subsection p {
+        color: #e7e7e7;
+      }
+
+      .overview-subsection ul {
+        margin: 1.5rem 0 2rem 0;
+        padding-left: 1.5rem;
+        list-style-type: disc;
+      }
+
+      .overview-subsection li {
+        margin-bottom: 0.75rem;
+        line-height: 1.8;
+        color: #e7e7e7;
+        font-size: 0.85rem;
+      }
+
+      .overview-subsection li::marker {
+        color: rgba(255, 255, 255, 0.4);
+      }
+
+      /* Problem insight cards */
+      .insight-cards {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.25rem;
+        margin: 2rem 0 0.5rem 0;
+      }
+      .insight-card {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 1rem;
+        padding: 1.1rem 1.25rem;
+      }
+      .insight-card h4 {
+        font-family: "Hiragino Mincho ProN", "Hiragino Mincho Pro", serif;
+        font-style: italic;
+        font-weight: 600;
+        font-size: clamp(1rem, 1.2vw, 1.25rem);
+        margin: 0;
+        color: #fff;
+        line-height: 1.6;
+      }
+      @media (max-width: 900px) {
+        .insight-cards {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* =========================
+         OVERVIEW SECTION STYLING
+         ========================= */
+      #overview .cs-section__right::after {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 2px;
+        margin-top: 2.5rem;
+        background: repeating-linear-gradient(
+          to right,
+          rgba(141, 242, 203, 0.45) 0 8px,
+          rgba(141, 242, 203, 0.08) 8px 16px
+        );
+        animation: dash-move 6s linear infinite;
+        opacity: 0.65;
+      }
+
+      @keyframes dash-move {
+        from {
+          background-position: 0 0;
+        }
+        to {
+          background-position: 40px 0;
+        }
+      }
+
+      /* =========================
+         VIEW DESIGNS BUTTON
+         ========================= */
+      .overview-button-wrapper {
+        display: flex;
+        justify-content: flex-start;
+        margin-top: 2rem;
+      }
+
+      .view-designs-btn {
+        position: relative;
+        z-index: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.8rem 2rem;
+        border-radius: 0.8rem;
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        background: rgba(192, 193, 193, 0.08);
+        color: #c0c1c1;
+        text-decoration: none;
+        text-transform: uppercase;
+        letter-spacing: 0.075em;
+        font-size: 0.85rem;
+        font-weight: 500;
+        font-family: "IBM Plex Sans JP", system-ui, sans-serif;
+        cursor: pointer;
+        transition: color 220ms ease, border-color 220ms ease,
+          box-shadow 280ms ease, transform 220ms ease;
+        overflow: hidden;
+      }
+
+      .view-designs-btn:hover,
+      .view-designs-btn:focus-visible {
+        border-color: #8df2cb;
+        color: #8df2cb;
+        box-shadow: 0 0 0 1px rgba(141, 242, 203, 0.55),
+          0 12px 24px rgba(141, 242, 203, 0.28);
+      }
+
+      .view-designs-btn:focus-visible {
+        outline: 2px solid #8df2cb;
+        outline-offset: 2px;
+      }
+
+      .view-designs-btn:active {
+        transform: translateY(1px);
+      }
+
+      .view-designs-btn::after {
+        content: "";
+        position: absolute;
+        inset: -1px;
+        background: radial-gradient(
+          105% 140% at 50% 0%,
+          rgba(141, 242, 203, 0.28) 0%,
+          rgba(141, 242, 203, 0.08) 55%,
+          transparent 80%
+        );
+        opacity: 0;
+        transform: translateY(18%);
+        transition: opacity 260ms ease, transform 260ms ease;
+        z-index: -1;
+      }
+
+      .view-designs-btn:hover::after,
+      .view-designs-btn:focus-visible::after {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* =====================
+         LEFT SIDE NAVIGATION
+         ===================== */
+      .side-nav {
+        position: fixed;
+        top: 7.5rem;
+        left: clamp(5rem, 10vw, 8rem);
+        width: 200px;
+        display: flex;
+        flex-direction: column;
+        gap: 2.2rem;
+        align-items: flex-end;
+        text-align: right;
+        background: transparent;
+        z-index: 10;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+      }
+
+      .side-nav.visible {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .side-nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1.6rem;
+        position: relative;
+        width: 100%;
+      }
+
+      .side-nav li {
+        position: relative;
+        text-align: right;
+      }
+
+      .side-nav a {
+        font-family: "IBM Plex Sans JP", system-ui, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        text-decoration: none;
+        color: #6c6c6e;
+        position: relative;
+        transition: color 0.3s ease;
+        display: inline-block;
+        padding-bottom: 6px;
+      }
+
+      .side-nav a:hover {
+        color: #b8b9bd;
+      }
+
+      .side-nav a.active {
+        color: #9e9fa4;
+      }
+
+      .side-nav a.active:hover {
+        color: #c0c1c1;
+      }
+
+      .side-nav a::after {
+        content: "";
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 2px;
+        background-color: transparent;
+        transition: background-color 0.3s ease, width 0.3s ease;
+      }
+
+      .side-nav a:hover::after {
+        background-color: rgba(141, 242, 203, 0.4);
+      }
+
+      .side-nav a.active::after {
+        background-color: #8df2cb;
+      }
+
+      /* Side nav voice button styling */
+      .side-nav-voice-button {
+        color: white;
+      }
+
+      .side-nav-voice-button svg {
+        stroke: white;
+      }
+
+      .side-nav-voice-button:hover,
+      .side-nav-voice-button:focus-visible {
+        background: rgba(141, 242, 203, 0.12);
+        border-color: rgba(141, 242, 203, 0.35);
+        box-shadow: 0 14px 30px rgba(141, 242, 203, 0.32);
+      }
+
+      .side-nav-voice-button:hover svg,
+      .side-nav-voice-button:focus-visible svg {
+        stroke: #8df2cb;
+      }
+
+      .side-nav-voice-button.is-listening {
+        border-color: rgba(141, 242, 203, 0.65);
+        background: rgba(141, 242, 203, 0.16);
+        box-shadow: 0 18px 32px rgba(141, 242, 203, 0.4);
+      }
+
+      .side-nav-voice-button.is-listening svg {
+        stroke: #8df2cb;
+      }
+
+      /* Hide navigation on smaller screens */
+      @media (max-width: 960px) {
+        .side-nav {
+          display: none;
+        }
+      }
+
+      /* =========================
+         KEY OPPORTUNITY SECTION
+         ========================= */
+      #key-opportunity .cs-section__right {
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* vertically center content between dashed rules */
+        align-items: flex-start; /* left-justify */
+        min-height: 40vh; /* ensure enough vertical space between dashed rules */
+      }
+      #key-opportunity .cs-section__right::before {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 2px;
+        margin-bottom: 2.5rem;
+        background: repeating-linear-gradient(
+          to right,
+          rgba(141, 242, 203, 0.45) 0 8px,
+          rgba(141, 242, 203, 0.08) 8px 16px
+        );
+        animation: dash-move 6s linear infinite;
+        opacity: 0.65;
+      }
+
+      #key-opportunity .cs-section__right::after {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 2px;
+        margin-top: 2.5rem;
+        background: repeating-linear-gradient(
+          to right,
+          rgba(141, 242, 203, 0.45) 0 8px,
+          rgba(141, 242, 203, 0.08) 8px 16px
+        );
+        animation: dash-move 6s linear infinite;
+        opacity: 0.65;
+      }
+
+      .key-opportunity-heading {
+        text-transform: uppercase;
+        text-align: left;
+        font-size: clamp(1.2rem, 2vw, 1.8rem);
+        line-height: 1.6;
+        letter-spacing: 0.05em;
+        color: #fff;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Left-align and tighten paragraph spacing in this section */
+      #key-opportunity p {
+        text-align: left;
+        margin: 0.25rem 0 0 0;
+      }
+      #key-opportunity p:first-of-type {
+        margin-top: 0.75rem;
+      }
+
+      @media (max-width: 900px) {
+        .key-opportunity-heading {
+          padding: 0 1rem;
+        }
+      }
+
+
+      /* Image Overlay Modal */
+      .image-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.95);
+        z-index: 9999;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        box-sizing: border-box;
+      }
+
+      .image-overlay.active {
+        display: flex;
+      }
+
+      .image-overlay img {
+        max-width: 90%;
+        max-height: 90%;
+        object-fit: contain;
+        box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+      }
+
+      .image-overlay-close {
+        position: absolute;
+        top: 2rem;
+        right: 2rem;
+        width: 3rem;
+        height: 3rem;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+      }
+
+      .image-overlay-close:hover {
+        background: rgba(255, 255, 255, 0.2);
+        border-color: rgba(255, 255, 255, 0.3);
+      }
+
+      .image-overlay-close::before,
+      .image-overlay-close::after {
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 2px;
+        background: white;
+      }
+
+      .image-overlay-close::before {
+        transform: rotate(45deg);
+      }
+
+      .image-overlay-close::after {
+        transform: rotate(-45deg);
+      }
+
+      /* Video Overlay Modal */
+      .video-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.95);
+        z-index: 9999;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        box-sizing: border-box;
+      }
+
+      .video-overlay.active {
+        display: flex;
+      }
+
+      .video-overlay video {
+        max-width: 90%;
+        max-height: 90%;
+        object-fit: contain;
+        box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+      }
+
+      .video-overlay-close {
+        position: absolute;
+        top: 2rem;
+        right: 2rem;
+        width: 3rem;
+        height: 3rem;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+      }
+
+      .video-overlay-close:hover {
+        background: rgba(255, 255, 255, 0.2);
+        border-color: rgba(255, 255, 255, 0.3);
+      }
+
+      .video-overlay-close::before,
+      .video-overlay-close::after {
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 2px;
+        background: white;
+      }
+
+      .video-overlay-close::before {
+        transform: rotate(45deg);
+      }
+
+      .video-overlay-close::after {
+        transform: rotate(-45deg);
+      }
+
+      .clickable-image {
+        cursor: pointer;
+        transition: all 220ms ease;
+        outline: 1px solid transparent;
+        outline-offset: 16px;
+        box-shadow: none;
+        border-radius: 0;
+      }
+
+      .clickable-image:hover {
+        outline-color: #8df2cb;
+        box-shadow: 0 12px 24px rgba(141, 242, 203, 0.28);
+      }
+
+      .clickable-video {
+        cursor: pointer;
+        transition: all 220ms ease;
+        outline: 1px solid transparent;
+        outline-offset: 16px;
+        box-shadow: none;
+        border-radius: 0;
+      }
+
+      .clickable-video:hover {
+        outline-color: #8df2cb;
+        box-shadow: 0 12px 24px rgba(141, 242, 203, 0.28);
+      }
+      
+      /* Override any rounded corners in final designs section */
+      #final-designs .clickable-image,
+      #final-designs .clickable-video,
+      #final-designs .video-centered__wrapper,
+      #final-designs .video-centered__media {
+        border-radius: 0 !important;
+      }
+
+      /* Full Walkthrough video - no rounded corners */
+      #final-designs .video-centered__media[src*="Full Walkthrough.mov"] {
+        border-radius: 0;
+      }
+
+      /* =========================
+         COMPREHENSIVE MOBILE RESPONSIVE
+         ========================= */
+
+      /* Tablet breakpoint - 768px */
+      @media (max-width: 768px) {
+        /* Hero adjustments */
+        .hero {
+          min-height: 70vh;
+        }
+
+        .hero__logo {
+          width: min(25vw, 140px);
+          margin-bottom: 16px;
+        }
+
+        .hero__subheading {
+          font-size: clamp(18px, 5vw, 28px);
+        }
+
+        .hero__tagline {
+          font-size: clamp(13px, 3vw, 16px);
+        }
+
+        .hero__bar {
+          width: 80px;
+          height: 3px;
+          margin: 18px auto 14px auto;
+        }
+
+        .hero__scroll-arrow {
+          bottom: 20px;
+        }
+
+        .hero__scroll-arrow svg {
+          width: 28px;
+          height: 28px;
+        }
+
+        /* Case study padding */
+        .case-study {
+          padding: clamp(2rem, 5vw, 3rem) 1.5rem !important;
+        }
+
+        .cs-section {
+          padding: clamp(1.5rem, 3vw, 2rem) 0;
+        }
+
+        .cs-section__right {
+          max-width: 100%;
+          gap: clamp(0.65rem, 1vw, 0.85rem);
+        }
+
+        /* Section headings */
+        .cs-section__right h3 {
+          font-size: clamp(1.3rem, 4vw, 1.6rem);
+          margin-top: 0.5rem;
+        }
+
+        .cs-section__right p,
+        .cs-section__right li {
+          font-size: 0.9rem !important;
+        }
+
+        /* Media grid - stack to single column */
+        .media-grid {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+          margin-top: 2rem;
+        }
+
+        .media-caption {
+          font-size: 0.85rem;
+          margin-top: 0.5rem;
+        }
+
+        /* Button styling */
+        .view-designs-btn {
+          padding: 0.7rem 1.5rem;
+          font-size: 0.8rem;
+          width: 100%;
+          max-width: 280px;
+        }
+
+        .overview-button-wrapper {
+          justify-content: center;
+        }
+
+        /* Video centered */
+        .video-centered {
+          max-width: 100%;
+          margin: 1.5rem 0;
+        }
+
+        /* Key opportunity heading */
+        .key-opportunity-heading {
+          font-size: clamp(1.1rem, 3.5vw, 1.4rem);
+          padding: 0 0.5rem;
+        }
+
+        /* Subsection labels */
+        .subsection-label {
+          font-size: 0.65rem;
+        }
+      }
+
+      /* Mobile breakpoint - 600px */
+      @media (max-width: 600px) {
+        /* Hero */
+        .hero {
+          min-height: 60vh;
+        }
+
+        .hero__content {
+          padding: 4vh 5vw;
+        }
+
+        .hero__logo {
+          width: min(30vw, 120px);
+        }
+
+        .hero__subheading {
+          font-size: clamp(16px, 5.5vw, 24px);
+        }
+
+        .hero__tagline {
+          font-size: clamp(12px, 3.5vw, 15px);
+        }
+
+        .hero__bar {
+          width: 60px;
+          height: 2px;
+          margin: 14px auto 12px auto;
+        }
+
+        .hero__stripe {
+          height: 15vh;
+        }
+
+        /* Case study */
+        .case-study {
+          padding: 1.5rem 1.25rem !important;
+        }
+
+        .cs-section {
+          padding: 1.25rem 0;
+          gap: 1rem;
+        }
+
+        .cs-section__right {
+          padding-left: 0;
+        }
+
+        .cs-section__right h3 {
+          font-size: clamp(1.2rem, 5vw, 1.5rem);
+          margin: 0.35rem 0 0.65rem;
+        }
+
+        .cs-section__right p,
+        .cs-section__right li {
+          font-size: 0.88rem !important;
+          line-height: 1.7;
+        }
+
+        /* Section labels */
+        .cs-sticky h2 {
+          font-size: 0.65rem;
+        }
+
+        /* Overview meta */
+        .meta-item h4 {
+          font-size: clamp(0.95rem, 4vw, 1.2rem);
+        }
+
+        .meta-item p {
+          font-size: 0.8rem;
+        }
+
+        /* Media grid */
+        .media-grid {
+          gap: 1.75rem;
+          margin-top: 1.5rem;
+        }
+
+        /* Callouts */
+        .cs-callout {
+          padding: 0.85rem 1rem;
+          border-radius: 0.85rem;
+        }
+
+        /* Key opportunity */
+        .key-opportunity-heading {
+          font-size: clamp(1rem, 4vw, 1.3rem);
+          line-height: 1.5;
+        }
+
+        /* Button */
+        .view-designs-btn {
+          padding: 0.65rem 1.25rem;
+          font-size: 0.75rem;
+          width: 100%;
+        }
+
+        /* Video */
+        .video-centered {
+          max-width: 100%;
+          margin: 1rem 0;
+        }
+
+        .video-centered__wrapper {
+          border-radius: 0;
+        }
+
+        .video-centered__media {
+          border-radius: 0;
+        }
+
+        /* Images - reduce outline offset on mobile for better visibility */
+        .clickable-image {
+          outline-offset: 8px;
+        }
+
+        /* Lists */
+        .cs-section__right ul {
+          padding-left: 1.25rem;
+        }
+
+        .cs-section__right li {
+          margin-bottom: 0.65rem;
+        }
+
+        .overview-subsection {
+          margin-top: 2rem;
+        }
+
+        .overview-subsection ul {
+          margin: 0.85rem 0 1.25rem 0;
+        }
+
+        /* Spacing adjustments */
+        .overview-meta {
+          gap: 1.25rem;
+          padding-bottom: 1.25rem;
+          margin-bottom: 1.5rem;
+        }
+      }
+
+      /* Extra small mobile - 480px */
+      @media (max-width: 480px) {
+        .hero {
+          min-height: 55vh;
+        }
+
+        .hero__content {
+          padding: 3vh 4vw;
+        }
+
+        .hero__subheading {
+          font-size: clamp(15px, 6vw, 22px);
+        }
+
+        .case-study {
+          padding: 1.25rem 1rem !important;
+        }
+
+        .cs-section {
+          padding: 1rem 0;
+        }
+
+        .cs-section__right h3 {
+          font-size: clamp(1.15rem, 5.5vw, 1.4rem);
+        }
+
+        .cs-section__right p,
+        .cs-section__right li {
+          font-size: 0.85rem !important;
+        }
+
+        .key-opportunity-heading {
+          font-size: clamp(0.95rem, 4.5vw, 1.2rem);
+        }
+
+        .media-grid {
+          gap: 1.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header" id="site-header">
+      <div class="site-header__inner">
+        <a href="./index.html#landing" class="site-brand">
+          <img src="./assets/NP.png" alt="Naima Patel logo" />
+          <span class="sr-only">Naima Patel</span>
+        </a>
+        <button
+          class="site-header__menu"
+          id="site-menu-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-nav"
+        >
+          <span></span>
+          <span class="sr-only">Toggle navigation</span>
+        </button>
+        <div class="site-header__group">
+          <nav class="site-nav" id="site-nav" aria-label="Primary">
+            <ul class="site-nav__list">
+              <li>
+                <a class="site-nav__link" href="./index.html#projects"
+                  >Projects</a
+                >
+              </li>
+              <li>
+                <a class="site-nav__link" href="./index.html#about">About</a>
+              </li>
+              <li>
+                <a class="site-nav__link" href="./index.html#resume">Resume</a>
+              </li>
+            </ul>
+          </nav>
+          <button
+            class="nav-voice-button"
+            id="nav-voice-button"
+            type="button"
+            aria-pressed="false"
+            aria-label="Toggle voice command"
+          >
+            <span class="icon icon-mic" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.7"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M12 1.98a3 3 0 0 0-3 3v5a3 3 0 0 0 6 0v-5a3 3 0 0 0-3-3Z"
+                />
+                <path d="M19 10v1a7 7 0 0 1-14 0v-1" />
+                <path d="M12 19v4" />
+                <path d="m8 23 4 0 4 0" />
+              </svg>
+            </span>
+            <span class="icon icon-mic-off" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.7"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M9 9v2a3 3 0 0 0 4.5 2.598" />
+                <path d="M15 8.5V5a3 3 0 0 0-5.598-1.5" />
+                <path d="M19 10v1a7.002 7.002 0 0 1-9.184 6.708" />
+                <path d="M13 19v3" />
+                <path d="M8 22h10" />
+                <path d="m2 2 20 20" />
+              </svg>
+            </span>
+          </button>
+        </div>
+      </div>
+    </header>
+    <section class="hero" aria-label="Oracle AI hero">
+      <div class="hero__marquees" aria-hidden="true">
+        <div class="hero__stripe hero__stripe--1"></div>
+        <div class="hero__stripe hero__stripe--2"></div>
+        <div class="hero__stripe hero__stripe--3"></div>
+        <div class="hero__stripe hero__stripe--4"></div>
+        <div class="hero__stripe hero__stripe--5"></div>
+        <div class="hero__stripe hero__stripe--6"></div>
+      </div>
+
+      <div class="hero__content">
+        <img
+          class="hero__logo"
+          src="assets/OracleAILogo copy 1.png"
+          alt="Oracle AI logo"
+        />
+        <h1 class="hero__subheading">
+          INCORPORATING GEN AI INTO ORACLE'S FINANCIAL PLANNING PLATFORMS
+        </h1>
+        <div class="hero__bar" role="presentation"></div>
+        <p class="hero__tagline">xxx minute read</p>
+      </div>
+
+      <!-- Scroll down arrow -->
+      <button
+        class="hero__scroll-arrow"
+        aria-label="Scroll to case study"
+        onclick="document.getElementById('case-study').scrollIntoView({ behavior: 'smooth' })"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </button>
+    </section>
+
+    <main class="case-study" id="case-study">
+      <nav class="side-nav" aria-label="Section navigation">
+        <ul>
+          <li><a href="#overview" class="active">Overview</a></li>
+          <li><a href="#research">Research</a></li>
+          <li><a href="#key-opportunity">Key Opportunity</a></li>
+          <li><a href="#ideation">Ideation &amp; Initial Designs</a></li>
+          <li><a href="#final-designs">Final Designs</a></li>
+          <li><a href="#takeaways">Takeaways</a></li>
+        </ul>
+
+        <!-- Voice button for side nav -->
+        <button
+          class="nav-voice-button side-nav-voice-button"
+          id="conclusions-voice-button"
+          type="button"
+          aria-pressed="false"
+          aria-label="Toggle voice command"
+          style="margin-top: 1rem"
+        >
+          <span class="icon icon-mic" aria-hidden="true">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="white"
+              stroke-width="1.7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M12 1.98a3 3 0 0 0-3 3v5a3 3 0 0 0 6 0v-5a3 3 0 0 0-3-3Z"
+              />
+              <path d="M19 10v1a7 7 0 0 1-14 0v-1" />
+              <path d="M12 19v4" />
+              <path d="m8 23 4 0 4 0" />
+            </svg>
+          </span>
+          <span class="icon icon-mic-off" aria-hidden="true">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="white"
+              stroke-width="1.7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M9 9v2a3 3 0 0 0 4.5 2.598" />
+              <path d="M15 8.5V5a3 3 0 0 0-5.598-1.5" />
+              <path d="M19 10v1a7.002 7.002 0 0 1-9.184 6.708" />
+              <path d="M13 19v3" />
+              <path d="M8 22h10" />
+              <path d="m2 2 20 20" />
+            </svg>
+          </span>
+        </button>
+      </nav>
+
+      <section class="cs-section" id="overview">
+        <div class="cs-section__left"></div>
+        <div class="cs-section__right">
+          <div class="overview-meta">
+            <div class="meta-item">
+              <h4>Timeline</h4>
+              <p>June 2024 – September 2024</p>
+            </div>
+            <div class="meta-item">
+              <h4>Role</h4>
+              <p>Product Intern</p>
+            </div>
+            <div class="meta-item">
+              <h4>TEAM</h4>
+              <p>Oracle Enterprise Performance Management (EPM) Team<br>Ray Weikel: Mentor</p>
+            </div>
+            <div class="meta-item">
+              <h4>Platform</h4>
+              <p>Oracle EPM (Web)</p>
+            </div>
+          </div>
+          <h3>HOW TO MEANINGFULLY INCORPORATE AI INTO FINANCIAL PLANNING WORKFLOWS</h3>
+          <p>
+            The goal of a financial planner is to create financial plans and
+            understand when the company has deviated from the projections. They
+            use a tool called <strong>what-if analysis</strong> to run potential
+            scenarios by varying revenues and costs and seeing how it affects
+            overall performance. From this analysis, they are able to determine
+            the risk associated with these discrepancies. 
+</p>
+<p>
+  My role on this team was to understand the workflow of a financial planner and incorporate Gen AI in an intelligent, intentional manner. 
+            This required taking time to understand the various goals of our financial modeling users and being creative about which moments AI could be game changing. 
+            Additionally, we were <strong>not allowed to use chat bots.</strong>
+          </p>
+
+          <div class="overview-subsection">
+            <span class="subsection-label">PROBLEM</span>
+            <h3>Clarity of Purpose</h3>
+            <p>
+              To understand causation behind a plan discrepancy, a planner may need to manually pull from as many as four different data sources: 1) EPM aggregate balances; 2) ERP transactional data; 3) FAW dashboards; and 4) OAC transactional data.
+            </p>
+            <p>
+              All of this data may need to be pulled and joined into excel to calculate which data points are the key drivers of the discrepancy.
+            </p>
+            <div class="insight-cards">
+              <div class="insight-card">
+                <h4>As a financial planner, I need to leverage Gen AI to quickly analyze data and understand the causes driving a discrepancy between a plan and a prediction so that I know what I need to explore in order to mitigate the discrepancy.</h4>
+              </div>
+              <div class="insight-card">
+                <h4>As a financial planner, I need to leverage Gen AI to create different scenarios and understand their impact so that I can recommend the best course of action to address a discrepancy to a plan.</h4>
+              </div>
+            </div>
+          </div>
+
+          <div class="overview-subsection">
+            <span class="subsection-label">SOLUTION</span>
+            <h3>Context-bound, built-in assistants</h3>
+            <p>
+              Incorporating Gen AI into the workflow of a financial planner in
+              Oracle's EPM platform has the potential to reduce the time it takes a user to action a discrepancy between a plan and a prediction from ~2 weeks to minutes. 
+              Given that the target user is extremely experienced, the key design challenge was ensuring that <strong>the AI is built in, not bolted on.</strong>
+              
+            </p>
+            <img src="assets/OracleAIHTMLAssets/Before and after.png" alt="Before and after" class="clickable-image" style="width:100%;margin-top:3rem" onclick="openImageOverlay(this.src)">
+          </div>
+
+          <div class="overview-button-wrapper">
+            <button
+              class="view-designs-btn"
+              type="button"
+              onclick="document.getElementById('final-designs').scrollIntoView({ behavior: 'smooth', block: 'start' })"
+            >
+              View Final Designs
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="cs-section" id="research">
+        <div class="cs-section__left"></div>
+        <div class="cs-section__right">
+          <h3>User Research</h3>
+          <p>
+            The user I am designing for is a financial analyst, specifically at
+            an automobile manufacturing corporation. It is important to note
+            that she is an expert user, which means that she knows how to pull
+            information from a page and requires less overall guidance.
+          </p>
+          <video
+            src="assets/OracleAIHTMLAssets/UserPersonaVid.mov"
+            autoplay
+            muted
+            loop
+            playsinline
+            class="clickable-video"
+            style="width: 100%; border-radius: 0; margin-top: 2.5rem"
+            onclick="openVideoOverlay('assets/OracleAIHTMLAssets/UserPersonaVid.mov')"
+          ></video>
+          <p>
+            I was able to break down the steps a financial planner takes into
+            key stages:
+          </p>
+          <ul>
+            <li>
+              <strong>Discover</strong> — The user becomes aware of
+              discrepancies.
+            </li>
+            <li>
+              <strong>Learn</strong> — The user understands causation behind a
+              discrepancy.
+            </li>
+            <li>
+              <strong>Explore</strong> — The user works with data to determine
+              potential solutions.
+            </li>
+            <li>
+              <strong>Take action &amp; Monitor</strong> — The user works with
+              stakeholders to act according to an insight.
+            </li>
+          </ul>
+          <p>
+            From here, I mapped out the decision tree of a financial analyst to
+            understand the key action points. This allowed me to simplify the
+            user's interactions so I could create the optimal model for a
+            financial analyst to learn and explore data.
+          </p>
+          <video
+            src="assets/OracleAIHTMLAssets/FlowChartVid.mov"
+            autoplay
+            muted
+            loop
+            playsinline
+            class="clickable-video"
+            style="width: 100%; border-radius: 0; margin-top: 2.5rem"
+            onclick="openImageOverlay('assets/OracleAIHTMLAssets/Full Flow Chart.png')"
+          ></video>
+          <h3>Competitive Analysis</h3>
+          <p>
+            I looked into over 15 products and their AI Assistants. I then
+            summarized each AI experience and categorized them in order to be
+            able to properly compare them to our use case and to each other.
+          </p>
+          <ul>
+            <li>
+              <strong>Omnipresent:</strong> the product's AI assistant is meant
+              to be used throughout the application.
+            </li>
+            <li>
+              <strong>Contextual:</strong> the AI is only revealed within a
+              particular context of the application.
+            </li>
+            <li>
+              <strong>General audience:</strong> all users of the application
+              would benefit from the AI assistant.
+            </li>
+            <li>
+              <strong>Specific audience:</strong> the AI is directed towards a
+              subset of users.
+            </li>
+          </ul>
+          <img
+            src="assets/OracleAIHTMLAssets/competitive.png"
+            alt="Competitive landscape"
+            class="clickable-image"
+            style="display: block; margin: 2.5rem auto 1rem auto; max-width: 100%"
+            onclick="openImageOverlay(this.src)"
+          />
+          <h3>Insights</h3>
+          <div class="media-grid media-grid--two-cols">
+            <div class="media-grid-item">
+              <div class="media-grid-item__wrapper">
+                <img
+                  class="media-grid-item__media clickable-image"
+                  src="assets/OracleAIHTMLAssets/Khanmigo Insight.png"
+                  alt="Khanmigo insight"
+                  onclick="openImageOverlay(this.src)"
+                />
+              </div>
+              <p class="media-caption"><strong>Insight #1:</strong> Omnipresent AI assistants are generally in the form of chat bots because their uses are more general.</p>
+            </div>
+            <div class="media-grid-item">
+              <div class="media-grid-item__wrapper">
+                <img
+                  class="media-grid-item__media clickable-image"
+                  src="assets/OracleAIHTMLAssets/Salesforce Insight.png"
+                  alt="Salesforce insight"
+                  onclick="openImageOverlay(this.src)"
+                />
+              </div>
+              <p class="media-caption"><strong>Insight #2:</strong> AI assistants with specific use cases and specific audiences are in the form of input/output boxes.</p>
+            </div>
+            <div class="media-grid-item">
+              <div class="media-grid-item__wrapper">
+                <img
+                  class="media-grid-item__media clickable-image"
+                  src="assets/OracleAIHTMLAssets/Zoom Insight.png"
+                  alt="Zoom insight"
+                  onclick="openImageOverlay(this.src)"
+                />
+              </div>
+              <p class="media-caption"><strong>Insight #3:</strong> Prompt suggestions are displayed to help the user understand how the AI assistant is intended to be used.</p>
+            </div>
+            <div class="media-grid-item">
+              <div class="media-grid-item__wrapper">
+                <img
+                  class="media-grid-item__media clickable-image"
+                  src="assets/OracleAIHTMLAssets/Grammarly Insight.png"
+                  alt="Grammarly insight"
+                  onclick="openImageOverlay(this.src)"
+                />
+              </div>
+              <p class="media-caption"><strong>Insight #4:</strong> AI editing tools can directly insert generated content whereas more general AI tools cannot.</p>
+            </div>
+          </div>
+          <h3>Design Principles</h3>
+          <p>
+            After my research, I was able to identify design principles that
+            guided my design decisions as I began ideation:
+          </p>
+          <div class="principles-list">
+            <div class="principle-item">
+              <img
+                class="principle-icon"
+                src="assets/OracleAIHTMLAssets/principle1.png"
+                alt="Icon: user guides the AI"
+              />
+              <div>
+                <div class="principle-title">
+                  The user guides the AI, AI doesn't lead or guide the user.
+                </div>
+                <p class="principle-text">
+                  We want to be sure to earn the trust of our professional users
+                  by allowing them to be in control of what Gen AI produces for
+                  them. We only provide suggestions when we have extremely high
+                  confidence in its relevance.
+                </p>
+              </div>
+            </div>
+            <div class="principle-item">
+              <img
+                class="principle-icon"
+                src="assets/OracleAIHTMLAssets/principle2.png"
+                alt="Icon: context bound"
+              />
+              <div>
+                <div class="principle-title">The Gen AI output is bound to the context.</div>
+                <p class="principle-text">
+                  Prompts and queries are limited to what is relevant to a page.
+                  This is important so that the AI doesn't have to distinguish
+                  the user's intent.
+                </p>
+              </div>
+            </div>
+            <div class="principle-item">
+              <img
+                class="principle-icon"
+                src="assets/OracleAIHTMLAssets/principle3.png"
+                alt="Icon: provide data sources"
+              />
+              <div>
+                <div class="principle-title">Provide data sources.</div>
+                <p class="principle-text">
+                  We provide backing data to the user for them to validate any
+                  analysis that Gen AI has provided so they can be sure that the
+                  response is factual. This gives them the option to verify
+                  insights themselves, and also increases trust since the AI is
+                  effectively citing its sources.
+                </p>
+              </div>
+            </div>
+            <div class="principle-item">
+              <img
+                class="principle-icon"
+                src="assets/OracleAIHTMLAssets/principle4.png"
+                alt="Icon: built in not bolted on"
+              />
+              <div>
+                <div class="principle-title">Our AI is built in, not bolted on.</div>
+                <p class="principle-text">
+                  I wanted to make sure the AI experience in my designs were
+                  differentiated and aided our user's goals in a way that was
+                  truly beneficial. I was careful to embed AI into the
+                  application, as opposed to throwing a chat bot in a side panel
+                  and expecting the user to seek it out themselves.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      
+
+      <section class="cs-section" id="key-opportunity">
+        <div class="cs-section__left"></div>
+        <div class="cs-section__right">
+          <h3 class="key-opportunity-heading" style="margin-top: 0.25rem;">Leveraging Gen AI to…</h3>
+          <p style="margin: 0.75rem 0 0 0;">
+            <strong>Learn</strong> — help users quickly analyze data and understand the causes driving a discrepancy between a financial plan and predicted actual.
+          </p>
+          <p style="margin: 0.25rem 0 0 0;">
+            <strong>Explore</strong> — rapidly create different scenarios and understand their impact.
+          </p>
+        </div>
+      </section>
+
+      
+
+      <section class="cs-section" id="ideation">
+        <div class="cs-section__left"></div>
+        <div class="cs-section__right">
+          <h3>Design Exploration 1: Chat Bot VS. Input/Output Box</h3>
+          <p>
+            My first design exploration integrated a chat bot into the user flow
+            because this was an extremely relevant pattern in my research.
+          </p>
+          <p>
+            In this exploration, the user wants to understand why the variance
+            is high in this chart, so she asks the AI assistant which can be
+            accessed globally. This opens a chat panel where the user can ask
+            about the data on the page.
+          </p>
+          <p>
+            This concept was quickly discarded for a few reasons. The first is
+            that according to my research, chat bots are most useful when their
+            use cases are more general. However, my research suggested that for
+            specific use cases, such as financial planning, input/output boxes
+            are much more successful patterns. Another takeaway is that this
+            chat bot doesn't feel connected to the page, which is a huge
+            drawback for our use case where the user is constantly asking
+            questions about the information on the page.
+          </p>
+          <img
+            src="assets/OracleAIHTMLAssets/ideation1.png"
+            alt="Chat Bot Exploration"
+            class="clickable-image media-full"
+            style="margin-top: 3rem"
+            onclick="openImageOverlay(this.src)"
+          />
+          <video
+            src="assets/OracleAIHTMLAssets/ideation1.mov"
+            autoplay
+            muted
+            loop
+            playsinline
+            class="media-full clickable-video"
+            style="margin-top: 4rem"
+            onclick="openVideoOverlay('assets/OracleAIHTMLAssets/ideation1.mov')"
+          ></video>
+
+          <h3>Design Exploration 2: Read-Only Pages</h3>
+          <p>
+            A question I had while designing was how to handle read-only pages
+            versus pages we were modifying. The dashboard page is intended to be
+            read-only, so I explored this option of asking questions about the
+            content on the page in a page-level magic box, which then opened an
+            insight panel for the AI generated response. From here, the user
+            could expand the data in a dynamic tab and ask further questions.
+          </p>
+          <p>
+            The idea here was that the user would be able to see the full page
+            on the left while interacting with the response in the right panel.
+            However, we ultimately felt that this interaction didn't fully
+            justify the space the panel took.
+          </p>
+          <img
+            src="assets/OracleAIHTMLAssets/ideation2.png"
+            alt="Read-Only Pages Exploration"
+            class="clickable-image media-full"
+            style="margin-top: 3rem"
+            onclick="openImageOverlay(this.src)"
+          />
+          <video
+            src="assets/OracleAIHTMLAssets/ideation2.mov"
+            autoplay
+            muted
+            loop
+            playsinline
+            class="media-full clickable-video"
+            style="margin-top: 4rem"
+            onclick="openVideoOverlay('assets/OracleAIHTMLAssets/ideation2.mov')"
+          ></video>
+
+          <h3>Design Exploration 3: Object-Level Magic Boxes</h3>
+          <p>
+            Within our explorations of read-only pages versus pages intended to
+            be modified, a key distinction I explored was page level magic boxes
+            versus object level magic boxes.
+          </p>
+          <p>
+            Here, the idea was that the user wanted to run a what-if analysis on
+            this data set, which is an action that modifies the page, so they
+            would be able to click into the data visualization and add scenarios
+            right there in situ.
+          </p>
+          <p>
+            However, we realized that specifically for pages dedicated to
+            running what-if predictions, the visualizations on the page would
+            all be related to the same data. This made it counterintuitive for
+            the user to click into specific data sets and ask object-level
+            questions since the questions inherently were about all the data on
+            the page.
+          </p>
+          <img
+            src="assets/OracleAIHTMLAssets/ideation3.png"
+            alt="Object-Level Magic Boxes Exploration"
+            class="clickable-image media-full"
+            style="margin-top: 3rem"
+            onclick="openImageOverlay(this.src)"
+          />
+          <video
+            src="assets/OracleAIHTMLAssets/ideation3.mov"
+            autoplay
+            muted
+            loop
+            playsinline
+            class="media-full clickable-video"
+            style="margin-top: 4rem"
+            onclick="openVideoOverlay('assets/OracleAIHTMLAssets/ideation3.mov')"
+          ></video>
+
+          <h3>Design Exploration 4: Page-Level Magic Boxes</h3>
+          <p>
+            This differs from a page-level magic box, which is demonstrated in
+            this exploration.
+          </p>
+          <p>
+            Here, the user would interact with the data by dragging an empty
+            canvas into the page, prompting the search box at the top of the
+            page, which would then fill the empty canvas in response.
+          </p>
+          <p>
+            As I continued exploring the best patterns, I realized that
+            specifically for pages dedicated to running what-if predictions, the
+            visualizations on the page would all be related to the same data.
+            This made it counterintuitive for the user to click into specific
+            data sets and ask object-level questions since the questions
+            inherently were about all the data on the page. From these
+            explorations, we were able to narrow that pages dedicated to
+            expanding 1 data set would benefit more from page-level magic boxes.
+          </p>
+          <img
+            src="assets/OracleAIHTMLAssets/ideation4.png"
+            alt="Page-Level Magic Boxes Exploration"
+            class="clickable-image media-full"
+            style="margin-top: 3rem"
+            onclick="openImageOverlay(this.src)"
+          />
+          <video
+            src="assets/OracleAIHTMLAssets/ideation4.mov"
+            autoplay
+            muted
+            loop
+            playsinline
+            class="media-full clickable-video"
+            style="margin-top: 4rem"
+            onclick="openVideoOverlay('assets/OracleAIHTMLAssets/ideation4.mov')"
+          ></video>
+        </div>
+      </section>
+
+      <section class="cs-section" id="final-designs">
+        <div class="cs-section__left"></div>
+        <div class="cs-section__right">
+          <span class="subsection-label">FINAL DESIGNS</span>
+
+          <h3>User Journey: Learn</h3>
+          <p>
+            In this flow, Simone, a financial analyst, returns from vacation and opens the daily 
+            flash forecast to find Q3 profit falling short of plan due to a revenue gap. Using the
+             embedded Ask Oracle component directly within the data visualization, she asks clarifying 
+             questions about the shortfall and receives AI-generated insights with transparent data sources. 
+             As she drills down into the contributing factors, Commercial Vehicles in this case, the AI dynamically 
+             expands the analysis, helping her uncover that an over-forecasting bias caused the variance and enabling 
+             her to act on the findings within minutes instead of days. </p>
+            <img
+            src="assets/OracleAIHTMLAssets/Learn.png"
+            alt="User Journey: Learn"
+            class="clickable-image"
+            style="width: 100%; margin-top: 2rem; border-radius: 0"
+            onclick="openImageOverlay(this.src)"
+          />
+          <div class="video-centered video-centered--large">
+            <div class="video-centered__wrapper">
+              <video
+                autoplay
+                loop
+                muted
+                playsinline
+                class="video-centered__media clickable-video"
+                poster="assets/OracleAIHTMLAssets/video1-poster.jpg"
+                onloadedmetadata="this.playbackRate = 1.75;"
+                onclick="openVideoOverlay('assets/OracleAIHTMLAssets/video1.mp4')"
+              >
+                <source
+                  src="assets/OracleAIHTMLAssets/video1.mp4"
+                  type="video/mp4"
+                />
+                <source
+                  src="assets/OracleAIHTMLAssets/video1.webm"
+                  type="video/webm"
+                />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+
+          <h3>User Journey: Explore</h3>
+          <p>
+            In this stage, Simone moves from understanding why the gap exists to exploring how to close it. She asks the AI for recommendations to meet her revenue target, fully guiding the interaction herself. The AI responds with potential strategies and opens a dynamic tab where she can test what-if scenarios directly in the interface.</p>
+            <p>Since she's adjusting a single data source, this uses a page-level magic box that lets her add or edit scenarios inline without breaking focus. Curious about marketing's impact, Simone runs a goal-seeking analysis to see how much additional ad spend it would take to reach plan. The AI calculates roughly $350M, which she saves and shares with her team to discuss next steps.</p>
+          <img
+            src="assets/OracleAIHTMLAssets/Explore.png"
+            alt="User Journey: Explore"
+            class="clickable-image"
+            style="width: 100%; margin-top: 2rem; border-radius: 0"
+            onclick="openImageOverlay(this.src)"
+          />
+          <div class="video-centered video-centered--large">
+            <div class="video-centered__wrapper">
+              <video
+                autoplay
+                loop
+                muted
+                playsinline
+                class="video-centered__media clickable-video"
+                poster="assets/OracleAIHTMLAssets/video2-poster.jpg"
+                onloadedmetadata="this.playbackRate = 1.75;"
+                onclick="openVideoOverlay('assets/OracleAIHTMLAssets/video2.mp4')"
+              >
+                <source
+                  src="assets/OracleAIHTMLAssets/video2.mp4"
+                  type="video/mp4"
+                />
+                <source
+                  src="assets/OracleAIHTMLAssets/video2.webm"
+                  type="video/webm"
+                />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+
+          <h3>Full Walkthrough</h3>
+          <video
+            autoplay
+            loop
+            muted
+            playsinline
+            class="video-centered__media clickable-video"
+            src="assets/OracleAIHTMLAssets/Full Walkthrough.mov"
+            onloadedmetadata="this.playbackRate = 1.75;"
+            style="width: 100%; border-radius: 0;"
+            onclick="openVideoOverlay('assets/OracleAIHTMLAssets/Full Walkthrough.mov')"
+          >
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </section>
+
+      <section class="cs-section" id="takeaways">
+        <div class="cs-section__left"></div>
+        <div class="cs-section__right">
+          <h3>Key Takeaways</h3>
+          <p>
+            This internship required me to learn a lot about financial planning
+            and its tools. Designing for an entirely new user group was a
+            challenging but extremely rewarding experience. I had to pivot
+            design ideas many times, but this experience ended up being
+            extremely rewarding because I got closer to my final designs with
+            every iteration. Another key takeaway was working within Oracle's
+            Redwood Design System. It was challenging to fit my ideas within
+            Redwood page templates. This summer has allowed me to improve as a
+            storyteller and overall designer.
+          </p>
+          <p>
+            <strong
+              >My greatest takeaway from this experience was designing for
+              financial planners, a user group completely unknown to me. This
+              forced me to deeply understand a new user journey so I could
+              design an AI experience that was built in, not bolted on.</strong
+            >
+          </p>
+          <p>Given more time, these are the next steps I would've taken:</p>
+          <ul>
+            <li>
+              Socialize with design systems team to normalize Gen AI patterns
+            </li>
+            <li>Test designs internally within Oracle</li>
+            <li>Test designs with financial planners</li>
+            <li>Show designs to PMs and developers</li>
+          </ul>
+          <div class="takeaways-photos">
+            <img
+              src="assets/OracleAIHTMLAssets/Oracle Intern Day.PNG"
+              alt="Oracle Intern Day"
+              class="takeaways-photo"
+            />
+            <img
+              src="assets/OracleAIHTMLAssets/Intern day Image.png"
+              alt="Intern Day"
+              class="takeaways-photo"
+            />
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Project Navigation -->
+    <nav class="project-navigation" aria-label="Other projects">
+      <a href="./oracle.html" class="project-nav-card project-nav-card--oracle">
+        <div class="project-nav-card__arrow" aria-hidden="true">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M7 17L17 7M17 7H7M17 7V17" />
+          </svg>
+        </div>
+        <div class="project-nav-card__content">
+          <div class="project-nav-card__label">Next Project</div>
+          <h3 class="project-nav-card__title">Oracle</h3>
+          <p class="project-nav-card__description">Creating Smart Components</p>
+        </div>
+      </a>
+
+      <a href="./tidbit.html" class="project-nav-card project-nav-card--tidbit">
+        <div class="project-nav-card__arrow" aria-hidden="true">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M7 17L17 7M17 7H7M17 7V17" />
+          </svg>
+        </div>
+        <div class="project-nav-card__content">
+          <div class="project-nav-card__label">View Project</div>
+          <h3 class="project-nav-card__title">Tidbit</h3>
+          <p class="project-nav-card__description">
+            Social Documentation Platform
+          </p>
+        </div>
+      </a>
+    </nav>
+
+    <footer class="site-footer">
+      <div class="footer-divider"></div>
+      <div class="footer-content">
+        <p class="footer-heading">Let's keep talking.</p>
+        <div class="footer-links">
+          <a
+            href="https://www.linkedin.com/in/naimapatel/"
+            target="_blank"
+            class="footer-link"
+            rel="noreferrer"
+            >LinkedIn</a
+          >
+          <a
+            href="./assets/NaimaPatel_Resume.pdf"
+            target="_blank"
+            class="footer-link"
+            rel="noreferrer"
+            >Resume</a
+          >
+          <a href="mailto:npatel12@stanford.edu" class="footer-link">Connect</a>
+        </div>
+        <p class="footer-copyright">© 2025 Naima Patel</p>
+      </div>
+    </footer>
+
+    <script src="./assets/scripts/voice-button.js"></script>
+    <script src="./assets/scripts/navbar.js"></script>
+    <script src="./assets/scripts/filter-tags.js"></script>
+    <script src="./assets/scripts/footer.js" defer></script>
+    <script src="./assets/scripts/pointer.js" defer></script>
+    <script src="./assets/scripts/scroll-animations.js"></script>
+
+    <script>
+      // Show navigation when case study section reaches the top
+      const sideNav = document.querySelector(".side-nav");
+      const caseStudy = document.getElementById("case-study");
+
+      function checkNavVisibility() {
+        const caseStudyRect = caseStudy.getBoundingClientRect();
+        const headerHeight = 80; // Approximate header height
+
+        // Show nav when case study reaches near the top of viewport
+        if (caseStudyRect.top <= headerHeight) {
+          sideNav.classList.add("visible");
+        } else {
+          sideNav.classList.remove("visible");
+        }
+      }
+
+      // Check on scroll
+      window.addEventListener("scroll", checkNavVisibility);
+      // Check on page load
+      checkNavVisibility();
+
+      // Smooth highlight updates based on scroll position
+      const sections = document.querySelectorAll(".cs-section[id]");
+      const navLinks = document.querySelectorAll(".side-nav a");
+      const VIEWPORT_TRIGGER_RATIO = 0.25; // 25% from top
+      let ticking = false;
+
+      function setActiveById(id) {
+        navLinks.forEach((link) => link.classList.remove("active"));
+        const active = document.querySelector(`.side-nav a[href="#${id}"]`);
+        if (active) active.classList.add("active");
+      }
+
+      function updateActiveSection() {
+        const triggerLine = window.scrollY + window.innerHeight * VIEWPORT_TRIGGER_RATIO;
+        let currentSection = "";
+
+        for (const section of sections) {
+          const top = section.offsetTop;
+          const bottom = top + section.offsetHeight;
+          if (triggerLine >= top && triggerLine < bottom) {
+            currentSection = section.id;
+            break;
+          }
+        }
+
+        // Fallback: if scrolled to (near) bottom, select last section
+        if (!currentSection && sections.length) {
+          if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 2) {
+            currentSection = sections[sections.length - 1].id;
+          }
+        }
+
+        if (currentSection) setActiveById(currentSection);
+      }
+
+      function onScroll() {
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            updateActiveSection();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }
+
+      window.addEventListener("scroll", onScroll, { passive: true });
+      window.addEventListener("resize", updateActiveSection);
+      updateActiveSection();
+
+      // Smooth scroll for navigation links with offset
+      navLinks.forEach((link) => {
+        link.addEventListener("click", (e) => {
+          e.preventDefault();
+          const targetId = link.getAttribute("href").substring(1);
+          const targetSection = document.getElementById(targetId);
+          if (targetSection) {
+            const navOffset =
+              parseFloat(getComputedStyle(document.documentElement).fontSize) *
+              4; // 4rem in pixels
+            const elementPosition = targetSection.getBoundingClientRect().top;
+            const offsetPosition =
+              elementPosition + window.pageYOffset - navOffset;
+
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: "smooth",
+            });
+          }
+        });
+      });
+    </script>
+
+    <!-- Image Overlay Modal -->
+    <div class="image-overlay" id="imageOverlay">
+      <div class="image-overlay-close" onclick="closeImageOverlay()"></div>
+      <img id="overlayImage" src="" alt="Enlarged view" />
+    </div>
+
+    <!-- Video Overlay Modal -->
+    <div class="video-overlay" id="videoOverlay">
+      <div class="video-overlay-close" onclick="closeVideoOverlay()"></div>
+      <video id="overlayVideo" src="" controls autoplay loop muted playsinline onloadedmetadata="this.playbackRate = 1.75;"></video>
+    </div>
+
+    <script>
+      function openImageOverlay(imageSrc) {
+        const overlay = document.getElementById("imageOverlay");
+        const overlayImage = document.getElementById("overlayImage");
+        overlayImage.src = imageSrc;
+        overlay.classList.add("active");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeImageOverlay() {
+        const overlay = document.getElementById("imageOverlay");
+        overlay.classList.remove("active");
+        document.body.style.overflow = "";
+      }
+
+      // Close overlay when clicking on the background
+      document
+        .getElementById("imageOverlay")
+        .addEventListener("click", function (e) {
+          if (e.target === this) {
+            closeImageOverlay();
+          }
+        });
+
+      // Close overlay with Escape key
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+          closeImageOverlay();
+          closeVideoOverlay();
+        }
+      });
+
+      function openVideoOverlay(videoSrc) {
+        const overlay = document.getElementById("videoOverlay");
+        const overlayVideo = document.getElementById("overlayVideo");
+        overlayVideo.src = videoSrc;
+        overlay.classList.add("active");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeVideoOverlay() {
+        const overlay = document.getElementById("videoOverlay");
+        const overlayVideo = document.getElementById("overlayVideo");
+        overlay.classList.remove("active");
+        overlayVideo.pause();
+        overlayVideo.src = "";
+        document.body.style.overflow = "";
+      }
+
+      // Close video overlay when clicking on the background
+      document
+        .getElementById("videoOverlay")
+        .addEventListener("click", function (e) {
+          if (e.target === this) {
+            closeVideoOverlay();
+          }
+        });
+
+      // Set ideation videos to 1.75x speed
+      document.addEventListener("DOMContentLoaded", function() {
+        const ideationVideos = [
+          "assets/OracleAIHTMLAssets/ideation1.mov",
+          "assets/OracleAIHTMLAssets/ideation2.mov",
+          "assets/OracleAIHTMLAssets/ideation3.mov",
+          "assets/OracleAIHTMLAssets/ideation4.mov"
+        ];
+
+        ideationVideos.forEach(videoSrc => {
+          const video = document.querySelector(`video[src="${videoSrc}"]`);
+          if (video) {
+            video.playbackRate = 1.75;
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

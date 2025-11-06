@@ -1,0 +1,44 @@
+/**
+ * Minimal Scroll Animations
+ * -------------------------
+ * Subtle, professional fade-in animations for content
+ * Hero sections are excluded
+ */
+
+/* Base animation: subtle fade and slight upward movement */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* Visible state */
+.animate-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger delay for grouped items */
+.animate-on-scroll[style*="--delay"] {
+  transition-delay: var(--delay, 0s);
+}
+
+/* Slower animation for larger sections */
+.cs-section.animate-on-scroll {
+  transition-duration: 0.7s;
+}
+
+/* Project cards: slightly more pronounced */
+.project-card.animate-on-scroll {
+  transform: translateY(30px);
+  transition-duration: 0.7s;
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .animate-on-scroll {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

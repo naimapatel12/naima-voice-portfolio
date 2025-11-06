@@ -1,0 +1,628 @@
+/*
+  Voice Button Landing Page Styles
+  --------------------------------
+  This stylesheet holds all presentation rules for the splash screen,
+  including layout, marquee background, typography, and button visuals.
+*/
+
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@400;500;600&display=swap");
+
+:root {
+  /* Global color tokens used throughout the page */
+  color-scheme: dark;
+  --accent: 11 100% 70%; /* HSL equivalent of #FF7F66 */
+  --accent-foreground: 0 0% 100%;
+  --accent-muted: 11 100% 70%;
+  --surface: rgba(11, 13, 17, 0.92);
+  --surface-strong: rgba(11, 13, 17, 0.98);
+  --danger: 0 78% 66%;
+}
+
+/* Reset inherited box-sizing so responsive layouts behave predictably */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Center the main content and keep the background immersive */
+body {
+  margin: 0;
+  min-height: 100vh;
+  width: 100%;
+  background: #050608;
+  color: #f5f5f5;
+  font-family: "IBM Plex Sans JP", "Inter", "Helvetica Neue", Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+#landing {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Keeps the hero content centered and layered above the marquee */
+main {
+  text-align: center;
+  width: 100%;
+  max-width: 68rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+  z-index: 3;
+  align-items: center;
+  justify-content: center;
+}
+
+/* === BACKGROUND MARQUEE === */
+.marquee-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400vw;
+  height: 150vh; /* increased height to fit all 6 with spacing */
+  transform: translate(-50%, -50%) rotate(-17deg);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* adds consistent vertical spacing */
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.marquee {
+  display: flex;
+  width: max-content;
+  animation: scroll 180s linear infinite; /* slow cinematic scroll */
+  transform: scale(1.35); /* ← scale the whole strip instead */
+  transform-origin: center;
+  overflow: hidden;
+}
+
+.marquee img {
+  width: calc(130vw * 1.35);
+  flex-shrink: 0;
+  object-fit: cover;
+  opacity: 0.2;
+  border-radius: 0.25rem;
+  filter: saturate(0.95) grayscale(1); /* 👈 makes all images black & white */
+  margin-right: 0.4vw; /* big, cinematic scaling */
+}
+
+/* Alternate animation timing for each strip to create depth */
+.line1 {
+  animation-duration: 190s;
+}
+
+.line2 {
+  animation-duration: 175s;
+  animation-direction: reverse;
+  animation-delay: -90s; /* keeps it aligned */
+}
+
+.line3 {
+  animation-duration: 185s;
+}
+
+.line4 {
+  animation-duration: 200s;
+  animation-direction: reverse;
+  animation-delay: -100s; /* adjust as needed */
+}
+
+.line5 {
+  animation-duration: 180s;
+}
+
+.line6 {
+  animation-duration: 210s;
+  animation-direction: reverse;
+  animation-delay: -110s; /* adjust as needed */
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  } /* seamless infinite scroll */
+}
+
+/* Soft transition overlay that keeps the text legible */
+.fade-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(
+    to bottom,
+    rgba(5, 6, 8, 0.96) 0%,
+    rgba(5, 6, 8, 0.3) 20%,
+    rgba(5, 6, 8, 0.3) 80%,
+    rgba(5, 6, 8, 0.96) 100%
+  );
+  pointer-events: none;
+}
+
+/* === TYPOGRAPHY === */
+h1 {
+  margin: 0;
+  font-size: clamp(2.85rem, 9vw, 6.5rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-family: "Hiragino Mincho Pro", serif;
+  white-space: nowrap;
+}
+
+p {
+  margin: 0;
+  color: rgba(245, 245, 245, 0.78);
+  font-size: clamp(0.7rem, 2.1vw, 1.25rem);
+}
+
+/* === CTA BUTTON === */
+button {
+  border: none;
+  border-radius: 0.8rem;
+  padding: clamp(1rem, 2vw, 1.2rem) clamp(3rem, 8vw, 4.25rem);
+  font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-family: "IBM Plex Sans JP", "Inter", "Helvetica Neue", Arial, sans-serif;
+  color: #050608;
+  background: #f5f5f5;
+  cursor: pointer;
+  transition: transform 150ms ease, box-shadow 150ms ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(245, 245, 245, 0.15);
+}
+
+button:focus-visible {
+  outline: 3px solid #7180f5;
+  outline-offset: 4px;
+}
+
+/* === VOICE CTA WRAPPER === */
+.voice-cta {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: clamp(1rem, 4vw, 3rem);
+  padding: 0 1.5rem;
+}
+
+/* Thin equalizer bars that animate while the mic is active */
+.voice-waveform {
+  position: absolute;
+  inset: auto 0;
+  width: 100vw;
+  height: 6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  padding: 0 1.5rem;
+  pointer-events: none;
+  margin-left: calc(-50vw + 50%);
+}
+
+.waveform-bar {
+  flex: 1;
+  max-width: 8px;
+  height: var(--dynamic-height, 2px);
+  background: hsl(var(--accent));
+  border-radius: 999px;
+  opacity: 0.3;
+  transition: height 75ms ease-out, opacity 150ms ease;
+}
+
+.voice-button-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pulse-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 1.1rem;
+  transition: transform 450ms ease, opacity 450ms ease;
+  pointer-events: none;
+  background: hsla(var(--accent), 0.15);
+}
+
+.pulse-ring.ring-primary {
+  animation: none;
+}
+
+.pulse-ring.ring-secondary {
+  animation: none;
+}
+
+/* Primary voice button styles, including shimmer effect */
+#voice-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  border: none;
+  border-radius: 0.9rem;
+  padding: 1.25rem 3rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: hsl(var(--accent-foreground));
+  background: hsl(var(--accent));
+  cursor: pointer;
+  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.25);
+  transition: transform 200ms ease, box-shadow 200ms ease, background 200ms ease;
+  overflow: hidden;
+}
+
+#voice-button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    hsla(var(--accent), 0) 0%,
+    hsla(var(--accent), 0.25) 50%,
+    hsla(var(--accent), 0) 100%
+  );
+  transform: translateX(-100%);
+  animation: shimmer 2s infinite;
+  z-index: 0;
+}
+
+#voice-button::after {
+  /* Soft conic highlight that comes alive on hover */
+  content: "";
+  position: absolute;
+  inset: -55%;
+  border-radius: inherit;
+  background: conic-gradient(
+    from 0deg,
+    hsla(var(--accent-foreground), 0.15),
+    hsla(var(--accent-foreground), 0),
+    hsla(var(--accent-foreground), 0.25),
+    hsla(var(--accent-foreground), 0)
+  );
+  opacity: 0;
+  transform: scale(0.6) rotate(35deg);
+  transition: opacity 260ms ease, transform 420ms ease;
+  mix-blend-mode: screen;
+  filter: blur(24px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+#voice-button .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.85rem;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+#voice-button svg {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+#voice-button .icon-mic-off {
+  display: none;
+}
+
+#voice-button .label {
+  position: relative;
+  z-index: 1;
+  white-space: nowrap;
+}
+
+#voice-button:is(:hover, :focus-visible) {
+  transform: scale(1.04);
+  box-shadow: 0 30px 55px rgba(0, 0, 0, 0.35);
+}
+
+#voice-button:is(:hover, :focus-visible)::after {
+  opacity: 0.95;
+  transform: scale(1) rotate(0deg);
+  animation: flare-spin 2.6s linear infinite;
+}
+
+#voice-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+#voice-button.is-listening {
+  transform: scale(1.08);
+  box-shadow: 0 32px 60px rgba(33, 150, 243, 0.4);
+}
+
+#voice-button.is-listening .icon-mic {
+  display: none;
+}
+
+#voice-button.is-listening .icon-mic-off {
+  display: flex;
+  animation: pulse 1.2s infinite;
+}
+
+#voice-button.is-listening::after {
+  opacity: 0.85;
+  transform: scale(1) rotate(0deg);
+  animation: flare-spin 2s linear infinite;
+}
+
+#voice-button.is-listening + .pulse-ring.ring-primary,
+#voice-button.is-listening
+  + .pulse-ring.ring-primary
+  + .pulse-ring.ring-secondary {
+  display: none;
+}
+
+.voice-button-wrapper:is(:hover, :focus-within) .pulse-ring.ring-primary {
+  transform: scale(1.1);
+  opacity: 0.8;
+}
+
+.voice-button-wrapper:is(:hover, :focus-within) .pulse-ring.ring-secondary {
+  transform: scale(1.2);
+  opacity: 0.6;
+}
+
+#voice-button.is-listening ~ .pulse-ring.ring-primary {
+  animation: voice-ping 2s infinite;
+}
+
+#voice-button.is-listening ~ .pulse-ring.ring-secondary {
+  animation: voice-pulse 2.4s infinite;
+}
+
+/* Toast notifications that appear in the top-right corner */
+.toast-container {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  z-index: 999;
+  pointer-events: none;
+}
+
+.toast {
+  min-width: 18rem;
+  max-width: 24rem;
+  background: var(--surface);
+  border-radius: 1rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+  transform: translateY(-12px);
+  opacity: 0;
+  transition: transform 220ms ease, opacity 220ms ease;
+  pointer-events: all;
+}
+
+.toast.toast--visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.toast::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    140deg,
+    hsla(var(--accent), 0.18),
+    hsla(var(--accent), 0)
+  );
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.toast-title {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.toast-description {
+  font-size: 0.925rem;
+  color: rgba(245, 245, 245, 0.75);
+}
+
+.toast.toast--destructive {
+  background: var(--surface-strong);
+  border-color: hsla(var(--danger), 0.45);
+}
+
+.toast.toast--destructive::before {
+  background: linear-gradient(
+    140deg,
+    hsla(var(--danger), 0.22),
+    hsla(var(--danger), 0)
+  );
+}
+
+/* Animations for icons, shimmer, and pulse rings */
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes flare-spin {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  100% {
+    transform: scale(1) rotate(360deg);
+  }
+}
+
+@keyframes voice-ping {
+  0% {
+    transform: scale(1);
+    opacity: 0.65;
+  }
+  100% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+}
+
+@keyframes voice-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+/* === NEW EFFECTS === */
+
+/* Soft, slow shimmer movement when idle */
+@keyframes idle-shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+/* Gentle outer glow that intensifies on hover */
+@keyframes hover-glow {
+  0% {
+    box-shadow: 0 0 15px hsla(var(--accent), 0.25),
+      0 0 30px hsla(var(--accent), 0.1);
+  }
+  100% {
+    box-shadow: 0 0 25px hsla(var(--accent), 0.35),
+      0 0 60px hsla(var(--accent), 0.25);
+  }
+}
+
+.voice-tags {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: clamp(0.25rem, 1.1vw, 1rem);
+  margin-top: 2rem;
+  padding-inline: clamp(0.75rem, 4vw, 6rem);
+  width: 100%;
+  box-sizing: border-box;
+  max-width: 100%;
+  --voice-tag-font-size: clamp(0.42rem, 0.24vw + 0.45rem, 0.72rem);
+  --voice-tag-padding-block: clamp(0.18rem, 0.28vw + 0.14rem, 0.44rem);
+  --voice-tag-padding-inline: clamp(0.35rem, 0.8vw + 0.3rem, 1.15rem);
+  --voice-tag-inline-extra: clamp(0.05rem, 0.28vw, 0.3rem);
+}
+
+.voice-tags__group {
+  display: contents;
+}
+
+.voice-tag {
+  position: relative;
+  z-index: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--voice-tag-padding-block) var(--voice-tag-padding-inline);
+  border-radius: 0.65rem;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.02);
+  color: rgba(245, 245, 245, 0.85);
+  text-transform: uppercase;
+  letter-spacing: clamp(0.028em, 0.12vw + 0.02em, 0.07em);
+  font-size: var(--voice-tag-font-size);
+  font-family: "IBM Plex Sans JP", "Inter", sans-serif;
+  font-weight: 500;
+  transition: color 220ms ease, border-color 220ms ease, box-shadow 280ms ease,
+    transform 220ms ease;
+  overflow: hidden;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.voice-tag:hover,
+.voice-tag.active {
+  border-color: #ff7f66;
+  color: #ffb7a9;
+  box-shadow: 0 0 0 1px rgba(255, 127, 102, 0.55),
+    0 12px 24px rgba(255, 127, 102, 0.28);
+  background: rgba(255, 127, 102, 0.08);
+}
+
+.voice-tag:focus-visible {
+  outline: 2px solid #ff7f66;
+  outline-offset: 2px;
+}
+
+.voice-tag--all {
+  padding-block: var(--voice-tag-padding-block);
+  padding-inline: calc(
+    var(--voice-tag-padding-inline) + var(--voice-tag-inline-extra)
+  );
+}
+
+@media (max-width: 1120px) {
+  .voice-tags {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 720px) {
+  .voice-tags {
+    padding-inline: clamp(0.6rem, 5vw, 2.5rem);
+    gap: clamp(0.28rem, 1.4vw, 0.65rem);
+  }
+}
+
+@media (max-width: 620px) {
+  .voice-tags {
+    row-gap: clamp(0.4rem, 2vw, 1rem);
+  }
+
+  .voice-tag {
+    white-space: normal;
+  }
+}

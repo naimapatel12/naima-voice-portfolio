@@ -1,0 +1,88 @@
+/*
+  Portfolio Projects Section Styles
+  --------------------------------
+  Provides the structural layout for the 2x2 grid shown beneath the
+  landing hero. Detailed visual styling (colors, hover states, etc.) can
+  be added later.
+*/
+
+.projects-section {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 2rem;
+  padding: 4rem clamp(2rem, 6vw, 6rem);
+  background: #050608;
+  color: #f5f5f5;
+}
+
+.project-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  font-family: "IBM Plex Sans JP", "Inter", sans-serif;
+}
+
+.project-card__media {
+  aspect-ratio: 4 / 3;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-bottom: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+.project-card__title {
+  margin: 0;
+  font-size: clamp(1.3rem, 2vw, 2rem);
+  font-family: "Hiragino Mincho Pro", serif;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.project-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(0.45rem, 1.4vw, 0.85rem);
+  margin-top: clamp(1rem, 2vw, 1.5rem);
+}
+
+.project-card__tag {
+  font-size: clamp(0.6rem, 0.22vw + 0.6rem, 0.85rem);
+  letter-spacing: clamp(0.035em, 0.1vw + 0.03em, 0.08em);
+  text-transform: uppercase;
+  padding: clamp(0.28rem, 0.3vw + 0.2rem, 0.45rem)
+    clamp(0.55rem, 1vw + 0.35rem, 1.1rem);
+  border-radius: 0.65rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  font-family: "IBM Plex Sans JP", "Inter", sans-serif;
+  white-space: nowrap;
+}
+
+@media (max-width: 780px) {
+  .project-card__tags {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 620px) {
+  .project-card__tag {
+    white-space: normal;
+  }
+}
+
+@media (max-width: 960px) {
+  .projects-section {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+  }
+}

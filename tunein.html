@@ -1,0 +1,1675 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TuneIn — Case Study</title>
+    <!-- Site styles for header/footer -->
+    <link rel="stylesheet" href="./assets/styles/navbar.css" />
+    <link rel="stylesheet" href="./assets/styles/footer.css" />
+    <!-- Optional shared styles used site-wide -->
+    <link rel="stylesheet" href="./assets/styles/pointer.css" />
+    <link rel="stylesheet" href="./assets/styles/voice-button.css" />
+    <link rel="stylesheet" href="./assets/styles/projects.css" />
+    <link rel="stylesheet" href="./assets/styles/project-card.css" />
+    <link rel="stylesheet" href="./assets/styles/scroll-animations.css" />
+    <link rel="stylesheet" href="./assets/styles/project-navigation.css" />
+    <!-- IBM Plex Sans JP for body/tagline -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="theme-color" content="#050608" />
+    <style>
+      :root {
+        --bg: #050608;
+        --accent: #2d21ff;
+        --soft-white: rgba(255, 255, 255, 0.85);
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: #fff;
+        font-size: 0.95rem;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font-family: "IBM Plex Sans JP", system-ui, -apple-system, Segoe UI,
+          Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      }
+
+      /* HERO */
+      .hero {
+        position: relative;
+        min-height: 90vh; /* 3/4 viewport height */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        background: var(--bg);
+        isolation: isolate;
+      }
+
+      /* Marquee field */
+      .hero__marquees {
+        position: absolute;
+        inset: -30vh -10vw;
+        transform: rotate(-17deg);
+        z-index: 0;
+      }
+      .hero__stripe {
+        position: absolute;
+        left: -20vw;
+        width: 140vw;
+        height: 22vh;
+        background-repeat: repeat-x;
+        background-size: auto 100%;
+        opacity: 0.18;
+        filter: grayscale(1) contrast(1.05) brightness(0.8);
+        image-rendering: -webkit-optimize-contrast;
+        mask-image: linear-gradient(
+          to right,
+          transparent 0%,
+          black 10%,
+          black 90%,
+          transparent 100%
+        );
+        -webkit-mask-image: linear-gradient(
+          to right,
+          transparent 0%,
+          black 10%,
+          black 90%,
+          transparent 100%
+        );
+      }
+      .hero__stripe--1 {
+        top: 6vh;
+        background-image: url("assets/TuneInLine1.png");
+        animation: marquee-left 32s linear infinite;
+      }
+      .hero__stripe--2 {
+        top: 32vh;
+        background-image: url("assets/TuneInLine1.png");
+        animation: marquee-right 38s linear infinite;
+      }
+      .hero__stripe--3 {
+        top: 58vh;
+        background-image: url("assets/TuneInLine1.png");
+        animation: marquee-left 42s linear infinite;
+      }
+      .hero__stripe--4 {
+        top: 84vh;
+        background-image: url("assets/TuneInLine1.png");
+        animation: marquee-right 36s linear infinite;
+      }
+      .hero__stripe--5 {
+        top: 110vh;
+        background-image: url("assets/TuneInLine1.png");
+        animation: marquee-left 40s linear infinite;
+      }
+      .hero__stripe--6 {
+        top: 136vh;
+        background-image: url("assets/TuneInLine1.png");
+        animation: marquee-right 34s linear infinite;
+      }
+
+      @keyframes marquee-left {
+        0% {
+          background-position: 0 0;
+        }
+        100% {
+          background-position: -1200px 0;
+        }
+      }
+      @keyframes marquee-right {
+        0% {
+          background-position: 0 0;
+        }
+        100% {
+          background-position: 1200px 0;
+        }
+      }
+
+      /* Soft fade overlay */
+      .hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        background: linear-gradient(
+          to bottom,
+          rgba(5, 6, 8, 0.75) 0%,
+          rgba(5, 6, 8, 0.28) 35%,
+          rgba(5, 6, 8, 0.28) 60%,
+          rgba(5, 6, 8, 1) 100% /* fade to solid to blend into page */
+        );
+      }
+
+      /* Content */
+      .hero__content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        padding: 6vh 4vw;
+        max-width: 1000px;
+        margin: 0 auto;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center; /* ensure children, including h1, are centered */
+      }
+      .hero__logo {
+        width: min(18vw, 180px);
+        height: auto;
+        display: block;
+        margin: 0 auto 24px auto;
+      }
+      .hero__subheading {
+        margin: 0 auto;
+        max-width: 1000px;
+        text-align: center;
+        color: #fff;
+        font-weight: 500;
+        letter-spacing: 0.02em;
+        line-height: 1.25;
+        text-transform: none;
+        padding: 0;
+        font-family: "Hiragino Mincho ProN", "Hiragino Mincho Pro",
+          "Hiragino Mincho", "Yu Mincho", "游明朝", "Times New Roman", serif;
+        font-size: clamp(22px, 3.2vw, 36px);
+        display: inline-block;
+        align-self: center;
+        width: auto;
+      }
+      .hero__bar {
+        width: 120px;
+        height: 4px;
+        background: var(--accent);
+        border-radius: 999px;
+        margin: 24px auto 18px auto;
+      }
+      .hero__tagline {
+        margin: 0 auto;
+        color: var(--soft-white);
+        font-size: clamp(14px, 1.4vw, 18px);
+        line-height: 1.6;
+        letter-spacing: 0.01em;
+        max-width: 820px;
+        text-align: center;
+        display: block;
+      }
+
+      /* Scroll down arrow */
+      .hero__scroll-arrow {
+        position: absolute;
+        bottom: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 3;
+        cursor: pointer;
+        animation: bounce 2s ease-in-out infinite;
+        transition: opacity 0.3s ease;
+        background: none;
+        border: none;
+        padding: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .hero__scroll-arrow:hover {
+        opacity: 1;
+      }
+
+      .hero__scroll-arrow:hover svg {
+        stroke: #fff;
+      }
+
+      .hero__scroll-arrow:focus {
+        outline: 2px solid var(--accent);
+        outline-offset: 4px;
+        border-radius: 4px;
+      }
+
+      .hero__scroll-arrow svg {
+        width: 32px;
+        height: 32px;
+        stroke: var(--accent);
+        stroke-width: 2;
+        fill: none;
+        pointer-events: none;
+        transition: stroke 0.3s ease;
+      }
+
+      @keyframes bounce {
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
+          transform: translateX(-50%) translateY(0);
+        }
+        40% {
+          transform: translateX(-50%) translateY(-15px);
+        }
+        60% {
+          transform: translateX(-50%) translateY(-8px);
+        }
+      }
+
+      /* Hard-center the subheading regardless of external styles */
+      .hero .hero__subheading {
+        text-align: center !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        width: max-content;
+        max-width: 95vw;
+        white-space: nowrap;
+        display: block !important;
+      }
+
+      /* ==========================
+         Case study body layout
+         ========================== */
+      .case-study {
+        padding: clamp(3rem, 6vw, 5rem) clamp(5rem, 10vw, 8rem);
+        max-width: 2000px; /* allow much wider spread */
+        margin: 0 auto;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      /* Grid setup: narrower left, larger body area */
+      .cs-section {
+        display: grid;
+        grid-template-columns: 200px 100px 1fr; /* was 220px 100px 1fr */
+        align-items: start;
+        justify-content: start;
+        max-width: 1600px;
+        margin: 0 auto;
+        position: relative;
+        padding: clamp(2rem, 4vw, 3.5rem) 0;
+        overflow: visible;
+      }
+
+      /* Section headings far to the left and smaller */
+      .cs-section__left {
+        grid-column: 1;
+        text-align: right;
+        padding-right: 2rem;
+        align-self: start; /* ✅ sticky works relative to full section height */
+        height: 100%;
+        overflow: visible;
+      }
+      .cs-sticky {
+        position: sticky;
+        top: 7rem;
+        align-self: start;
+        z-index: 2;
+        background: var(--bg);
+        padding-bottom: 1rem;
+      }
+      .cs-sticky h2 {
+        margin: 0;
+        padding-bottom: 0.01rem;
+        display: inline-block;
+        font-family: "IBM Plex Sans JP", system-ui, -apple-system, Segoe UI,
+          Roboto, Helvetica, Arial;
+        font-size: clamp(0.6rem, 0.72vw, 0.8rem);
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.55);
+      }
+
+      /* Body text expanded and more dominant */
+      .cs-section__right {
+        grid-column: 3;
+        max-width: 900px; /* make body section wide */
+        margin-left: 0;
+        padding-left: 0;
+        justify-self: start;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: clamp(0.75rem, 1.2vw, 1rem);
+        line-height: 1.65;
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 0.85rem;
+        padding-left: 0 !important;
+      }
+      .cs-section__right h3 {
+        margin: 0.25rem 0 0.5rem;
+        font-family: "Hiragino Mincho ProN", "Hiragino Mincho Pro", serif;
+        font-weight: 900;
+        text-transform: uppercase;
+        font-size: clamp(1.1rem, 1.8vw, 2rem);
+        letter-spacing: 0.005em;
+        color: #fff;
+      }
+      .cs-section__right p {
+        font-size: 0.95rem !important;
+        color: #e7e7e7;
+      }
+      .cs-section__right li {
+        font-size: 0.95rem !important;
+        color: #e7e7e7;
+      }
+      .cs-kicker {
+        display: inline-block;
+        padding: 0.25rem 0.6rem;
+        font-size: 0.75rem;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 999px;
+        color: rgba(255, 255, 255, 0.7);
+      }
+      .cs-callout {
+        margin-top: 0.5rem;
+        padding: 1rem 1.25rem;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.04);
+        border-radius: 1rem;
+      }
+
+      /* Section modifier: no left label */
+      .cs-section--no-label .cs-section__left {
+        display: none;
+      }
+      .cs-section--no-label {
+        grid-template-columns: 1fr;
+      }
+      .cs-section--no-label .cs-section__right {
+        grid-column: 1;
+      }
+
+      /* Content alignment modifier */
+      .cs-section__right--centered {
+        align-items: center;
+      }
+
+      /* Media grid for videos/images */
+      .media-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        margin-top: 1.5rem;
+      }
+
+      .media-grid-item {
+        width: 100%;
+      }
+
+      .media-grid-item__wrapper {
+        width: 100%;
+        overflow: hidden;
+        border-radius: 1rem;
+      }
+
+      .media-grid-item__media {
+        width: 100%;
+        display: block;
+      }
+
+      /* Media caption */
+      .media-caption {
+        color: white;
+        font-weight: 700;
+        font-family: "IBM Plex Sans JP", sans-serif;
+        margin-top: 0.75rem;
+        text-align: center;
+        font-size: 0.9rem;
+      }
+
+      /* Centered video container */
+      .video-centered {
+        max-width: 400px;
+        margin: 1.5rem auto 0 auto;
+      }
+
+      .video-centered__wrapper {
+        width: 100%;
+        overflow: hidden;
+        border-radius: 4.5rem;
+      }
+
+      .video-centered__media {
+        width: 100%;
+        display: block;
+        border-radius: 4.5rem;
+      }
+
+      /* Deactivate sticky and stack at tablet and below */
+      @media (max-width: 960px) {
+        .case-study {
+          padding-left: 1.5rem !important;
+          padding-right: 1.5rem !important;
+        }
+        .cs-section {
+          grid-template-columns: 1fr;
+          gap: clamp(1.25rem, 3.5vw, 2.5rem);
+        }
+        .cs-section__left {
+          text-align: left;
+          padding-right: 0;
+        }
+        .cs-section__right {
+          margin-left: 0 !important;
+          padding-left: 0 !important;
+        }
+        .cs-sticky {
+          position: static;
+        }
+        .hero__stripe {
+          height: 18vh;
+        }
+        .hero__bar {
+          width: 96px;
+          height: 3px;
+        }
+        .hero .hero__subheading {
+          left: 0;
+          transform: none;
+          width: 100%;
+          white-space: normal;
+          max-width: 90%;
+        }
+      }
+
+      /* =========================
+         OVERVIEW META GRID
+         ========================= */
+      .overview-meta {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2rem;
+        padding-bottom: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .meta-item h4 {
+        font-family: "Hiragino Mincho ProN", "Hiragino Mincho Pro", serif;
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: clamp(1rem, 1.7vw, 2rem);
+        letter-spacing: 0.04em;
+        color: #fff;
+        margin: 0 0 0.4rem 0;
+      }
+
+      .meta-item p {
+        margin: 0;
+        font-size: 0.85rem;
+        line-height: 1.5;
+        color: #e7e7e7;
+      }
+
+      /* --- RESPONSIVE META GRID --- */
+      @media (max-width: 1024px) {
+        .overview-meta {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 1.5rem 2rem;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .overview-meta {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+        }
+      }
+
+      /* =========================
+         OVERVIEW SUBSECTIONS
+         ========================= */
+      .overview-subsection {
+        margin-top: 2.5rem;
+      }
+
+      .subsection-label {
+        display: inline-block;
+        font-size: 0.7rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.55);
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+      }
+
+      .overview-subsection h3 {
+        margin-top: 0;
+        margin-bottom: 1.5rem;
+      }
+
+      .overview-subsection p {
+        color: #e7e7e7;
+      }
+
+      .overview-subsection ul {
+        margin: 1rem 0 1.5rem 0;
+        padding-left: 1.5rem;
+        list-style-type: disc;
+      }
+
+      .overview-subsection li {
+        margin-bottom: 0.75rem;
+        line-height: 1.8;
+        color: #e7e7e7;
+        font-size: 0.85rem;
+      }
+
+      .overview-subsection li::marker {
+        color: rgba(255, 255, 255, 0.4);
+      }
+
+      /* =========================
+         OVERVIEW SECTION STYLING
+         ========================= */
+      #overview .cs-section__right::after {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 2px;
+        margin-top: 2.5rem;
+        background: repeating-linear-gradient(
+          to right,
+          rgba(45, 33, 255, 0.45) 0 8px,
+          rgba(45, 33, 255, 0.08) 8px 16px
+        );
+        animation: dash-move 6s linear infinite;
+        opacity: 0.65;
+      }
+
+      @keyframes dash-move {
+        from {
+          background-position: 0 0;
+        }
+        to {
+          background-position: 40px 0;
+        }
+      }
+
+      /* =========================
+         VIEW DESIGNS BUTTON
+         ========================= */
+      .overview-button-wrapper {
+        display: flex;
+        justify-content: flex-start;
+        margin-top: 2rem;
+      }
+
+      .view-designs-btn {
+        position: relative;
+        z-index: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.8rem 2rem;
+        border-radius: 0.8rem;
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        background: rgba(192, 193, 193, 0.08);
+        color: #c0c1c1;
+        text-decoration: none;
+        text-transform: uppercase;
+        letter-spacing: 0.075em;
+        font-size: 0.85rem;
+        font-weight: 500;
+        font-family: "IBM Plex Sans JP", system-ui, sans-serif;
+        cursor: pointer;
+        transition: color 220ms ease, border-color 220ms ease,
+          box-shadow 280ms ease, transform 220ms ease;
+        overflow: hidden;
+      }
+
+      .view-designs-btn:hover,
+      .view-designs-btn:focus-visible {
+        border-color: #2d21ff;
+        color: #2d21ff;
+        box-shadow: 0 0 0 1px rgba(45, 33, 255, 0.55),
+          0 12px 24px rgba(45, 33, 255, 0.28);
+      }
+
+      .view-designs-btn:focus-visible {
+        outline: 2px solid #2d21ff;
+        outline-offset: 2px;
+      }
+
+      .view-designs-btn:active {
+        transform: translateY(1px);
+      }
+
+      .view-designs-btn::after {
+        content: "";
+        position: absolute;
+        inset: -1px;
+        background: radial-gradient(
+          105% 140% at 50% 0%,
+          rgba(45, 33, 255, 0.28) 0%,
+          rgba(45, 33, 255, 0.08) 55%,
+          transparent 80%
+        );
+        opacity: 0;
+        transform: translateY(18%);
+        transition: opacity 260ms ease, transform 260ms ease;
+        z-index: -1;
+      }
+
+      .view-designs-btn:hover::after,
+      .view-designs-btn:focus-visible::after {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* =====================
+         LEFT SIDE NAVIGATION
+         ===================== */
+      .side-nav {
+        position: fixed;
+        top: 7.5rem;
+        left: clamp(5rem, 10vw, 8rem);
+        width: 200px;
+        display: flex;
+        flex-direction: column;
+        gap: 2.2rem;
+        align-items: flex-end;
+        text-align: right;
+        background: transparent;
+        z-index: 10;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+      }
+
+      .side-nav.visible {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .side-nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1.6rem;
+        position: relative;
+        width: 100%;
+      }
+
+      .side-nav li {
+        position: relative;
+        text-align: right;
+      }
+
+      .side-nav a {
+        font-family: "IBM Plex Sans JP", system-ui, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        text-decoration: none;
+        color: #6c6c6e;
+        position: relative;
+        transition: color 0.3s ease;
+        display: inline-block;
+        padding-bottom: 6px;
+      }
+
+      .side-nav a:hover {
+        color: #b8b9bd;
+      }
+
+      .side-nav a.active {
+        color: #9e9fa4;
+      }
+
+      .side-nav a.active:hover {
+        color: #c0c1c1;
+      }
+
+      .side-nav a::after {
+        content: "";
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 2px;
+        background-color: transparent;
+        transition: background-color 0.3s ease, width 0.3s ease;
+      }
+
+      .side-nav a:hover::after {
+        background-color: rgba(45, 33, 255, 0.4);
+      }
+
+      .side-nav a.active::after {
+        background-color: #2d21ff;
+      }
+
+      /* Side nav voice button styling */
+      .side-nav-voice-button {
+        color: white;
+      }
+
+      .side-nav-voice-button svg {
+        stroke: white;
+      }
+
+      .side-nav-voice-button:hover,
+      .side-nav-voice-button:focus-visible {
+        background: rgba(45, 33, 255, 0.12);
+        border-color: rgba(45, 33, 255, 0.35);
+        box-shadow: 0 14px 30px rgba(45, 33, 255, 0.32);
+      }
+
+      .side-nav-voice-button:hover svg,
+      .side-nav-voice-button:focus-visible svg {
+        stroke: #2d21ff;
+      }
+
+      .side-nav-voice-button.is-listening {
+        border-color: rgba(45, 33, 255, 0.65);
+        background: rgba(45, 33, 255, 0.16);
+        box-shadow: 0 18px 32px rgba(45, 33, 255, 0.4);
+      }
+
+      .side-nav-voice-button.is-listening svg {
+        stroke: #2d21ff;
+      }
+
+      /* Hide navigation on smaller screens */
+      @media (max-width: 960px) {
+        .side-nav {
+          display: none;
+        }
+      }
+
+      /* =========================
+         KEY OPPORTUNITY SECTION
+         ========================= */
+      #key-opportunity .cs-section__right::before {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 2px;
+        margin-bottom: 2.5rem;
+        background: repeating-linear-gradient(
+          to right,
+          rgba(45, 33, 255, 0.45) 0 8px,
+          rgba(45, 33, 255, 0.08) 8px 16px
+        );
+        animation: dash-move 6s linear infinite;
+        opacity: 0.65;
+      }
+
+      #key-opportunity .cs-section__right::after {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 2px;
+        margin-top: 2.5rem;
+        background: repeating-linear-gradient(
+          to right,
+          rgba(45, 33, 255, 0.45) 0 8px,
+          rgba(45, 33, 255, 0.08) 8px 16px
+        );
+        animation: dash-move 6s linear infinite;
+        opacity: 0.65;
+      }
+
+      .key-opportunity-heading {
+        text-transform: uppercase;
+        text-align: center;
+        font-size: clamp(1.2rem, 2vw, 1.8rem);
+        line-height: 1.6;
+        letter-spacing: 0.05em;
+        color: #fff;
+        margin: 0;
+        padding: 0 2rem;
+      }
+
+      @media (max-width: 900px) {
+        .key-opportunity-heading {
+          padding: 0 1rem;
+        }
+      }
+
+      /* =========================
+         FINAL DESIGNS SECTION
+         ========================= */
+      #final-designs .cs-section__right::before {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 2px;
+        margin-bottom: 2.5rem;
+        background: repeating-linear-gradient(
+          to right,
+          rgba(45, 33, 255, 0.45) 0 8px,
+          rgba(45, 33, 255, 0.08) 8px 16px
+        );
+        animation: dash-move 6s linear infinite;
+        opacity: 0.65;
+      }
+
+      /* Image Overlay Modal */
+      .image-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.95);
+        z-index: 9999;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        box-sizing: border-box;
+      }
+
+      .image-overlay.active {
+        display: flex;
+      }
+
+      .image-overlay img {
+        max-width: 90%;
+        max-height: 90%;
+        object-fit: contain;
+        box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+      }
+
+      .image-overlay-close {
+        position: absolute;
+        top: 2rem;
+        right: 2rem;
+        width: 3rem;
+        height: 3rem;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+      }
+
+      .image-overlay-close:hover {
+        background: rgba(255, 255, 255, 0.2);
+        border-color: rgba(255, 255, 255, 0.3);
+      }
+
+      .image-overlay-close::before,
+      .image-overlay-close::after {
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 2px;
+        background: white;
+      }
+
+      .image-overlay-close::before {
+        transform: rotate(45deg);
+      }
+
+      .image-overlay-close::after {
+        transform: rotate(-45deg);
+      }
+
+      .clickable-image {
+        cursor: pointer;
+        transition: all 220ms ease;
+        outline: 1px solid transparent;
+        outline-offset: 16px;
+        box-shadow: none;
+      }
+
+      .clickable-image:hover {
+        outline-color: #2d21ff;
+        box-shadow: 0 12px 24px rgba(45, 33, 255, 0.28);
+      }
+
+      /* =========================
+         COMPREHENSIVE MOBILE RESPONSIVE
+         ========================= */
+
+      /* Tablet breakpoint - 768px */
+      @media (max-width: 768px) {
+        /* Hero adjustments */
+        .hero {
+          min-height: 70vh;
+        }
+
+        .hero__logo {
+          width: min(25vw, 140px);
+          margin-bottom: 16px;
+        }
+
+        .hero__subheading {
+          font-size: clamp(18px, 5vw, 28px);
+        }
+
+        .hero__tagline {
+          font-size: clamp(13px, 3vw, 16px);
+        }
+
+        .hero__bar {
+          width: 80px;
+          height: 3px;
+          margin: 18px auto 14px auto;
+        }
+
+        .hero__scroll-arrow {
+          bottom: 20px;
+        }
+
+        .hero__scroll-arrow svg {
+          width: 28px;
+          height: 28px;
+        }
+
+        /* Case study padding */
+        .case-study {
+          padding: clamp(2rem, 5vw, 3rem) 1.5rem !important;
+        }
+
+        .cs-section {
+          padding: clamp(1.5rem, 3vw, 2rem) 0;
+        }
+
+        .cs-section__right {
+          max-width: 100%;
+          gap: clamp(0.65rem, 1vw, 0.85rem);
+        }
+
+        /* Section headings */
+        .cs-section__right h3 {
+          font-size: clamp(1.3rem, 4vw, 1.6rem);
+          margin-top: 0.5rem;
+        }
+
+        .cs-section__right p,
+        .cs-section__right li {
+          font-size: 0.9rem !important;
+        }
+
+        /* Media grid - stack to single column */
+        .media-grid {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+          margin-top: 2rem;
+        }
+
+        .media-caption {
+          font-size: 0.85rem;
+          margin-top: 0.5rem;
+        }
+
+        /* Button styling */
+        .view-designs-btn {
+          padding: 0.7rem 1.5rem;
+          font-size: 0.8rem;
+          width: 100%;
+          max-width: 280px;
+        }
+
+        .overview-button-wrapper {
+          justify-content: center;
+        }
+
+        /* Video centered */
+        .video-centered {
+          max-width: 100%;
+          margin: 1.5rem 0;
+        }
+
+        /* Key opportunity heading */
+        .key-opportunity-heading {
+          font-size: clamp(1.1rem, 3.5vw, 1.4rem);
+          padding: 0 0.5rem;
+        }
+
+        /* Subsection labels */
+        .subsection-label {
+          font-size: 0.65rem;
+        }
+      }
+
+      /* Mobile breakpoint - 600px */
+      @media (max-width: 600px) {
+        /* Hero */
+        .hero {
+          min-height: 60vh;
+        }
+
+        .hero__content {
+          padding: 4vh 5vw;
+        }
+
+        .hero__logo {
+          width: min(30vw, 120px);
+        }
+
+        .hero__subheading {
+          font-size: clamp(16px, 5.5vw, 24px);
+        }
+
+        .hero__tagline {
+          font-size: clamp(12px, 3.5vw, 15px);
+        }
+
+        .hero__bar {
+          width: 60px;
+          height: 2px;
+          margin: 14px auto 12px auto;
+        }
+
+        .hero__stripe {
+          height: 15vh;
+        }
+
+        /* Case study */
+        .case-study {
+          padding: 1.5rem 1.25rem !important;
+        }
+
+        .cs-section {
+          padding: 1.25rem 0;
+          gap: 1rem;
+        }
+
+        .cs-section__right {
+          padding-left: 0;
+        }
+
+        .cs-section__right h3 {
+          font-size: clamp(1.2rem, 5vw, 1.5rem);
+          margin: 0.35rem 0 0.65rem;
+        }
+
+        .cs-section__right p,
+        .cs-section__right li {
+          font-size: 0.88rem !important;
+          line-height: 1.7;
+        }
+
+        /* Section labels */
+        .cs-sticky h2 {
+          font-size: 0.65rem;
+        }
+
+        /* Overview meta */
+        .meta-item h4 {
+          font-size: clamp(0.95rem, 4vw, 1.2rem);
+        }
+
+        .meta-item p {
+          font-size: 0.8rem;
+        }
+
+        /* Media grid */
+        .media-grid {
+          gap: 1.75rem;
+          margin-top: 1.5rem;
+        }
+
+        /* Callouts */
+        .cs-callout {
+          padding: 0.85rem 1rem;
+          border-radius: 0.85rem;
+        }
+
+        /* Key opportunity */
+        .key-opportunity-heading {
+          font-size: clamp(1rem, 4vw, 1.3rem);
+          line-height: 1.5;
+        }
+
+        /* Button */
+        .view-designs-btn {
+          padding: 0.65rem 1.25rem;
+          font-size: 0.75rem;
+          width: 100%;
+        }
+
+        /* Video */
+        .video-centered {
+          max-width: 100%;
+          margin: 1rem 0;
+        }
+
+        .video-centered__wrapper {
+          border-radius: 3rem;
+        }
+
+        .video-centered__media {
+          border-radius: 3rem;
+        }
+
+        /* Images - reduce outline offset on mobile for better visibility */
+        .clickable-image {
+          outline-offset: 8px;
+        }
+
+        /* Lists */
+        .cs-section__right ul {
+          padding-left: 1.25rem;
+        }
+
+        .cs-section__right li {
+          margin-bottom: 0.65rem;
+        }
+
+        .overview-subsection {
+          margin-top: 2rem;
+        }
+
+        .overview-subsection ul {
+          margin: 0.85rem 0 1.25rem 0;
+        }
+
+        /* Spacing adjustments */
+        .overview-meta {
+          gap: 1.25rem;
+          padding-bottom: 1.25rem;
+          margin-bottom: 1.5rem;
+        }
+      }
+
+      /* Extra small mobile - 480px */
+      @media (max-width: 480px) {
+        .hero {
+          min-height: 55vh;
+        }
+
+        .hero__content {
+          padding: 3vh 4vw;
+        }
+
+        .hero__subheading {
+          font-size: clamp(15px, 6vw, 22px);
+        }
+
+        .case-study {
+          padding: 1.25rem 1rem !important;
+        }
+
+        .cs-section {
+          padding: 1rem 0;
+        }
+
+        .cs-section__right h3 {
+          font-size: clamp(1.15rem, 5.5vw, 1.4rem);
+        }
+
+        .cs-section__right p,
+        .cs-section__right li {
+          font-size: 0.85rem !important;
+        }
+
+        .key-opportunity-heading {
+          font-size: clamp(0.95rem, 4.5vw, 1.2rem);
+        }
+
+        .media-grid {
+          gap: 1.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header" id="site-header">
+      <div class="site-header__inner">
+        <a href="./index.html#landing" class="site-brand">
+          <img src="./assets/NP.png" alt="Naima Patel logo" />
+          <span class="sr-only">Naima Patel</span>
+        </a>
+        <button
+          class="site-header__menu"
+          id="site-menu-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-nav"
+        >
+          <span></span>
+          <span class="sr-only">Toggle navigation</span>
+        </button>
+        <div class="site-header__group">
+          <nav class="site-nav" id="site-nav" aria-label="Primary">
+            <ul class="site-nav__list">
+              <li>
+                <a class="site-nav__link" href="./index.html#projects"
+                  >Projects</a
+                >
+              </li>
+              <li>
+                <a class="site-nav__link" href="./index.html#about">About</a>
+              </li>
+              <li>
+                <a class="site-nav__link" href="./index.html#resume">Resume</a>
+              </li>
+            </ul>
+          </nav>
+          <button
+            class="nav-voice-button"
+            id="nav-voice-button"
+            type="button"
+            aria-pressed="false"
+            aria-label="Toggle voice command"
+          >
+            <span class="icon icon-mic" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.7"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M12 1.98a3 3 0 0 0-3 3v5a3 3 0 0 0 6 0v-5a3 3 0 0 0-3-3Z"
+                />
+                <path d="M19 10v1a7 7 0 0 1-14 0v-1" />
+                <path d="M12 19v4" />
+                <path d="m8 23 4 0 4 0" />
+              </svg>
+            </span>
+            <span class="icon icon-mic-off" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.7"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M9 9v2a3 3 0 0 0 4.5 2.598" />
+                <path d="M15 8.5V5a3 3 0 0 0-5.598-1.5" />
+                <path d="M19 10v1a7.002 7.002 0 0 1-9.184 6.708" />
+                <path d="M13 19v3" />
+                <path d="M8 22h10" />
+                <path d="m2 2 20 20" />
+              </svg>
+            </span>
+          </button>
+        </div>
+      </div>
+    </header>
+    <section class="hero" aria-label="TuneIn hero">
+      <div class="hero__marquees" aria-hidden="true">
+        <div class="hero__stripe hero__stripe--1"></div>
+        <div class="hero__stripe hero__stripe--2"></div>
+        <div class="hero__stripe hero__stripe--3"></div>
+        <div class="hero__stripe hero__stripe--4"></div>
+        <div class="hero__stripe hero__stripe--5"></div>
+        <div class="hero__stripe hero__stripe--6"></div>
+      </div>
+
+      <div class="hero__content">
+        <img class="hero__logo" src="assets/TuneInLogo.png" alt="TuneIn logo" />
+        <h1 class="hero__subheading">AI-POWERED AUDIO PROFILES</h1>
+        <div class="hero__bar" role="presentation"></div>
+        <p class="hero__tagline">Coming soon</p>
+      </div>
+
+      <!-- Scroll down arrow -->
+      <button
+        class="hero__scroll-arrow"
+        aria-label="Scroll to case study"
+        onclick="document.getElementById('case-study').scrollIntoView({ behavior: 'smooth' })"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </button>
+    </section>
+
+    <main class="case-study" id="case-study">
+      <nav class="side-nav" aria-label="Section navigation">
+        <ul>
+          <li><a href="#overview" class="active">Overview</a></li>
+          <li><a href="#key-opportunity">Key Opportunity</a></li>
+          <li><a href="#final-designs">Final Designs</a></li>
+        </ul>
+
+        <!-- Voice button for side nav -->
+        <button
+          class="nav-voice-button side-nav-voice-button"
+          id="conclusions-voice-button"
+          type="button"
+          aria-pressed="false"
+          aria-label="Toggle voice command"
+          style="margin-top: 1rem"
+        >
+          <span class="icon icon-mic" aria-hidden="true">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="white"
+              stroke-width="1.7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M12 1.98a3 3 0 0 0-3 3v5a3 3 0 0 0 6 0v-5a3 3 0 0 0-3-3Z"
+              />
+              <path d="M19 10v1a7 7 0 0 1-14 0v-1" />
+              <path d="M12 19v4" />
+              <path d="m8 23 4 0 4 0" />
+            </svg>
+          </span>
+          <span class="icon icon-mic-off" aria-hidden="true">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="white"
+              stroke-width="1.7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M9 9v2a3 3 0 0 0 4.5 2.598" />
+              <path d="M15 8.5V5a3 3 0 0 0-5.598-1.5" />
+              <path d="M19 10v1a7.002 7.002 0 0 1-9.184 6.708" />
+              <path d="M13 19v3" />
+              <path d="M8 22h10" />
+              <path d="m2 2 20 20" />
+            </svg>
+          </span>
+        </button>
+      </nav>
+
+      <section class="cs-section" id="overview">
+        <div class="cs-section__left"></div>
+        <div class="cs-section__right">
+          <div class="overview-meta">
+            <div class="meta-item">
+              <h4>Timeline</h4>
+              <p>Fall 2024</p>
+            </div>
+            <div class="meta-item">
+              <h4>Role</h4>
+              <p>Product Design</p>
+            </div>
+            <div class="meta-item">
+              <h4>Team</h4>
+              <p>Concept Project</p>
+            </div>
+            <div class="meta-item">
+              <h4>Platform</h4>
+              <p>Mobile & Wearables</p>
+            </div>
+          </div>
+          <h3>AI-Powered Personalized Listening</h3>
+          <p>
+            TuneIn explores AI-assisted personalization for audio lovers who
+            care about mood, discovery, and accessibility. The concept builds a
+            bridge between music, podcasts, and ambient sound layers tailored to
+            each listener's context.
+          </p>
+          <p>
+            Our team partnered with audiophiles, neurodiverse listeners, and DJs
+            who balance curation with surprise. We uncovered the need for
+            lightweight controls that respect agency while celebrating
+            serendipity.
+          </p>
+          <p>
+            I led product visioning and service design, aligning the experience
+            across mobile, wearables, and voice assistants to make hands-free
+            interaction feel intuitive.
+          </p>
+
+          <div class="overview-button-wrapper">
+            <button
+              class="view-designs-btn"
+              type="button"
+              onclick="document.getElementById('final-designs').scrollIntoView({ behavior: 'smooth', block: 'start' })"
+            >
+              View Final Designs
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="cs-section" id="key-opportunity">
+        <div class="cs-section__left"></div>
+        <div class="cs-section__right">
+          <h3 class="key-opportunity-heading">
+            How might we create personalized audio experiences that adapt to
+            context without overwhelming users?
+          </h3>
+        </div>
+      </section>
+
+      <section class="cs-section" id="final-designs">
+        <div class="cs-section__left"></div>
+        <div class="cs-section__right">
+          <span class="subsection-label">FINAL DESIGNS</span>
+          <h3 style="margin-top: 0.1rem">Coming Soon</h3>
+          <p>
+            Detailed case study content will be added soon. This project
+            explored AI-powered personalization for audio listening experiences.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <!-- Project Navigation -->
+    <nav class="project-navigation" aria-label="Other projects">
+      <a href="./tidbit.html" class="project-nav-card project-nav-card--tidbit">
+        <div class="project-nav-card__arrow" aria-hidden="true">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M7 17L17 7M17 7H7M17 7V17" />
+          </svg>
+        </div>
+        <div class="project-nav-card__content">
+          <div class="project-nav-card__label">Next Project</div>
+          <h3 class="project-nav-card__title">Tidbit</h3>
+          <p class="project-nav-card__description">
+            Social Documentation Platform
+          </p>
+        </div>
+      </a>
+
+      <a
+        href="./oracle-ai.html"
+        class="project-nav-card project-nav-card--oracle-ai"
+      >
+        <div class="project-nav-card__arrow" aria-hidden="true">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M7 17L17 7M17 7H7M17 7V17" />
+          </svg>
+        </div>
+        <div class="project-nav-card__content">
+          <div class="project-nav-card__label">View Project</div>
+          <h3 class="project-nav-card__title">Oracle AI</h3>
+          <p class="project-nav-card__description">
+            AI-Driven Financial Planning
+          </p>
+        </div>
+      </a>
+    </nav>
+
+    <footer class="site-footer">
+      <div class="footer-divider"></div>
+      <div class="footer-content">
+        <p class="footer-heading">Let's keep talking.</p>
+        <div class="footer-links">
+          <a
+            href="https://www.linkedin.com/in/naimapatel/"
+            target="_blank"
+            class="footer-link"
+            rel="noreferrer"
+            >LinkedIn</a
+          >
+          <a
+            href="./assets/NaimaPatel_Resume.pdf"
+            target="_blank"
+            class="footer-link"
+            rel="noreferrer"
+            >Resume</a
+          >
+          <a href="mailto:npatel12@stanford.edu" class="footer-link">Connect</a>
+        </div>
+        <p class="footer-copyright">© 2025 Naima Patel</p>
+      </div>
+    </footer>
+
+    <script src="./assets/scripts/voice-button.js"></script>
+    <script src="./assets/scripts/navbar.js"></script>
+    <script src="./assets/scripts/filter-tags.js"></script>
+    <script src="./assets/scripts/footer.js" defer></script>
+    <script src="./assets/scripts/pointer.js" defer></script>
+    <script src="./assets/scripts/scroll-animations.js"></script>
+
+    <script>
+      // Show navigation when case study section reaches the top
+      const sideNav = document.querySelector(".side-nav");
+      const caseStudy = document.getElementById("case-study");
+
+      function checkNavVisibility() {
+        const caseStudyRect = caseStudy.getBoundingClientRect();
+        const headerHeight = 80; // Approximate header height
+
+        // Show nav when case study reaches near the top of viewport
+        if (caseStudyRect.top <= headerHeight) {
+          sideNav.classList.add("visible");
+        } else {
+          sideNav.classList.remove("visible");
+        }
+      }
+
+      // Check on scroll
+      window.addEventListener("scroll", checkNavVisibility);
+      // Check on page load
+      checkNavVisibility();
+
+      // Smooth highlight updates based on scroll position
+      const sections = document.querySelectorAll(".cs-section[id]");
+      const navLinks = document.querySelectorAll(".side-nav a");
+      const VIEWPORT_TRIGGER_RATIO = 0.25; // 25% from top
+      let ticking = false;
+
+      function setActiveById(id) {
+        navLinks.forEach((link) => link.classList.remove("active"));
+        const active = document.querySelector(`.side-nav a[href="#${id}"]`);
+        if (active) active.classList.add("active");
+      }
+
+      function updateActiveSection() {
+        const triggerLine = window.scrollY + window.innerHeight * VIEWPORT_TRIGGER_RATIO;
+        let currentSection = "";
+
+        for (const section of sections) {
+          const top = section.offsetTop;
+          const bottom = top + section.offsetHeight;
+          if (triggerLine >= top && triggerLine < bottom) {
+            currentSection = section.id;
+            break;
+          }
+        }
+
+        // Fallback: if scrolled to (near) bottom, select last section
+        if (!currentSection && sections.length) {
+          if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 2) {
+            currentSection = sections[sections.length - 1].id;
+          }
+        }
+
+        if (currentSection) setActiveById(currentSection);
+      }
+
+      function onScroll() {
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            updateActiveSection();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }
+
+      window.addEventListener("scroll", onScroll, { passive: true });
+      window.addEventListener("resize", updateActiveSection);
+      updateActiveSection();
+
+      // Smooth scroll for navigation links with offset
+      navLinks.forEach((link) => {
+        link.addEventListener("click", (e) => {
+          e.preventDefault();
+          const targetId = link.getAttribute("href").substring(1);
+          const targetSection = document.getElementById(targetId);
+          if (targetSection) {
+            const navOffset =
+              parseFloat(getComputedStyle(document.documentElement).fontSize) *
+              4; // 4rem in pixels
+            const elementPosition = targetSection.getBoundingClientRect().top;
+            const offsetPosition =
+              elementPosition + window.pageYOffset - navOffset;
+
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: "smooth",
+            });
+          }
+        });
+      });
+    </script>
+
+    <!-- Image Overlay Modal -->
+    <div class="image-overlay" id="imageOverlay">
+      <div class="image-overlay-close" onclick="closeImageOverlay()"></div>
+      <img id="overlayImage" src="" alt="Enlarged view" />
+    </div>
+
+    <script>
+      function openImageOverlay(imageSrc) {
+        const overlay = document.getElementById("imageOverlay");
+        const overlayImage = document.getElementById("overlayImage");
+        overlayImage.src = imageSrc;
+        overlay.classList.add("active");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeImageOverlay() {
+        const overlay = document.getElementById("imageOverlay");
+        overlay.classList.remove("active");
+        document.body.style.overflow = "";
+      }
+
+      // Close overlay when clicking on the background
+      document
+        .getElementById("imageOverlay")
+        .addEventListener("click", function (e) {
+          if (e.target === this) {
+            closeImageOverlay();
+          }
+        });
+
+      // Close overlay with Escape key
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+          closeImageOverlay();
+        }
+      });
+    </script>
+  </body>
+</html>
