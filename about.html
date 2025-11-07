@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>About Naima | Product Designer</title>
+    <!-- Site styles -->
+    <link rel="stylesheet" href="./assets/styles/navbar.css" />
+    <link rel="stylesheet" href="./assets/styles/footer.css" />
+    <link rel="stylesheet" href="./assets/styles/pointer.css" />
+    <link rel="stylesheet" href="./assets/styles/voice-button.css" />
+    <link rel="stylesheet" href="./assets/styles/scroll-animations.css" />
+    <link rel="stylesheet" href="./assets/styles/about.css" />
+    <!-- IBM Plex Sans JP -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="theme-color" content="#050608" />
+  </head>
+
+  <body>
+    <!-- Header Navigation -->
+    <header class="site-header" id="site-header">
+      <div class="site-header__inner">
+        <a href="./index.html" class="site-brand">
+          <img src="./assets/NP.png" alt="Naima Patel logo" />
+          <span class="sr-only">Naima Patel</span>
+        </a>
+        <button
+          class="site-header__menu"
+          id="site-menu-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-nav"
+        >
+          <span></span>
+          <span class="sr-only">Toggle navigation</span>
+        </button>
+        <div class="site-header__group">
+          <nav class="site-nav" id="site-nav" aria-label="Primary">
+            <ul class="site-nav__list">
+              <li><a class="site-nav__link" href="./index.html#projects">Projects</a></li>
+              <li><a class="site-nav__link" href="./about.html">About</a></li>
+              <li><a class="site-nav__link" href="./assets/Resume.pdf" target="_blank">Resume</a></li>
+            </ul>
+          </nav>
+          <button
+            class="nav-voice-button"
+            id="nav-voice-button"
+            type="button"
+            aria-pressed="false"
+            aria-label="Toggle voice command"
+          >
+            <span class="icon icon-mic" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.7"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M12 1.98a3 3 0 0 0-3 3v5a3 3 0 0 0 6 0v-5a3 3 0 0 0-3-3Z" />
+                <path d="M19 10v1a7 7 0 0 1-14 0v-1" />
+                <path d="M12 19v4" />
+                <path d="m8 23 4 0 4 0" />
+              </svg>
+            </span>
+            <span class="icon icon-mic-off" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.7"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M9 9v2a3 3 0 0 0 4.5 2.598" />
+                <path d="M15 8.5V5a3 3 0 0 0-5.598-1.5" />
+                <path d="M19 10v1a7.002 7.002 0 0 1-9.184 6.708" />
+                <path d="M13 19v3" />
+                <path d="M8 22h10" />
+                <path d="m2 2 20 20" />
+              </svg>
+            </span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="about-hero" id="hero">
+      <!-- Background Marquees -->
+      <div class="about-hero__marquees" aria-hidden="true">
+        <div class="about-hero__marquee about-hero__marquee--1">
+          <span>jolly • vibrant • confident • loyal • yappy • whimsical • </span>
+          <span>jolly • vibrant • confident • loyal • yappy • whimsical • </span>
+          <span>jolly • vibrant • confident • loyal • yappy • whimsical • </span>
+        </div>
+        <div class="about-hero__marquee about-hero__marquee--2">
+          <span>designer • artist • musician • explorer • creator • </span>
+          <span>designer • artist • musician • explorer • creator • </span>
+          <span>designer • artist • musician • explorer • creator • </span>
+        </div>
+        <div class="about-hero__marquee about-hero__marquee--3">
+          <span>Stanford '26 • Product Design • HCI • </span>
+          <span>Stanford '26 • Product Design • HCI • </span>
+          <span>Stanford '26 • Product Design • HCI • </span>
+        </div>
+      </div>
+
+      <!-- Fade Overlay -->
+      <div class="about-hero__fade"></div>
+
+      <!-- Content -->
+      <div class="about-hero__content">
+        <div class="about-hero__floating-emoji" aria-hidden="true">✨</div>
+        <div class="about-hero__floating-emoji about-hero__floating-emoji--2" aria-hidden="true">🎨</div>
+        <div class="about-hero__floating-emoji about-hero__floating-emoji--3" aria-hidden="true">🎵</div>
+        
+        <h1 class="about-hero__title fade-in-up">Beyond the wireframes...</h1>
+        <div class="about-hero__intro fade-in-up" style="animation-delay: 0.2s;">
+          <div class="about-hero__text">
+            <p>
+              I'm Naima, a junior at Stanford studying Product Design and specializing in human-computer interaction. 
+              My interests range from digital design, to music, to visual art.
+            </p>
+            <p>
+              I asked my friends to describe me with one word and the responses I got were 
+              <span class="highlight">jolly</span>, <span class="highlight">vibrant</span>, 
+              <span class="highlight">confident</span>, <span class="highlight">loyal</span>, 
+              <span class="highlight">yappy</span>, and <span class="highlight">whimsical</span>. 
+              I'll leave you to make your own judgements.
+            </p>
+          </div>
+          <div class="about-hero__image">
+            <img 
+              src="https://cdn.prod.website-files.com/64ea40aaeab444bc09b50f84/656529454ad2b637ce6cd13b_Screen%20Shot%202023-11-27%20at%205.41.48%20PM.png" 
+              alt="Naima Patel"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Marquee Divider -->
+    <div class="marquee-divider" aria-hidden="true">
+      <div class="marquee-divider__track">
+        <span>✦ HOBBIES ✦ PASSIONS ✦ INTERESTS ✦ </span>
+        <span>✦ HOBBIES ✦ PASSIONS ✦ INTERESTS ✦ </span>
+        <span>✦ HOBBIES ✦ PASSIONS ✦ INTERESTS ✦ </span>
+      </div>
+    </div>
+
+    <!-- Hobbies Section -->
+    <section class="about-section about-hobbies" id="hobbies">
+      <div class="about-section__container">
+        <h2 class="about-section__title fade-in-up">the endless list of hobbies:</h2>
+        <p class="about-section__subtitle fade-in-up">Don't ask how good I am at them.</p>
+        
+        <div class="hobbies-grid">
+          <div class="hobby-item fade-in-up" style="animation-delay: 0.1s;">
+            <div class="hobby-item__image">
+              <img 
+                src="https://cdn.prod.website-files.com/64ea40aaeab444bc09b50f84/6565742293e7014c26fa91a3_Screen%20Shot%202023-11-27%20at%2011.01.15%20PM.png" 
+                alt="Art"
+                loading="lazy"
+              />
+            </div>
+            <h3 class="hobby-item__label">Art</h3>
+          </div>
+
+          <div class="hobby-item fade-in-up" style="animation-delay: 0.2s;">
+            <div class="hobby-item__image">
+              <img 
+                src="https://cdn.prod.website-files.com/64ea40aaeab444bc09b50f84/6565740630a0adc10492df37_Screen%20Shot%202023-11-27%20at%2011.00.45%20PM.png" 
+                alt="Music"
+                loading="lazy"
+              />
+            </div>
+            <h3 class="hobby-item__label">Music</h3>
+          </div>
+
+          <div class="hobby-item fade-in-up" style="animation-delay: 0.3s;">
+            <div class="hobby-item__image">
+              <img 
+                src="https://cdn.prod.website-files.com/64ea40aaeab444bc09b50f84/65657450cb806bac27f9b1e9_Screen%20Shot%202023-11-27%20at%2011.01.59%20PM.png" 
+                alt="Hiking"
+                loading="lazy"
+              />
+            </div>
+            <h3 class="hobby-item__label">Hiking</h3>
+          </div>
+
+          <div class="hobby-item fade-in-up" style="animation-delay: 0.4s;">
+            <div class="hobby-item__image">
+              <img 
+                src="https://cdn.prod.website-files.com/64ea40aaeab444bc09b50f84/656576440bd5f04e20c44e09_Screen%20Shot%202023-11-27%20at%2011.10.19%20PM.png" 
+                alt="Running"
+                loading="lazy"
+              />
+            </div>
+            <h3 class="hobby-item__label">Running</h3>
+          </div>
+
+          <div class="hobby-item fade-in-up" style="animation-delay: 0.5s;">
+            <div class="hobby-item__image">
+              <img 
+                src="https://cdn.prod.website-files.com/64ea40aaeab444bc09b50f84/65657468d006b23a3991869a_Screen%20Shot%202023-11-27%20at%2011.02.26%20PM.png" 
+                alt="Sports"
+                loading="lazy"
+              />
+            </div>
+            <h3 class="hobby-item__label">Sports</h3>
+          </div>
+
+          <div class="hobby-item fade-in-up" style="animation-delay: 0.6s;">
+            <div class="hobby-item__image">
+              <img 
+                src="https://cdn.prod.website-files.com/64ea40aaeab444bc09b50f84/6565768a5e7b3f872f3fa6ba_Screen%20Shot%202023-11-27%20at%2011.11.17%20PM.png" 
+                alt="Jewelry"
+                loading="lazy"
+              />
+            </div>
+            <h3 class="hobby-item__label">Jewelry</h3>
+          </div>
+
+          <div class="hobby-item fade-in-up" style="animation-delay: 0.7s;">
+            <div class="hobby-item__image">
+              <img 
+                src="https://cdn.prod.website-files.com/64ea40aaeab444bc09b50f84/6565743872f80ca1702493e6_Screen%20Shot%202023-11-27%20at%2011.01.37%20PM.png" 
+                alt="Surfing"
+                loading="lazy"
+              />
+            </div>
+            <h3 class="hobby-item__label">Surfing</h3>
+          </div>
+
+          <div class="hobby-item fade-in-up" style="animation-delay: 0.8s;">
+            <div class="hobby-item__image">
+              <img 
+                src="https://cdn.prod.website-files.com/64ea40aaeab444bc09b50f84/656575d26f49dfef9e0b1a53_Screen%20Shot%202023-11-27%20at%2011.08.08%20PM.png" 
+                alt="Dance"
+                loading="lazy"
+              />
+            </div>
+            <h3 class="hobby-item__label">Dance</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Marquee Divider -->
+    <div class="marquee-divider marquee-divider--reverse" aria-hidden="true">
+      <div class="marquee-divider__track">
+        <span>🐟 SALMON APPRECIATION SOCIETY 🐟 </span>
+        <span>🐟 SALMON APPRECIATION SOCIETY 🐟 </span>
+        <span>🐟 SALMON APPRECIATION SOCIETY 🐟 </span>
+      </div>
+    </div>
+
+    <!-- Salmon Section -->
+    <section class="about-section about-salmon" id="salmon">
+      <div class="about-section__container">
+        <h2 class="about-section__title fade-in-up">Salmon:</h2>
+        <p class="about-section__subtitle fade-in-up">
+          My favorite food, the only thing I can cook, and one of my many personality traits.
+        </p>
+        
+        <div class="salmon-grid">
+          <div class="salmon-item fade-in-up" style="animation-delay: 0.1s;">
+            <img 
+              src="https://cdn.prod.website-files.com/64ea40aaeab444bc09b50f84/6565783da563446b994e3670_Screen%20Shot%202023-11-27%20at%2011.18.49%20PM.png" 
+              alt="Salmon dish 1"
+              loading="lazy"
+            />
+          </div>
+          <div class="salmon-item fade-in-up" style="animation-delay: 0.2s;">
+            <img 
+              src="https://cdn.prod.website-files.com/64ea40aaeab444bc09b50f84/65657ab3c65d4d9d5ccefcad_Screen%20Shot%202023-11-27%20at%2011.29.15%20PM.png" 
+              alt="Salmon dish 2"
+              loading="lazy"
+            />
+          </div>
+          <div class="salmon-item fade-in-up" style="animation-delay: 0.3s;">
+            <img 
+              src="https://cdn.prod.website-files.com/64ea40aaeab444bc09b50f84/656577f3a850dda1e25606b7_Screen%20Shot%202023-11-27%20at%2011.17.30%20PM.png" 
+              alt="Salmon dish 3"
+              loading="lazy"
+            />
+          </div>
+          <div class="salmon-item fade-in-up" style="animation-delay: 0.4s;">
+            <img 
+              src="https://cdn.prod.website-files.com/64ea40aaeab444bc09b50f84/65657828c8436f92f6bd6db8_Screen%20Shot%202023-11-27%20at%2011.18.27%20PM.png" 
+              alt="Salmon dish 4"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Marquee Divider -->
+    <div class="marquee-divider" aria-hidden="true">
+      <div class="marquee-divider__track">
+        <span>✦ BEHIND THE SCENES ✦ THE PROCESS ✦ </span>
+        <span>✦ BEHIND THE SCENES ✦ THE PROCESS ✦ </span>
+        <span>✦ BEHIND THE SCENES ✦ THE PROCESS ✦ </span>
+      </div>
+    </div>
+
+    <!-- Building Section -->
+    <section class="about-section about-building" id="building">
+      <div class="about-section__container">
+        <h2 class="about-section__title fade-in-up">What it looked like building this website...</h2>
+        <p class="about-section__subtitle fade-in-up">
+          The dorm rooms, the aux, the company, and the snackies.
+        </p>
+        
+        <div class="building-grid">
+          <div class="building-column fade-in-up" style="animation-delay: 0.1s;">
+            <img 
+              src="https://cdn.prod.website-files.com/64ea40aaeab444bc09b50f84/65657cfdd006b23a399756bb_Screen%20Shot%202023-11-27%20at%2011.39.03%20PM.png" 
+              alt="Building process 1"
+              loading="lazy"
+            />
+            <img 
+              src="https://cdn.prod.website-files.com/64ea40aaeab444bc09b50f84/65657be902c9a3052ff931c6_Screen%20Shot%202023-11-27%20at%2011.34.27%20PM.png" 
+              alt="Building process 2"
+              loading="lazy"
+            />
+          </div>
+          <div class="building-column fade-in-up" style="animation-delay: 0.2s;">
+            <img 
+              src="https://cdn.prod.website-files.com/64ea40aaeab444bc09b50f84/65657c6008c09b879a3f081f_Screen%20Shot%202023-11-27%20at%2011.36.27%20PM.png" 
+              alt="Building process 3"
+              loading="lazy"
+            />
+            <img 
+              src="https://cdn.prod.website-files.com/64ea40aaeab444bc09b50f84/65657ce26f49dfef9e1091fe_Screen%20Shot%202023-11-27%20at%2011.38.36%20PM.png" 
+              alt="Building process 4"
+              loading="lazy"
+            />
+          </div>
+          <div class="building-column fade-in-up" style="animation-delay: 0.3s;">
+            <img 
+              src="https://cdn.prod.website-files.com/64ea40aaeab444bc09b50f84/65657cbe93e7014c26fffa99_Screen%20Shot%202023-11-27%20at%2011.38.01%20PM.png" 
+              alt="Building process 5"
+              loading="lazy"
+            />
+            <img 
+              src="https://cdn.prod.website-files.com/64ea40aaeab444bc09b50f84/65657c6ac65d4d9d5cd01e38_Screen%20Shot%202023-11-27%20at%2011.35.59%20PM.png" 
+              alt="Building process 6"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Marquee Divider -->
+    <div class="marquee-divider marquee-divider--reverse" aria-hidden="true">
+      <div class="marquee-divider__track">
+        <span>🎨 VISUAL ART GALLERY 🎨 </span>
+        <span>🎨 VISUAL ART GALLERY 🎨 </span>
+        <span>🎨 VISUAL ART GALLERY 🎨 </span>
+      </div>
+    </div>
+
+    <!-- Art Gallery Section -->
+    <section class="about-section about-art" id="art-gallery">
+      <div class="about-section__container">
+        <h2 class="about-section__title fade-in-up">Visual Art</h2>
+        <p class="about-section__subtitle fade-in-up">
+          A collection of paintings, prints, and drawings exploring identity, culture, and emotion.
+        </p>
+        
+        <div class="art-gallery">
+          <!-- Column 1 -->
+          <div class="art-column">
+            <div class="art-item fade-in-up">
+              <img 
+                src="https://cdn.prod.website-files.com/64ea40aaeab444bc09b50f84/6563ce4fdcbd1d3b7f127461_City.png" 
+                alt="Seattle"
+                loading="lazy"
+              />
+              <div class="art-item__overlay">
+                <h3>Seattle</h3>
+                <p>2023<br/>Oil Pastels</p>
+              </div>
+            </div>
+
+            <div class="art-item fade-in-up">
+              <img 
+                src="https://cdn.prod.website-files.com/64ea40aaeab444bc09b50f84/6563ce4f42a07151437edad5_nanimaa.png" 
+                alt="Nanimaa"
+                loading="lazy"
+              />
+              <div class="art-item__overlay">
+                <h3>Nanimaa</h3>
+                <p>2023<br/>Oil Pastels</p>
+              </div>
+            </div>
+
+            <div class="art-item fade-in-up">
+              <img 
+                src="https://cdn.prod.website-files.com/64ea40aaeab444bc09b50f84/6563ce4fc1f564efee128b73_didi.png" 
+                alt="Didi"
+                loading="lazy"
+              />
+              <div class="art-item__overlay">
+                <h3>Didi</h3>
+                <p>2022<br/>Oil Pastels</p>
+              </div>
+            </div>
+
+            <div class="art-item fade-in-up">
+              <img 
+                src="https://cdn.prod.website-files.com/64ea40aaeab444bc09b50f84/6563ded2d697929053c8eaae_ahmedabad.jpg" 
+                alt="Ahmedabad"
+                loading="lazy"
+              />
+              <div class="art-item__overlay">
+                <h3>Ahmedabad</h3>
+                <p>2022<br/>Linoleum Print</p>
+              </div>
+            </div>
+
+            <div class="art-item fade-in-up">
+              <img 
+                src="https://cdn.prod.website-files.com/64ea40aaeab444bc09b50f84/6563dfc945db91a91bf16569_Screen%20Shot%202023-11-26%20at%206.16.02%20PM.png" 
+                alt="Gopis"
+                loading="lazy"
+              />
+              <div class="art-item__overlay">
+                <h3>Gopis</h3>
+                <p>2022<br/>Linoleum Print</p>
+              </div>
+            </div>
+
+            <div class="art-item fade-in-up">
+              <img 
+                src="https://cdn.prod.website-files.com/64ea40aaeab444bc09b50f84/6563dfac9f12984b6de11657_Screen%20Shot%202023-11-26%20at%206.15.33%20PM.png" 
+                alt="Butter Pot"
+                loading="lazy"
+              />
+              <div class="art-item__overlay">
+                <h3>Butter Pot</h3>
+                <p>2022<br/>Wood Carving + Print</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Column 2 -->
+          <div class="art-column">
+            <div class="art-item fade-in-up">
+              <img 
+                src="https://cdn.prod.website-files.com/64ea40aaeab444bc09b50f84/6563ce5016d0ec6bd3b4c080_mama%20crying.png" 
+                alt="Mama's Jewelry"
+                loading="lazy"
+              />
+              <div class="art-item__overlay">
+                <h3>Mama's Jewelry</h3>
+                <p>2023<br/>Pencil Drawing</p>
+              </div>
+            </div>
+
+            <div class="art-item fade-in-up">
+              <img 
+                src="https://cdn.prod.website-files.com/64ea40aaeab444bc09b50f84/6563ce4c43d0370c49ce6a98_good%20days.png" 
+                alt="Good Days"
+                loading="lazy"
+              />
+              <div class="art-item__overlay">
+                <h3>Good Days</h3>
+                <p>Synesthesia Drawing<br/>2023 - Oil Pastels</p>
+              </div>
+            </div>
+
+            <div class="art-item fade-in-up">
+              <img 
+                src="https://cdn.prod.website-files.com/64ea40aaeab444bc09b50f84/6563ce4cf32c4fcae505a21e_cash%20flow.png" 
+                alt="Cash Flow"
+                loading="lazy"
+              />
+              <div class="art-item__overlay">
+                <h3>Cash Flow</h3>
+                <p>2022<br/>Oil Painting</p>
+              </div>
+            </div>
+
+            <div class="art-item fade-in-up">
+              <img 
+                src="https://cdn.prod.website-files.com/64ea40aaeab444bc09b50f84/6563df6f0d42980cae43afc2_IMG_7168.png" 
+                alt="Krishna's Admirer"
+                loading="lazy"
+              />
+              <div class="art-item__overlay">
+                <h3>Krishna's Admirer</h3>
+                <p>2022<br/>Metal Etching + Print</p>
+              </div>
+            </div>
+
+            <div class="art-item fade-in-up">
+              <img 
+                src="https://cdn.prod.website-files.com/64ea40aaeab444bc09b50f84/6563dff0c9018bf9787552ff_Screen%20Shot%202023-11-26%20at%206.16.42%20PM.png" 
+                alt="Abstract Dancer"
+                loading="lazy"
+              />
+              <div class="art-item__overlay">
+                <h3>Abstract Dancer</h3>
+                <p>2022<br/>Oil Painting</p>
+              </div>
+            </div>
+
+            <div class="art-item fade-in-up">
+              <img 
+                src="https://cdn.prod.website-files.com/64ea40aaeab444bc09b50f84/6563ded19f12984b6de093f9_meena.jpg" 
+                alt="Meena"
+                loading="lazy"
+              />
+              <div class="art-item__overlay">
+                <h3>Meena</h3>
+                <p>2022<br/>Oil Painting</p>
+              </div>
+            </div>
+
+            <div class="art-item fade-in-up">
+              <img 
+                src="https://cdn.prod.website-files.com/64ea40aaeab444bc09b50f84/6563ded1b08c1110d0dff070_mor.jpg" 
+                alt="Mor"
+                loading="lazy"
+              />
+              <div class="art-item__overlay">
+                <h3>Mor</h3>
+                <p>2020<br/>Oil Painting</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="footer-divider"></div>
+      <div class="footer-content">
+        <p class="footer-heading">Let's keep talking.</p>
+        <div class="footer-links">
+          <a
+            href="https://www.linkedin.com/in/naimapatel/"
+            target="_blank"
+            class="footer-link"
+            rel="noreferrer"
+            >LinkedIn</a
+          >
+          <a
+            href="./assets/Resume.pdf"
+            target="_blank"
+            class="footer-link"
+            rel="noreferrer"
+            >Resume</a
+          >
+          <a href="mailto:npatel12@stanford.edu" class="footer-link">Connect</a>
+        </div>
+        <p class="footer-copyright">© 2025 Naima Patel</p>
+      </div>
+    </footer>
+
+    <!-- Toast Container -->
+    <div
+      class="toast-container"
+      id="toast-container"
+      aria-live="polite"
+      aria-atomic="true"
+    ></div>
+
+    <!-- Scripts -->
+    <script src="./assets/scripts/env-loader.js"></script>
+    <script src="./assets/scripts/voice-navigation.js"></script>
+    <script src="./assets/scripts/voice-button.js"></script>
+    <script src="./assets/scripts/navbar.js"></script>
+    <script src="./assets/scripts/footer.js" defer></script>
+    <script src="./assets/scripts/pointer.js" defer></script>
+    <script src="./assets/scripts/scroll-animations.js"></script>
+  </body>
+</html>
+

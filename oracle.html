@@ -133,6 +133,14 @@
           background-position: 1200px 0;
         }
       }
+      @keyframes marquee-smooth {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
 
       /* Soft fade overlay */
       .hero::after {
@@ -164,7 +172,7 @@
         align-items: center; /* ensure children, including h1, are centered */
       }
       .hero__logo {
-        width: min(18vw, 180px);
+        width: min(22vw, 220px);
         height: auto;
         display: block;
         margin: 0 auto 24px auto;
@@ -389,6 +397,7 @@
       }
       .cs-section--no-label .cs-section__right {
         grid-column: 1;
+        margin-left: 300px; /* Align with normal sections (200px sidebar + 100px gap) */
       }
 
       /* Content alignment modifier */
@@ -406,12 +415,14 @@
 
       .media-grid-item {
         width: 100%;
+        display: flex;
+        flex-direction: column;
       }
 
       .media-grid-item__wrapper {
         width: 100%;
         overflow: hidden;
-        border-radius: 1rem;
+        flex: 1;
       }
 
       .media-grid-item__media {
@@ -424,7 +435,7 @@
         color: white;
         font-weight: 700;
         font-family: "IBM Plex Sans JP", sans-serif;
-        margin-top: 0.75rem;
+        margin-top: 0.1rem;
         text-align: center;
         font-size: 0.9rem;
       }
@@ -568,6 +579,37 @@
 
       .overview-subsection li::marker {
         color: rgba(255, 255, 255, 0.4);
+      }
+
+      /* Factors cards styling */
+      .factors-cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        margin-top: 2rem;
+      }
+
+      .factor-card {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 1rem;
+        padding: 1.5rem;
+      }
+
+      .factor-card__heading {
+        font-family: "Hiragino Mincho ProN", "Hiragino Mincho Pro", serif;
+        font-style: italic;
+        font-weight: 600;
+        font-size: clamp(1.1rem, 1.5vw, 1.4rem);
+        line-height: 1.5;
+        color: #fff;
+        margin: 0;
+      }
+
+      @media (max-width: 900px) {
+        .factors-cards {
+          grid-template-columns: 1fr;
+        }
       }
 
       /* =========================
@@ -825,6 +867,14 @@
         opacity: 0.65;
       }
 
+      .interview-subhead {
+        margin-top: 1rem !important;
+        margin-bottom: 2rem !important;
+        font-size: 0.95rem !important;
+        font-weight: 700 !important;
+        color: rgba(255, 255, 255, 0.85) !important;
+      }
+
       .key-opportunity-heading {
         text-transform: uppercase;
         text-align: center;
@@ -846,6 +896,90 @@
          FINAL DESIGNS SECTION
          ========================= */
       #final-designs .cs-section__right::before {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 2px;
+        margin-bottom: 2.5rem;
+        background: repeating-linear-gradient(
+          to right,
+          rgba(240, 97, 77, 0.45) 0 8px,
+          rgba(240, 97, 77, 0.08) 8px 16px
+        );
+        animation: dash-move 6s linear infinite;
+        opacity: 0.65;
+      }
+
+      /* Insight card h4 font styling */
+      .insight-card h4,
+      .card-title-font {
+        font-family: "Hiragino Mincho ProN", "Hiragino Mincho Pro", serif;
+        font-style: italic;
+        font-weight: 600;
+        font-size: clamp(1rem, 1.2vw, 1.25rem);
+        color: #fff;
+        line-height: 1.6;
+        margin: 0;
+      }
+
+      /* Component cards in Final Designs */
+      .component-card {
+        padding: 2rem;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 1rem;
+        background: rgba(255, 255, 255, 0.02);
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+
+      .component-card:hover {
+        border-color: rgba(240, 97, 77, 0.6);
+        background: rgba(255, 255, 255, 0.04);
+        transform: translateY(-4px);
+        box-shadow: 0 8px 32px rgba(240, 97, 77, 0.4), 0 0 20px rgba(240, 97, 77, 0.3);
+      }
+
+      .component-card h4 {
+        font-family: 'IBM Plex Sans JP', sans-serif;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: var(--accent);
+        font-size: 1rem;
+      }
+
+      .component-card p {
+        font-size: 0.9rem !important;
+        color: rgba(255, 255, 255, 0.85) !important;
+      }
+
+      .component-card img {
+        width: 100%;
+        height: 280px;
+        object-fit: contain;
+        margin-bottom: 1rem;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border-radius: 0.5rem;
+        pointer-events: none;
+      }
+
+      .component-card img:hover {
+        transform: scale(1.02);
+        box-shadow: 0 12px 24px rgba(240, 97, 77, 0.5), 0 0 16px rgba(240, 97, 77, 0.4);
+      }
+
+      .component-explore-header {
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.5);
+        font-style: italic;
+        margin-bottom: 1rem;
+        text-align: center;
+        letter-spacing: 0.5px;
+      }
+
+      /* =========================
+         TAKEAWAYS SECTION
+         ========================= */
+      #takeaways .cs-section__right::before {
         content: "";
         display: block;
         width: 100%;
@@ -1011,7 +1145,7 @@
 
         .media-caption {
           font-size: 0.85rem;
-          margin-top: 0.5rem;
+          margin-top: 0.1rem;
         }
 
         /* Button styling */
@@ -1223,6 +1357,18 @@
         .media-grid {
           gap: 1.5rem;
         }
+
+        .component-card {
+          padding: 1.25rem;
+        }
+
+        .component-card h4 {
+          font-size: 0.95rem;
+        }
+
+        .component-card p {
+          font-size: 0.85rem !important;
+        }
       }
     </style>
   </head>
@@ -1252,7 +1398,7 @@
                 >
               </li>
               <li>
-                <a class="site-nav__link" href="./index.html#about">About</a>
+                <a class="site-nav__link" href="./about.html">About</a>
               </li>
               <li>
                 <a class="site-nav__link" href="./index.html#resume">Resume</a>
@@ -1315,10 +1461,10 @@
       </div>
 
       <div class="hero__content">
-        <img class="hero__logo" src="assets/OracleLogo.png" alt="Oracle logo" />
-        <h1 class="hero__subheading">CREATING SMART COMPONENTS</h1>
+        <img class="hero__logo" src="assets/Oracle_logo.png" alt="Oracle logo" />
+        <h1 class="hero__subheading">CREATING DATA-DRIVEN COMPONENTS FOR ORACLE'S DESIGN SYSTEM</h1>
         <div class="hero__bar" role="presentation"></div>
-        <p class="hero__tagline">Coming soon</p>
+        <p class="hero__tagline">XXX minute read</p>
       </div>
 
       <!-- Scroll down arrow -->
@@ -1337,8 +1483,11 @@
       <nav class="side-nav" aria-label="Section navigation">
         <ul>
           <li><a href="#overview" class="active">Overview</a></li>
+          <li><a href="#research">Research</a></li>
           <li><a href="#key-opportunity">Key Opportunity</a></li>
+          <li><a href="#ideation">IDEATION & INITIAL DESIGNS</a></li>
           <li><a href="#final-designs">Final Designs</a></li>
+          <li><a href="#takeaways">Takeaways</a></li>
         </ul>
 
         <!-- Voice button for side nav -->
@@ -1393,39 +1542,56 @@
           <div class="overview-meta">
             <div class="meta-item">
               <h4>Timeline</h4>
-              <p>Summer 2024</p>
+              <p>June 2023 - September 2023</p>
             </div>
             <div class="meta-item">
               <h4>Role</h4>
-              <p>Product Design Intern</p>
+              <p>UI/UX Design Intern</p>
             </div>
             <div class="meta-item">
               <h4>Team</h4>
-              <p>Oracle Design Systems</p>
+              <p>EPM Design Systems Team</p>
             </div>
             <div class="meta-item">
-              <h4>Platform</h4>
-              <p>Enterprise Design System</p>
+              <h4>Skills</h4>
+              <p>Visual Design </p> 
+                <p>Interaction Design </p> 
+                <p>Design Systems </p>
+                <p>Data Analytics </p>
             </div>
           </div>
-          <h3>Scaling an Internal Design System</h3>
+          
+          <h3>Creating Components for Data-Driven Micro-Decisions</h3>
           <p>
-            Oracle's enterprise design team needed a faster way to roll out
-            consistent experiences across dozens of product lines. During my
-            internship, I was tasked with defining smart components that
-            balanced flexibility with guardrails.
+            Throughout the workflow of any Oracle employee, they are constantly making small, micro-decisions that can have a significant impact on the overall success of the action. 
+            Oracle's design team needed a way to help users make better decisions through analytics-enabled components. During my summer internship, I was tasked with creating components to add to Oracle's analytics tools that allow users to view key metrics at a glance and make informed micro-decisions throughout their workday.
           </p>
-          <p>
-            I partnered with engineers and product managers to map cross-product
-            patterns and identify friction points. The goal was to deliver
-            reusable interface primitives that could adapt to varied data
-            densities and interaction complexity.
-          </p>
-          <p>
-            Over ten weeks, I designed component blueprints, prototyped adaptive
-            behaviors, and ensured implementation guidance met accessibility and
-            localization requirements.
-          </p>
+
+          <div class="overview-subsection">
+            <span class="subsection-label">PROBLEM</span>
+            <h3>The Challenge</h3>
+            <p>
+              Create components to add to Oracle's analytics tools that allow users to view key metrics at a glance. As opposed to reimagining the user flow, I was encouraged to create components that are inherently more informative. This involved interviewing users, many of which were my colleagues, in order to better understand what moments within their workday could be improved by one additional component.
+            </p>
+          </div>
+
+          <div class="overview-subsection">
+            <span class="subsection-label">SOLUTION</span>
+            <h3>Key Results</h3>
+            <p>I was able to...</p>
+            <ul>
+              <li><strong>Lead 15 user research interviews</strong>, identifying key pain points and driving changes approved by stakeholders</li>
+              <li><strong>Develop 16 new components</strong> for Oracle's design system, enhancing usability and data visibility</li>
+              <li><strong>Present to the head of Oracle design</strong> in order to gain approval for my components and demonstrate their added value to Oracle's design system</li>
+            </ul>
+            <img 
+              src="./assets/OracleImages/Oracle Problem Solution Pic.png" 
+              alt="Before and after comparison showing problem and solution" 
+              class="clickable-image" 
+              onclick="openImageOverlay('./assets/OracleImages/Oracle Problem Solution Pic.png')"
+              style="width: 100%; margin-top: 2rem; cursor: pointer;"
+            />
+          </div>
 
           <div class="overview-button-wrapper">
             <button
@@ -1439,26 +1605,451 @@
         </div>
       </section>
 
-      <section class="cs-section" id="key-opportunity">
-        <div class="cs-section__left"></div>
+
+      <section class="cs-section cs-section--no-label" id="research">
         <div class="cs-section__right">
-          <h3 class="key-opportunity-heading">
-            How might we create reusable components that empower teams while
-            maintaining consistency?
-          </h3>
+          <div class="overview-subsection">
+            <span class="subsection-label">STRATEGY</span>
+            <h3>Go Broad</h3>
+            <p>
+              We spent weeks looking for inspiration of how data-enabled components encourage users to make smarter decisions every day. We found hundreds of examples ranging from travel booking assistance to Uber visualizing how far away each car is.
+            </p>
+            <img 
+              src="./assets/OracleImages/research/research-inspiration.png" 
+              alt="Research inspiration collage showing data-enabled components" 
+              class="clickable-image" 
+              onclick="openImageOverlay('./assets/OracleImages/research/research-inspiration.png')"
+              style="width: 100%; margin-top: 1.5rem; cursor: pointer;"
+            />
+            <p class="media-caption">Inspiration examples of data-enabled components from various applications</p>
+          </div>
+
+          <div class="overview-subsection">
+            <span class="subsection-label">CATEGORIZING WIDGETS</span>
+            <h3>Initial Categories Based on Brainstorm</h3>
+            <p>We then grouped relevant examples by the type of micro-decision it supported. I was careful to ensure that each component was an analytics opportunity.</p>
+            <img 
+              src="./assets/OracleImages/research/Components 1.png" 
+              alt="Widget categorization diagram" 
+              class="clickable-image" 
+              onclick="openImageOverlay('./assets/OracleImages/research/Components 1.png')"
+              style="width: 100%; margin: 1.5rem 0; cursor: pointer;"
+            />
+            <p class="media-caption">Grouping widgets by the type of micro-decision they support</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
+              <div class="cs-callout">
+                <p><strong>1.</strong> Select among options to optimize <strong>1 key metric</strong></p>
+              </div>
+              <div class="cs-callout">
+                <p><strong>2.</strong> Understand data distribution or history <strong>without leaving</strong> context</p>
+              </div>
+              <div class="cs-callout">
+                <p><strong>3.</strong> <strong>Preview the results</strong> of a UI Action</p>
+              </div>
+              <div class="cs-callout">
+                <p><strong>4.</strong> <strong>Compare existing data</strong> to average/typical behavior</p>
+              </div>
+              <div class="cs-callout">
+                <p><strong>5.</strong> Track aggregate impact of <strong>multiple choices on 1 key metric</strong></p>
+              </div>
+              <div class="cs-callout">
+                <p><strong>6.</strong> Select among options to <strong>optimize multiple key metrics</strong></p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section class="cs-section" id="final-designs">
+      <section class="cs-section" id="key-opportunity">
         <div class="cs-section__left"></div>
         <div class="cs-section__right">
-          <span class="subsection-label">FINAL DESIGNS</span>
-          <h3 style="margin-top: 0.1rem">Coming Soon</h3>
+          <h3>1. Understanding Data Context</h3>
+          <p class="interview-subhead">Application users need to understand the shape of data within a working context in order to focus on what matters and avoid unnecessary interactions.</p>
+          
+          <h3>2. Optimizing Small Choices</h3>
+          <p class="interview-subhead">Business users need to make many small choices that optimize for one or more success criteria.</p>
+        </div>
+      </section>
+
+      <section class="cs-section cs-section--no-label" id="ideation">
+        <div class="cs-section__right">
+          <h3>New Component Ideation</h3>
           <p>
-            Detailed case study content will be added soon. This project focused
-            on creating smart, adaptive components for Oracle's enterprise
-            design system.
+            Within these categories, we brainstormed new components to add to Redwood, Oracle's design system. We drew from components found during our research stage to think of where these widgets would be of use in Oracle's products.
           </p>
+          <img 
+            src="./assets/OracleImages/ideation/ideation-diagram.png" 
+            alt="Component ideation diagram" 
+            class="clickable-image" 
+            onclick="openImageOverlay('./assets/OracleImages/ideation/ideation-diagram.png')"
+            style="width: 100%; margin: 1.5rem 0; cursor: pointer;"
+          />
+          
+          <div class="overview-subsection">
+            <h3>FACTORS WE CONSIDERED</h3>
+            <div class="factors-cards">
+              <div class="factor-card">
+                <h4 class="factor-card__heading">How new is the component? Does something similar exist in Redwood?</h4>
+              </div>
+              <div class="factor-card">
+                <h4 class="factor-card__heading">How broadly useful is the component?</h4>
+              </div>
+              <div class="factor-card">
+                <h4 class="factor-card__heading">Does analytics increase the value of the component?</h4>
+              </div>
+            </div>
+          </div>
+
+          <div class="overview-subsection">
+            <span class="subsection-label">TEAM FEEDBACK</span>
+            <h3>Collaborative Evaluation</h3>
+            <p>
+              I outlined each of our component ideas, a relevant example of the concept done well, and the existing Redwood component we would be modifying. I asked each member of the team to put green stars next to concepts they believe should be designed, and yellow stars next to concepts that are good ideas but need a bit of work.
+            </p>
+            <img 
+              src="./assets/OracleImages/ideation/ideation-feedback.jpg" 
+              alt="Team feedback board with component ideas" 
+              class="clickable-image" 
+              onclick="openImageOverlay('./assets/OracleImages/ideation/ideation-feedback.jpg')"
+              style="width: 100%; margin: 1.5rem 0 0.2rem 0; cursor: pointer;"
+            />
+            <p class="media-caption">Team feedback board showing component ideas with priority ratings</p>
+            <h3 style="margin-top: 5rem;">LOW-FI SKETCHES</h3>
+            <p>
+              After committing to 21 new ideas, I began creating low-fidelity sketches to explore different approaches and gather quick feedback from the team.
+            </p>
+            
+            <div
+              class="experience-marquee clickable-image"
+              style="
+                position: relative;
+                width: 100%;
+                height: 200px;
+                overflow: hidden;
+                margin-top: 2rem;
+              "
+              onclick="openImageOverlay('./assets/OracleImages/ideation/All Lowfi.png')"
+            >
+              <div
+                class="experience-marquee__track"
+                style="
+                  position: absolute;
+                  left: 0;
+                  width: 200%;
+                  height: 100%;
+                  background-image: url('./assets/OracleImages/ideation/Lowfi Marquee.png');
+                  background-repeat: repeat-x;
+                  background-size: auto 100%;
+                  animation: marquee-smooth 45s linear infinite;
+                "
+              ></div>
+            </div>
+            
+            <div class="media-grid" style="margin-top: 2rem; grid-template-columns: repeat(3, 1fr);">
+              <div class="media-grid-item">
+                <div class="media-grid-item__wrapper">
+                  <img 
+                    src="./assets/OracleImages/sketches/sketch-01.png" 
+                    alt="Low-fidelity sketch 1" 
+                    class="media-grid-item__media clickable-image" 
+                    onclick="openImageOverlay('./assets/OracleImages/sketches/sketch-01.png')"
+                  />
+                </div>
+                <p class="media-caption">Table header histogram sketch</p>
+              </div>
+              <div class="media-grid-item">
+                <div class="media-grid-item__wrapper">
+                  <img 
+                    src="./assets/OracleImages/sketches/sketch-02.png" 
+                    alt="Low-fidelity sketch 2" 
+                    class="media-grid-item__media clickable-image" 
+                    onclick="openImageOverlay('./assets/OracleImages/sketches/sketch-02.png')"
+                  />
+                </div>
+                <p class="media-caption">Chart annotations sketch</p>
+              </div>
+              <div class="media-grid-item">
+                <div class="media-grid-item__wrapper">
+                  <img 
+                    src="./assets/OracleImages/sketches/sketch-03.png" 
+                    alt="Low-fidelity sketch 3" 
+                    class="media-grid-item__media clickable-image" 
+                    onclick="openImageOverlay('./assets/OracleImages/sketches/sketch-03.png')"
+                  />
+                </div>
+                <p class="media-caption">In-table charts sketch</p>
+              </div>
+              <div class="media-grid-item">
+                <div class="media-grid-item__wrapper">
+                  <img 
+                    src="./assets/OracleImages/sketches/sketch-04.png" 
+                    alt="Low-fidelity sketch 4" 
+                    class="media-grid-item__media clickable-image" 
+                    onclick="openImageOverlay('./assets/OracleImages/sketches/sketch-04.png')"
+                  />
+                </div>
+                <p class="media-caption">In-line visualizations sketch</p>
+              </div>
+              <div class="media-grid-item">
+                <div class="media-grid-item__wrapper">
+                  <img 
+                    src="./assets/OracleImages/sketches/sketch-05.png" 
+                    alt="Low-fidelity sketch 5" 
+                    class="media-grid-item__media clickable-image" 
+                    onclick="openImageOverlay('./assets/OracleImages/sketches/sketch-05.png')"
+                  />
+                </div>
+                <p class="media-caption">Smart cards sketch</p>
+              </div>
+              <div class="media-grid-item">
+                <div class="media-grid-item__wrapper">
+                  <img 
+                    src="./assets/OracleImages/sketches/sketch-06.png" 
+                    alt="Low-fidelity sketch 6" 
+                    class="media-grid-item__media clickable-image" 
+                    onclick="openImageOverlay('./assets/OracleImages/sketches/sketch-06.png')"
+                  />
+                </div>
+                <p class="media-caption">Option optimizer sketch</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="cs-section cs-section--no-label" id="final-designs">
+        <div class="cs-section__right">
+          <div class="overview-subsection">
+            <span class="subsection-label">FINAL DESIGNS</span>
+            <h3>BREAKDOWN OF DESIGNS</h3>
+          </div>
+          <p>
+            When I began designing high fidelity components and flows, I narrowed the categories to three main groups that address different user needs and decision-making contexts.
+          </p>
+          <img 
+            src="./assets/OracleImages/final-designs/component-breakdown.png" 
+            alt="Component breakdown diagram showing three main categories" 
+            style="width: 100%; margin: 1.5rem auto; display: block;"
+          />
+
+          <div class="overview-subsection" style="margin-top: 3rem;">
+            <span class="subsection-label">CATEGORY 1</span>
+            <h3>Microdecisions: Single Measure</h3>
+            <div class="cs-callout">
+              <h4 class="card-title-font">Application users need to understand the effects of small, everyday decisions on a related measure in order to achieve a better business outcome.</h4>
+            </div>
+            <p style="margin-top: 1.5rem; font-weight: 600;">How might we...</p>
+            <ul style="margin-top: 0.75rem;">
+              <li>Visually show users the relationship of user decisions/actions upon a dependent variable?</li>
+              <li>Provide users with more powerful abilities to understand the impacts of their decisions?</li>
+              <li>Provide users with valuable context and insights to make more informed decisions?</li>
+              <li>Optimize small decisions to improve overall working processes and decision-making?</li>
+            </ul>
+            
+            <p class="component-explore-header">click to explore</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2.5rem;">
+              <div class="component-card" onclick="openImageOverlay('./assets/OracleImages/components/informed-selection-full.png')">
+                <img 
+                  src="./assets/OracleImages/components/informed-selection-thumb.png" 
+                  alt="Informed Selection component" 
+                />
+                <h4>Informed Selection</h4>
+                <p>Smart selection components that display related metrics to help users make informed choices.</p>
+              </div>
+              <div class="component-card" onclick="openImageOverlay('./assets/OracleImages/components/smart-skill-chips-full.png')">
+                <img 
+                  src="./assets/OracleImages/components/smart-skill-chips-thumb.png" 
+                  alt="Smart Skill Chips component" 
+                />
+                <h4>Smart Skill Chips</h4>
+                <p>Chip components that show analytics for quick decision-making on skill-related selections.</p>
+              </div>
+              <div class="component-card" onclick="openImageOverlay('./assets/OracleImages/components/informed-dual-slider-full.png')">
+                <img 
+                  src="./assets/OracleImages/components/informed-dual-slider-thumb.png" 
+                  alt="Informed Dual Slider component" 
+                />
+                <h4>Informed Dual Slider</h4>
+                <p>Sliders with visual feedback showing the impact of range selections on key metrics.</p>
+              </div>
+              <div class="component-card" onclick="openImageOverlay('./assets/OracleImages/components/smart-radio-buttons-full.png')">
+                <img 
+                  src="./assets/OracleImages/components/smart-radio-buttons-thumb.png" 
+                  alt="Smart Radio Buttons component" 
+                />
+                <h4>Smart Radio Buttons</h4>
+                <p>Radio button groups that display associated data to guide user selections.</p>
+              </div>
+              <div class="component-card" onclick="openImageOverlay('./assets/OracleImages/components/date-picker-full.png')">
+                <img 
+                  src="./assets/OracleImages/components/date-picker-thumb.png" 
+                  alt="Date Picker With Selection component" 
+                />
+                <h4>Date Picker With Selection</h4>
+                <p>Date pickers showing activity metrics to help users choose optimal dates.</p>
+              </div>
+              <div class="component-card" onclick="openImageOverlay('./assets/OracleImages/components/guided-process-gauge-full.png')">
+                <img 
+                  src="./assets/OracleImages/components/guided-process-gauge-thumb.png" 
+                  alt="Guided Process Gauge component" 
+                />
+                <h4>Guided Process Gauge</h4>
+                <p>Progress indicators that provide guidance and context throughout multi-step processes.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="overview-subsection" style="margin-top: 4rem;">
+            <span class="subsection-label">CATEGORY 2</span>
+            <h3>Microdecisions: Multiple Measures</h3>
+            <div class="cs-callout">
+              <h4 class="card-title-font">Application users need to understand the connections between multiple related variables when making small, everyday decisions in order to optimize complex systems for the needed outcome.</h4>
+            </div>
+            <p style="margin-top: 1.5rem; font-weight: 600;">How might we...</p>
+            <ul style="margin-top: 0.75rem;">
+              <li>Help users to understand the relationships between multiple variables when making decisions?</li>
+              <li>Allocate priorities and resources appropriately with respect for multiple dependencies?</li>
+              <li>Make informed decisions with interconnected systems to achieve balanced results?</li>
+              <li>Prioritize factors to achieve optimal business outcomes?</li>
+            </ul>
+            
+            <p class="component-explore-header">click to explore</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2.5rem;">
+              <div class="component-card" onclick="openImageOverlay('./assets/OracleImages/components/list-header-tab-full.png')">
+                <img 
+                  src="./assets/OracleImages/components/list-header-tab-thumb.png" 
+                  alt="List Header Tab Priority Selection component" 
+                />
+                <h4>List Header Tab Priority Selection</h4>
+                <p>Interactive table headers that allow sorting by multiple priority metrics simultaneously.</p>
+              </div>
+              <div class="component-card" onclick="openImageOverlay('./assets/OracleImages/components/multiple-measure-tracker-full.png')">
+                <img 
+                  src="./assets/OracleImages/components/multiple-measure-tracker-thumb.png" 
+                  alt="Multiple Measure Impact Tracker component" 
+                />
+                <h4>Multiple Measure Impact Tracker</h4>
+                <p>Dashboard component tracking how decisions affect multiple interconnected metrics.</p>
+              </div>
+              <div class="component-card" onclick="openImageOverlay('./assets/OracleImages/components/visual-impact-tracker-full.png')">
+                <img 
+                  src="./assets/OracleImages/components/visual-impact-tracker-thumb.png" 
+                  alt="Visual Impact Tracker component" 
+                />
+                <h4>Visual Impact Tracker</h4>
+                <p>Visual representation showing real-time impact across multiple variables.</p>
+              </div>
+              <div class="component-card" onclick="openImageOverlay('./assets/OracleImages/components/cross-influencing-slider-full.png')">
+                <img 
+                  src="./assets/OracleImages/components/cross-influencing-slider-thumb.png" 
+                  alt="Cross-Influencing Slider Controls component" 
+                />
+                <h4>Cross-Influencing Slider Controls</h4>
+                <p>Sliders that show how adjusting one parameter affects related variables.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="overview-subsection" style="margin-top: 4rem;">
+            <span class="subsection-label">CATEGORY 3</span>
+            <h3>Task & Tool Guidance</h3>
+            <div class="cs-callout">
+              <h4 class="card-title-font">Application users need to understand the shape of data within a working context in order to focus on what matters and avoid unnecessary interactions.</h4>
+            </div>
+            <p style="margin-top: 1.5rem; font-weight: 600;">How might we...</p>
+            <ul style="margin-top: 0.75rem;">
+              <li>Communicate data distributions to maximize understanding?</li>
+              <li>Provide awareness of broader context without leaving detailed views?</li>
+              <li>Streamline user workflows by giving them advance notice of decisions they can choose from?</li>
+            </ul>
+            
+            <p class="component-explore-header">click to explore</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2.5rem;">
+              <div class="component-card" onclick="openImageOverlay('./assets/OracleImages/components/table-header-histogram-full1.png')">
+                <img 
+                  src="./assets/OracleImages/components/table-header-histogram-thumb.png" 
+                  alt="Table Header Histogram component" 
+                />
+                <h4>Table Header Histogram</h4>
+                <p>Column headers displaying data distribution to help users understand content at a glance.</p>
+              </div>
+              <div class="component-card" onclick="openImageOverlay('./assets/OracleImages/components/inline-analytics-full.png')">
+                <img 
+                  src="./assets/OracleImages/components/inline-analytics-thumb.png" 
+                  alt="Inline Analytics component" 
+                />
+                <h4>Inline Analytics</h4>
+                <p>Contextual analytics embedded directly within workflows for seamless decision-making.</p>
+              </div>
+              <div class="component-card" onclick="openImageOverlay('./assets/OracleImages/components/simple-charts-table-full.png')">
+                <img 
+                  src="./assets/OracleImages/components/simple-charts-table-thumb.png" 
+                  alt="Simple Charts in Table component" 
+                />
+                <h4>Simple Charts in Table</h4>
+                <p>Micro-visualizations within table cells for quick data comprehension.</p>
+              </div>
+              <div class="component-card" onclick="openImageOverlay('./assets/OracleImages/components/smart-filter-search-full.png')">
+                <img 
+                  src="./assets/OracleImages/components/smart-filter-search-thumb.png" 
+                  alt="Smart Filter and Search component" 
+                />
+                <h4>Smart Filter and Search</h4>
+                <p>Filters with pre-attentive cues showing data distribution across filter options.</p>
+              </div>
+              <div class="component-card" onclick="openImageOverlay('./assets/OracleImages/components/guided-train-full.png')">
+                <img 
+                  src="./assets/OracleImages/components/guided-train-thumb.png" 
+                  alt="Guided Train component" 
+                />
+                <h4>Guided Train</h4>
+                <p>Step-by-step guidance component that adapts based on user context and goals.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="cs-section cs-section--no-label" id="takeaways">
+        <div class="cs-section__right">
+          <h3>Key Learnings</h3>
+          <p>
+            Our goal was to go broad with component creation. I was able to design an incredibly wide array of components with use cases that range from recruiting to healthcare. I gained insight into how to build an intelligent design system that caters towards micro-decisions.
+          </p>
+          
+          <div style="display: flex; gap: 1.5rem; margin-top: 2rem; margin-bottom: 2rem;">
+            <img 
+              src="./assets/OracleImages/Oracle Takeaways1.png" 
+              alt="Oracle Takeaways 1" 
+              style="width: 50%;"
+            />
+            <img 
+              src="./assets/OracleImages/Oracle Takeaways2.png" 
+              alt="Oracle Takeaways 2" 
+              style="width: 50%;"
+            />
+          </div>
+          
+          <div class="overview-subsection">
+            <span class="subsection-label">FUTURE OPPORTUNITIES</span>
+            <h3>Given More Time...</h3>
+            <ul>
+              <li>Meet with representatives from each of the pillars, share the ideas, and find fits for their use cases</li>
+              <li>Continue to develop ideas that give users the support they need to make confident decisions in their work</li>
+              <li>Prioritize Redwood components to extend and build out specs</li>
+            </ul>
+          </div>
+
+          <div class="cs-callout" style="margin-top: 2rem;">
+            <p style="font-weight: 600;">Greatest Takeaway</p>
+            <p style="margin-top: 0.5rem;">
+              My greatest takeaway from this experience was learning how to design for enterprise-facing products as opposed to consumer-facing products. Enterprise design requires understanding complex workflows, varied user expertise levels, and the critical importance of consistency at scale.
+            </p>
+          </div>
         </div>
       </section>
     </main>
@@ -1529,6 +2120,8 @@
       </div>
     </footer>
 
+    <script src="./assets/scripts/env-loader.js"></script>
+    <script src="./assets/scripts/voice-navigation.js"></script>
     <script src="./assets/scripts/voice-button.js"></script>
     <script src="./assets/scripts/navbar.js"></script>
     <script src="./assets/scripts/filter-tags.js"></script>
@@ -1561,7 +2154,7 @@
       // Smooth highlight updates based on scroll position
       const sections = document.querySelectorAll(".cs-section[id]");
       const navLinks = document.querySelectorAll(".side-nav a");
-      const VIEWPORT_TRIGGER_RATIO = 0.25; // 25% from top
+      const VIEWPORT_TRIGGER_RATIO = 0.2; // 20% from top for better responsiveness
       let ticking = false;
 
       function setActiveById(id) {

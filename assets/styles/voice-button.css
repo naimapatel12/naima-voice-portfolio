@@ -15,6 +15,7 @@
   --accent-muted: 11 100% 70%;
   --surface: rgba(11, 13, 17, 0.92);
   --surface-strong: rgba(11, 13, 17, 0.98);
+  --surface-toast: rgba(11, 13, 17, 1);
   --danger: 0 78% 66%;
 }
 
@@ -187,7 +188,7 @@ button:hover {
 }
 
 button:focus-visible {
-  outline: 3px solid #7180f5;
+  outline: 3px solid hsl(var(--accent));
   outline-offset: 4px;
 }
 
@@ -257,7 +258,7 @@ button:focus-visible {
   display: inline-flex;
   align-items: center;
   gap: 1rem;
-  border: none;
+  border: 2.5px solid hsl(var(--accent));
   border-radius: 0.9rem;
   padding: 1.25rem 3rem;
   font-size: 1.25rem;
@@ -265,10 +266,12 @@ button:focus-visible {
   letter-spacing: 0.02em;
   text-transform: none;
   color: hsl(var(--accent-foreground));
-  background: hsl(var(--accent));
+  background: rgba(11, 13, 17, 0.87);
   cursor: pointer;
-  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.25);
-  transition: transform 200ms ease, box-shadow 200ms ease, background 200ms ease;
+  box-shadow: 0 0 20px rgba(255, 127, 102, 0.5),
+    0 0 40px rgba(255, 127, 102, 0.25),
+    0 25px 45px rgba(0, 0, 0, 0.25);
+  transition: transform 200ms ease, box-shadow 200ms ease, background 200ms ease, border-color 200ms ease;
   overflow: hidden;
 }
 
@@ -337,7 +340,13 @@ button:focus-visible {
 
 #voice-button:is(:hover, :focus-visible) {
   transform: scale(1.04);
-  box-shadow: 0 30px 55px rgba(0, 0, 0, 0.35);
+  background: hsla(var(--accent), 0.75);
+  border-color: hsl(var(--accent));
+  outline: none;
+  box-shadow: 0 0 50px rgba(255, 127, 102, 0.9),
+    0 0 100px rgba(255, 127, 102, 0.6),
+    0 0 150px rgba(255, 127, 102, 0.3),
+    0 30px 55px rgba(0, 0, 0, 0.35);
 }
 
 #voice-button:is(:hover, :focus-visible)::after {
@@ -353,7 +362,13 @@ button:focus-visible {
 
 #voice-button.is-listening {
   transform: scale(1.08);
-  box-shadow: 0 32px 60px rgba(33, 150, 243, 0.4);
+  background: hsla(var(--accent), 0.9);
+  border-color: hsl(var(--accent));
+  outline: none;
+  box-shadow: 0 0 60px rgba(255, 127, 102, 1),
+    0 0 120px rgba(255, 127, 102, 0.7),
+    0 0 180px rgba(255, 127, 102, 0.4),
+    0 32px 60px hsla(var(--accent), 0.4);
 }
 
 #voice-button.is-listening .icon-mic {
@@ -404,22 +419,25 @@ button:focus-visible {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  z-index: 999;
+  z-index: 10000;
   pointer-events: none;
 }
 
 .toast {
+  position: relative;
   min-width: 18rem;
   max-width: 24rem;
-  background: var(--surface);
+  background-color: #0b0d11 !important;
+  background: #0b0d11 !important;
   border-radius: 1rem;
-  padding: 0.85rem 1rem;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+  padding: 0.85rem 1rem 1.25rem 1rem;
+  border: 3px solid rgba(255, 255, 255, .4);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.15), inset 0 0 0 2000px #0b0d11;
   transform: translateY(-12px);
   opacity: 0;
   transition: transform 220ms ease, opacity 220ms ease;
   pointer-events: all;
+  isolation: isolate;
 }
 
 .toast.toast--visible {
@@ -430,6 +448,16 @@ button:focus-visible {
 .toast::before {
   content: "";
   position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: #0b0d11 !important;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.toast::after {
+  content: "";
+  position: absolute;
   inset: 0;
   border-radius: inherit;
   background: linear-gradient(
@@ -437,31 +465,35 @@ button:focus-visible {
     hsla(var(--accent), 0.18),
     hsla(var(--accent), 0)
   );
-  opacity: 0.4;
+  opacity: 0.3;
   pointer-events: none;
+  z-index: 0;
 }
 
 .toast-title {
   font-weight: 600;
   margin-bottom: 0.25rem;
+  color: rgba(255, 255, 255, 1);
+  position: relative;
+  z-index: 10;
 }
 
 .toast-description {
   font-size: 0.925rem;
-  color: rgba(245, 245, 245, 0.75);
+  color: rgba(245, 245, 245, 0.95);
+  position: relative;
+  z-index: 10;
 }
 
 .toast.toast--destructive {
-  background: var(--surface-strong);
-  border-color: hsla(var(--danger), 0.45);
+  background-color: #0b0d11 !important;
+  background: #0b0d11 !important;
+  border: 3px solid rgba(255, 255, 255, .4);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.15), inset 0 0 0 2000px #0b0d11;
 }
 
 .toast.toast--destructive::before {
-  background: linear-gradient(
-    140deg,
-    hsla(var(--danger), 0.22),
-    hsla(var(--danger), 0)
-  );
+  background: #0b0d11 !important;
 }
 
 /* Animations for icons, shimmer, and pulse rings */

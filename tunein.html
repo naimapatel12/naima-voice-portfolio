@@ -164,7 +164,7 @@
         align-items: center; /* ensure children, including h1, are centered */
       }
       .hero__logo {
-        width: min(18vw, 180px);
+        width: min(20vw, 200px);
         height: auto;
         display: block;
         margin: 0 auto 24px auto;
@@ -793,6 +793,104 @@
       }
 
       /* =========================
+         USER INTERVIEWS SECTION
+         ========================= */
+      .interview-subhead {
+        margin-top: 2rem !important;
+        margin-bottom: 1rem !important;
+        font-size: 0.95rem !important;
+        font-weight: 700 !important;
+        color: rgba(255, 255, 255, 0.85) !important;
+      }
+
+      .insight-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+        margin-top: 1rem;
+      }
+
+      .insight-card {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 1rem;
+        padding: 1.75rem 1.5rem;
+        text-align: center;
+      }
+
+      .insight-card .emoji {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        line-height: 1;
+      }
+
+      .insight-card h4 {
+        font-family: "Hiragino Mincho ProN", "Hiragino Mincho Pro", serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+        font-style: italic;
+        color: #fff;
+        margin: 0 0 1rem 0;
+        line-height: 1.4;
+      }
+
+      .insight-card p {
+        font-size: 0.875rem !important;
+        line-height: 1.7;
+        color: rgba(255, 255, 255, 0.75);
+        margin: 0;
+      }
+
+      .insight-card p strong {
+        color: rgba(255, 255, 255, 0.9);
+        font-weight: 600;
+      }
+
+      /* 3-column variation for insight grid */
+      .insight-grid--3col {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      /* Responsive grid for insight cards */
+      @media (max-width: 900px) {
+        .insight-grid {
+          grid-template-columns: 1fr;
+          gap: 1.25rem;
+        }
+        .insight-grid--3col {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* User quotes grid */
+      .user-quotes-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+        margin-top: 0.25rem;
+      }
+
+      .user-quote-card {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 1rem;
+        padding: 2rem;
+        font-family: "Hiragino Mincho ProN", "Hiragino Mincho Pro", serif;
+        font-size: 1.2rem;
+        font-weight: 400;
+        font-style: italic;
+        color: #fff;
+        line-height: 1.4;
+      }
+
+      @media (max-width: 900px) {
+        .user-quotes-grid {
+          grid-template-columns: 1fr;
+          gap: 1.25rem;
+        }
+      }
+
+      /* =========================
          KEY OPPORTUNITY SECTION
          ========================= */
       #key-opportunity .cs-section__right::before {
@@ -950,7 +1048,7 @@
         }
 
         .hero__logo {
-          width: min(25vw, 140px);
+          width: min(28vw, 160px);
           margin-bottom: 16px;
         }
 
@@ -1042,6 +1140,36 @@
         .subsection-label {
           font-size: 0.65rem;
         }
+
+        /* Insight cards */
+        .insight-card {
+          padding: 1.5rem 1.25rem;
+        }
+
+        .insight-card .emoji {
+          font-size: 2rem;
+          margin-bottom: 0.75rem;
+        }
+
+        .insight-card h4 {
+          font-size: 1.1rem;
+          margin-bottom: 0.75rem;
+        }
+
+        .insight-card p {
+          font-size: 0.85rem !important;
+        }
+
+        /* User quotes grid */
+        .user-quotes-grid {
+          grid-template-columns: 1fr;
+          gap: 1.25rem;
+        }
+
+        .user-quote-card {
+          padding: 1.5rem;
+          font-size: 1.05rem;
+        }
       }
 
       /* Mobile breakpoint - 600px */
@@ -1056,7 +1184,7 @@
         }
 
         .hero__logo {
-          width: min(30vw, 120px);
+          width: min(33vw, 140px);
         }
 
         .hero__subheading {
@@ -1183,6 +1311,29 @@
           padding-bottom: 1.25rem;
           margin-bottom: 1.5rem;
         }
+
+        /* Insight cards */
+        .insight-card {
+          padding: 1.35rem 1.15rem;
+        }
+
+        .insight-card .emoji {
+          font-size: 1.8rem;
+        }
+
+        .insight-card h4 {
+          font-size: 1rem;
+        }
+
+        .insight-card p {
+          font-size: 0.82rem !important;
+        }
+
+        /* User quotes */
+        .user-quote-card {
+          padding: 1.35rem 1.15rem;
+          font-size: 1rem;
+        }
       }
 
       /* Extra small mobile - 480px */
@@ -1223,6 +1374,26 @@
         .media-grid {
           gap: 1.5rem;
         }
+
+        .insight-card,
+        .user-quote-card {
+          padding: 1.2rem 1rem;
+        }
+      }
+
+      /* =========================
+         RESPONSIVE IMAGE GRIDS
+         ========================= */
+      @media (max-width: 768px) {
+        /* Stack concept and prototype grids on mobile */
+        div[style*="grid-template-columns: 1fr 1fr"] {
+          grid-template-columns: 1fr !important;
+        }
+
+        /* Stack person images on mobile */
+        div[style*="grid-template-columns: repeat(3, 1fr)"] {
+          grid-template-columns: 1fr !important;
+        }
       }
     </style>
   </head>
@@ -1252,7 +1423,7 @@
                 >
               </li>
               <li>
-                <a class="site-nav__link" href="./index.html#about">About</a>
+                <a class="site-nav__link" href="./about.html">About</a>
               </li>
               <li>
                 <a class="site-nav__link" href="./index.html#resume">Resume</a>
@@ -1315,10 +1486,10 @@
       </div>
 
       <div class="hero__content">
-        <img class="hero__logo" src="assets/TuneInLogo.png" alt="TuneIn logo" />
-        <h1 class="hero__subheading">AI-POWERED AUDIO PROFILES</h1>
+        <img class="hero__logo" src="assets/TuneIn..png" alt="TuneIn logo" />
+        <h1 class="hero__subheading">ACCESSIBLE MUSIC LISTENING: AI POWERED AUDIO PROFILES</h1>
         <div class="hero__bar" role="presentation"></div>
-        <p class="hero__tagline">Coming soon</p>
+        <p class="hero__tagline">XXX minute read</p>
       </div>
 
       <!-- Scroll down arrow -->
@@ -1337,8 +1508,14 @@
       <nav class="side-nav" aria-label="Section navigation">
         <ul>
           <li><a href="#overview" class="active">Overview</a></li>
+          <li><a href="#need-finding">Need-Finding</a></li>
           <li><a href="#key-opportunity">Key Opportunity</a></li>
+          <li><a href="#ideation">Ideation</a></li>
+          <li><a href="#prototype-1">Prototype 1</a></li>
+          <li><a href="#prototype-2">Prototype 2</a></li>
+          <li><a href="#user-testing">User Testing</a></li>
           <li><a href="#final-designs">Final Designs</a></li>
+          <li><a href="#conclusions">Conclusions</a></li>
         </ul>
 
         <!-- Voice button for side nav -->
@@ -1393,39 +1570,35 @@
           <div class="overview-meta">
             <div class="meta-item">
               <h4>Timeline</h4>
-              <p>Fall 2024</p>
+              <p>March 2023 – June 2023</p>
             </div>
             <div class="meta-item">
               <h4>Role</h4>
-              <p>Product Design</p>
+              <p>UX Researcher & UI/UX Designer</p>
             </div>
             <div class="meta-item">
               <h4>Team</h4>
-              <p>Concept Project</p>
+              <p>Class Project</p>
             </div>
             <div class="meta-item">
-              <h4>Platform</h4>
-              <p>Mobile & Wearables</p>
+              <h4>Skills</h4>
+              <p>Accessible Design, Prototyping, Design Systems, Figma</p>
             </div>
           </div>
-          <h3>AI-Powered Personalized Listening</h3>
+          <h3>Fine tuning the music listening experience with AI-powered audio profiles</h3>
           <p>
-            TuneIn explores AI-assisted personalization for audio lovers who
-            care about mood, discovery, and accessibility. The concept builds a
-            bridge between music, podcasts, and ambient sound layers tailored to
-            each listener's context.
+            This project was created in a class dedicated to designing for accessibility. We were given no limitations on the type of user we are designing for, the problem we are hoping to design a solution for, or the power of the technology within the platform we create. The only nonnegotiable criteria was that the platform utilizes the power of AI.
           </p>
-          <p>
-            Our team partnered with audiophiles, neurodiverse listeners, and DJs
-            who balance curation with surprise. We uncovered the need for
-            lightweight controls that respect agency while celebrating
-            serendipity.
-          </p>
-          <p>
-            I led product visioning and service design, aligning the experience
-            across mobile, wearables, and voice assistants to make hands-free
-            interaction feel intuitive.
-          </p>
+
+          <div class="overview-subsection">
+            <span class="subsection-label">MISSION</span>
+            <h3>
+              Create a platform that utilizes AI to improve the live music listening experience for members of the Deaf or Hard-of-Hearing (DHH) community
+            </h3>
+            <p>
+              Even though hearing loss differs across people, there's a common need to tailor the music listening experience to one's favored frequencies in an efficient and socially acceptable manner. We wanted to utilize AI to quickly and reactively create customized audio equalizer profiles based on a listener's hearing preferences and context.
+            </p>
+          </div>
 
           <div class="overview-button-wrapper">
             <button
@@ -1439,13 +1612,380 @@
         </div>
       </section>
 
+      <section class="cs-section" id="need-finding">
+        <div class="cs-section__left"></div>
+        <div class="cs-section__right">
+          <h3>Understanding the DHH community's relationship with music</h3>
+          <p>
+            We conducted in-depth interviews with three participants to understand how members of the Deaf and Hard-of-Hearing community experience music. Each participant brought unique perspectives that shaped our design direction.
+          </p>
+
+          <p class="interview-subhead" style="margin-top: 2rem !important;">We met:</p>
+
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 1.5rem;">
+            <div>
+              <img src="assets/TuneInHTMLAssets/Person1.png" alt="Person 1" style="width: 100%; display: block; margin-bottom: 1rem;" />
+              <h4 style="font-size: 1rem; color: #fff; margin: 0 0 0.5rem 0; font-family: 'IBM Plex Sans JP', sans-serif; font-weight: 700;">Person #1: T</h4>
+              <p style="font-size: 0.875rem; color: rgba(255, 255, 255, 0.8); line-height: 1.6; margin: 0;">
+                Biomedical Informatics (BMI) graduate student @ Stanford<br/>
+                Received hearing aids at age 3
+              </p>
+            </div>
+
+            <div>
+              <img src="assets/TuneInHTMLAssets/Person2.png" alt="Person 2" style="width: 100%; display: block; margin-bottom: 1rem;" />
+              <h4 style="font-size: 1rem; color: #fff; margin: 0 0 0.5rem 0; font-family: 'IBM Plex Sans JP', sans-serif; font-weight: 700;">Person #2: O</h4>
+              <p style="font-size: 0.875rem; color: rgba(255, 255, 255, 0.8); line-height: 1.6; margin: 0;">
+                Artist and Musician<br/>
+                Received Cochlear Implant 5 years ago
+              </p>
+            </div>
+
+            <div>
+              <img src="assets/TuneInHTMLAssets/Person3.png" alt="Person 3" style="width: 100%; display: block; margin-bottom: 1rem;" />
+              <h4 style="font-size: 1rem; color: #fff; margin: 0 0 0.5rem 0; font-family: 'IBM Plex Sans JP', sans-serif; font-weight: 700;">Person #3: D</h4>
+              <p style="font-size: 0.875rem; color: rgba(255, 255, 255, 0.8); line-height: 1.6; margin: 0;">
+                Ear, Nose, and Throat Doctor<br/>
+                Works extensively with DHH patients
+              </p>
+            </div>
+          </div>
+
+          <p class="interview-subhead" style="margin-top: 2.5rem !important;">Key Questions That Guided Us:</p>
+
+          <div class="insight-grid" style="margin-top: 1.5rem;">
+            <div class="insight-card">
+              <div class="emoji">👂🏻</div>
+              <h4 style="font-style: normal;">Hearing</h4>
+              <p style="text-align: left;">
+                • How would you describe your level of hearing?<br/>
+                • Tell me about a memorable time that you faced a challenge due to your hearing
+              </p>
+            </div>
+
+            <div class="insight-card">
+              <div class="emoji">🎵</div>
+              <h4 style="font-style: normal;">Music</h4>
+              <p style="text-align: left;">
+                • How would you describe your experience/relationship with music?<br/>
+                • What is important to you about listening to music?
+              </p>
+            </div>
+
+            <div class="insight-card">
+              <div class="emoji">🌐</div>
+              <h4 style="font-style: normal;">Needs</h4>
+              <p style="text-align: left;">
+                • Tell me about a time where you found it challenging to listen to music<br/>
+                • What resources are important for you in regards to music?
+              </p>
+            </div>
+
+            <div class="insight-card">
+              <div class="emoji">📱</div>
+              <h4 style="font-style: normal;">Music Sharing</h4>
+              <p style="text-align: left;">
+                • Do you ever share a music experience together with your parents or other DHH people?<br/>
+                • What's important to you about sharing music experiences together?
+              </p>
+            </div>
+          </div>
+
+          <h3 style="margin-top: 3rem;">What we learned</h3>
+
+          <div class="user-quotes-grid" style="margin-top: 1.5rem;">
+            <div class="user-quote-card">
+              "I like it when people hit high notes. [...] I usually listen to music on the highest volume in order to hear everything. I wish there was a way to upload an audiogram."
+            </div>
+
+            <div class="user-quote-card">
+              "Finding the right audio settings takes a lot of trial and error, especially since there seems to be a compromise between speech and music settings. Speech sounds very weird (like a snake talking)"
+            </div>
+
+            <div class="user-quote-card">
+              "Traditional music appreciation outcomes for sensorineural hearing loss following cochlear implantation are generally poor. For conductive hearing loss requiring in-ear hearing aids, it's better, like hearing people."
+            </div>
+          </div>
+
+          <img src="assets/TuneInHTMLAssets/InterviewFindings.png" alt="Interview Findings Summary" style="width: 100%; display: block; margin-top: 2.5rem;" />
+        </div>
+      </section>
+
       <section class="cs-section" id="key-opportunity">
         <div class="cs-section__left"></div>
         <div class="cs-section__right">
           <h3 class="key-opportunity-heading">
-            How might we create personalized audio experiences that adapt to
-            context without overwhelming users?
+            How might we utilize AI to quickly and reactively create customized audio equalizer profiles based on a listener's hearing preferences and context?
           </h3>
+        </div>
+      </section>
+
+      <section class="cs-section" id="ideation">
+        <div class="cs-section__left"></div>
+        <div class="cs-section__right">
+          <span class="subsection-label">BRAINSTORMING</span>
+          <h3 style="margin-top: 0">Exploring 5 Concepts</h3>
+          <p>
+            We explored multiple approaches to improve the music listening experience for the DHH community. Each concept leveraged AI in different ways to address the challenges we discovered through needfinding.
+          </p>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; margin-top: 2.5rem;">
+            <div>
+              <h4 style="font-size: 1.1rem; color: #fff; margin-bottom: 1rem; font-family: 'IBM Plex Sans JP', sans-serif; font-weight: 700;">Concept 1: Audio Descriptions</h4>
+              <p>
+                Automatically generated audio descriptions that accompany song lyrics. Currently many streaming platforms provide lyrics to their songs, but these are limited to only what is being sung. AI-generated audio descriptions could convey the tone of a song, volume or tempo changes, instrumentation, and other musical elements that lyrics alone cannot capture.
+              </p>
+            </div>
+            <img src="assets/TuneInHTMLAssets/Concept1.jpeg" alt="Concept 1 sketch" style="width: 100%; display: block;" />
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; margin-top: 2.5rem;">
+            <img src="assets/TuneInHTMLAssets/Concept2.jpeg" alt="Concept 2 sketch" style="width: 100%; display: block;" />
+            <div>
+              <h4 style="font-size: 1.1rem; color: #fff; margin-bottom: 1rem; font-family: 'IBM Plex Sans JP', sans-serif; font-weight: 700;">Concept 2: ASL Interpretation</h4>
+              <p>
+                ASL interpretation as a supplement to the current music streaming experience. While lyrics may be helpful for understanding what is being sung, ASL interpretation offers another layer of meaning and can convey emotion and tone that lyrics alone cannot. Users fluent in ASL could upload song interpretations that other users can view while listening.
+              </p>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; margin-top: 2.5rem;">
+            <div>
+              <h4 style="font-size: 1.1rem; color: #fff; margin-bottom: 1rem; font-family: 'IBM Plex Sans JP', sans-serif; font-weight: 700;">Concept 3: AI-Generated Audio Profiles (Selected)</h4>
+              <p>
+                Users upload their audiogram and AI automatically determines an initial audio profile. From there, users can customize audio settings around frequencies, noise suppression, voice amplification, etc. Based on this initial screening, a series of more nuanced preset profiles intended for music are created automatically.
+              </p>
+            </div>
+            <img src="assets/TuneInHTMLAssets/Concept3.jpeg" alt="Concept 3 sketch" style="width: 100%; display: block;" />
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; margin-top: 2.5rem;">
+            <img src="assets/TuneInHTMLAssets/Concept4.png" alt="Concept 4 sketch" style="width: 100%; display: block;" />
+            <div>
+              <h4 style="font-size: 1.1rem; color: #fff; margin-bottom: 1rem; font-family: 'IBM Plex Sans JP', sans-serif; font-weight: 700;">Concept 4: Lyrics Display Glasses</h4>
+              <p>
+                Smart glasses that translate audio into lyrics in real-time. Based on our needfinding insight that some people who are deaf deeply enjoy the lyrical component to music, these glasses would allow users to follow along to lyrics without having to look at their phone at a concert, which has low social acceptability.
+              </p>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; margin-top: 2.5rem;">
+            <div>
+              <h4 style="font-size: 1.1rem; color: #fff; margin-bottom: 1rem; font-family: 'IBM Plex Sans JP', sans-serif; font-weight: 700;">Concept 5: AI-Generated Music Videos</h4>
+              <p>
+                Another insight we learned is that some people really enjoy music videos which inspire a range of feelings alongside lyrics. AI-generated music videos based on lyrics could enhance the experience, especially since many songs don't have accompanying music videos.
+              </p>
+            </div>
+            <img src="assets/TuneInHTMLAssets/Concept5.png" alt="Concept 5 sketch" style="width: 100%; display: block;" />
+          </div>
+        </div>
+      </section>
+
+      <section class="cs-section" id="prototype-1">
+        <div class="cs-section__left"></div>
+        <div class="cs-section__right">
+          <span class="subsection-label">PROTOTYPE 1</span>
+          <h3 style="margin-top: 0.1rem">Building the Core Experience</h3>
+          <p>
+            Our solution focuses on three main tasks that work together to create a seamless, AI-powered audio customization experience:
+          </p>
+
+          <div class="insight-grid" style="margin-top: 2rem;">
+            <div class="insight-card">
+              <h4 style="font-style: normal;">Upload Audiogram</h4>
+              <p>
+                Users upload their audiogram and complete an initial hearing assessment to establish baseline hearing preferences.
+              </p>
+            </div>
+
+            <div class="insight-card">
+              <h4 style="font-style: normal;">AI Auto-Generation</h4>
+              <p>
+                AI automatically generates custom equalizer settings based on the context of the music being played—the core feature of our prototype.
+              </p>
+            </div>
+
+            <div class="insight-card">
+              <h4 style="font-style: normal;">Manual Customization</h4>
+              <p>
+                Users can create and adjust custom settings from scratch for complete control over their audio experience.
+              </p>
+            </div>
+          </div>
+
+          <p style="margin-top: 2rem;">
+            Our core user task employs an AI assistant that detects information such as the genre/instrumentation of music, volume levels, and environmental context (e.g. whether the user is streaming music through headphones or at an outdoor concert) in order to optimize the user's listening experience by quickly and automatically adjusting the settings of one's assistive hearing devices.
+          </p>
+
+          <img src="assets/TuneInHTMLAssets/Prototype1-AutoGenerate.png" alt="AI Auto-generation interface" style="width: 100%; display: block; margin-top: 2rem;" />
+
+          <h3 style="margin-top: 2.5rem;">Design Evolution</h3>
+          <p>
+            We included the genre and environment of each audio profile on the home screen so users can quickly select the appropriate settings for their environment. Originally, audio profiles were simply displayed by their icon and title. However, we envisioned audio profiles being created for very specific genre/environmental settings, therefore we updated the home screen to reflect the importance of these two contextual settings.
+          </p>
+
+          <img src="assets/TuneInHTMLAssets/Prototype1-GenreEnvironment.png" alt="Genre and environment selection" style="width: 100%; display: block; margin-top: 1.5rem;" />
+
+          <p style="margin-top: 1.5rem;">
+            The user is able to select from a wide variety of genres and environments. We included comprehensive customization options including frequency adjustments, noise suppression, voice amplification, and more to ensure accurate personalization for each listening context.
+          </p>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem;">
+            <img src="assets/TuneInHTMLAssets/Prototype1-Component1.png" alt="Genre selection component" style="width: 100%; display: block;" />
+            <img src="assets/TuneInHTMLAssets/Prototype1-Component2.png" alt="Environment selection component" style="width: 100%; display: block;" />
+          </div>
+        </div>
+      </section>
+
+      <section class="cs-section" id="prototype-2">
+        <div class="cs-section__left"></div>
+        <div class="cs-section__right">
+          <span class="subsection-label">PROTOTYPE 2</span>
+          <h3 style="margin-top: 0.1rem">Refining Based on Feedback</h3>
+          <p>
+            After initial testing, we made significant improvements to enhance both functionality and user experience. Here are the key revisions:
+          </p>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; margin-top: 2rem;">
+            <div>
+              <h4 style="font-size: 1.1rem; color: #fff; margin-bottom: 1rem; font-family: 'IBM Plex Sans JP', sans-serif; font-weight: 700;">🔊 Always Listening Mode</h4>
+              <p>
+                We added an "always listening mode" where TuneIn continuously gathers data about the environment via the phone's microphone and then alters the current audio profile. This ensures the app is reactive to changes in one's environment. Users can swipe to quickly activate TuneIn AI's help, making the experience seamless and automatic.
+              </p>
+            </div>
+            <img src="assets/TuneInHTMLAssets/Prototype2-AlwaysListening.png" alt="Always Listening Mode interface" style="width: 100%; display: block;" />
+          </div>
+
+          <div style="margin-top: 2.5rem;">
+            <h4 style="font-size: 1.1rem; color: #fff; margin-bottom: 1rem; font-family: 'IBM Plex Sans JP', sans-serif; font-weight: 700;">🎛️ Enhanced Audio Adjustments</h4>
+            <p>
+              The equalizer was extended from 1kHz to 15kHz to match traditional equalizer settings. While many instruments exist in the range of 200-600 Hz, cymbals, guitar effects, and some vocals often go beyond this range. We also added "Environment Base Volume" and other fine-grained audio adjustment options to give users more control over their listening experience.
+            </p>
+            <img src="assets/TuneInHTMLAssets/Prototype2-AudioAdjustments.png" alt="Enhanced audio adjustments interface" style="width: 100%; display: block; margin-top: 1rem;" />
+          </div>
+
+          <div style="margin-top: 2.5rem;">
+            <h4 style="font-size: 1.1rem; color: #fff; margin-bottom: 1rem; font-family: 'IBM Plex Sans JP', sans-serif; font-weight: 700;">📍 Automated Location Settings</h4>
+            <p>
+              We added the option to set a location for an audio profile in addition to the environment option. Because of acoustic differences between different concert venues, one's home, the outdoors, etc., location is another important contextual consideration. The app can now prompt users with suggested audio profiles based on their location, reducing friction when finding the right profile.
+            </p>
+            <img src="assets/TuneInHTMLAssets/Prototype2-LocationSettings.png" alt="Automated location settings interface" style="width: 100%; display: block; margin-top: 1rem;" />
+          </div>
+
+          <div style="margin-top: 2.5rem;">
+            <h4 style="font-size: 1.1rem; color: #fff; margin-bottom: 1rem; font-family: 'IBM Plex Sans JP', sans-serif; font-weight: 700;">📲 UI Improvements</h4>
+            <p>
+              We added more labels with informative icons and adjusted the UI to emphasize the "Create a new audio profile" CTAs. We added action buttons for sorting audio profiles and quickly removing active profiles. Most importantly, we redesigned the "Let TuneIn listen" button to be more prominent, guiding users toward the AI feature rather than manual entry.
+            </p>
+            <img src="assets/TuneInHTMLAssets/Prototype2-UIUpdates.png" alt="UI improvements" style="width: 100%; display: block; margin-top: 1rem;" />
+          </div>
+        </div>
+      </section>
+
+      <section class="cs-section" id="user-testing">
+        <div class="cs-section__left"></div>
+        <div class="cs-section__right">
+          <h3>Testing with Real Users</h3>
+          <p>
+            We conducted comprehensive user testing with members of the DHH community via Zoom, giving participants virtual access to our Figma prototype. We focused on three key tasks:
+          </p>
+
+          <div class="insight-grid" style="margin-top: 2rem;">
+            <div class="insight-card">
+              <div class="emoji">🎨</div>
+              <h4 style="font-style: normal;">Create</h4>
+              <p style="text-align: left;">
+                "You're at a concert at Frost. How might you create a new audio profile for this scenario?"
+              </p>
+            </div>
+
+            <div class="insight-card">
+              <div class="emoji">☝🏼</div>
+              <h4 style="font-style: normal;">Select</h4>
+              <p style="text-align: left;">
+                "You've just arrived at Bill Graham Civic Auditorium. How might you select an audio profile for this scenario?"
+              </p>
+            </div>
+
+            <div class="insight-card">
+              <div class="emoji">🎛️</div>
+              <h4 style="font-style: normal;">Adjust</h4>
+              <p style="text-align: left;">
+                "You're in your car listening to a funk song. How might you adjust the audio profile when the playlist switches to pop?"
+              </p>
+            </div>
+          </div>
+
+          <h3 style="margin-top: 3rem;">What Users Loved</h3>
+
+          <div class="user-quotes-grid" style="margin-top: 1.5rem;">
+            <div class="user-quote-card">
+              "I REALLY like the idea! There is merit for an AI to calibrate the settings then adjust them automatically. [This] would solve the need of contacting an audiologist."
+            </div>
+
+            <div class="user-quote-card">
+              "Too often you kinda get a one solution fits all applications, but I like that this takes into consideration different acoustics."
+            </div>
+
+            <div class="user-quote-card">
+              "A lot of times you forget to update your settings when needed."
+            </div>
+
+            <div class="user-quote-card">
+              "Should just turn it on and forget about it."
+            </div>
+          </div>
+
+          <h3 style="margin-top: 3rem;">Critical Feedback</h3>
+
+          <div class="user-quotes-grid" style="margin-top: 1.5rem;">
+            <div class="user-quote-card">
+              "Simplicity is key; the more steps I take the less inclined I am to use it."
+            </div>
+
+            <div class="user-quote-card">
+              "The application for my hearing aid has many more customization settings, but it can be very overwhelming. Sometimes it's just too many things to customize."
+            </div>
+
+            <div class="user-quote-card">
+              "2 clicks and I'm out, I'm back at the concert."
+            </div>
+
+            <div class="user-quote-card">
+              "Before age 65, 1 in 10 have hearing loss but after age 65 it's 8 in 10."
+            </div>
+          </div>
+
+          <h3 style="margin-top: 3rem;">Key Insights</h3>
+
+          <div class="insight-grid insight-grid--3col" style="margin-top: 2rem;">
+            <div class="insight-card">
+              <h4>TuneIn AI is an improvement over current solutions</h4>
+              <p>
+                Both participants opted for the AI-generated audio profiles as opposed to creating them from scratch. Current solutions are "good enough" but this prototype is "great". Overall, participants were excited about this solution!
+              </p>
+            </div>
+
+            <div class="insight-card">
+              <h4>Balance between simplicity & customization</h4>
+              <p>
+                Current solutions take a lot of time & difficulty to find optimal settings. Our solution fills this gap & empowers users to edit settings efficiently. We must be careful to not cross this balance by adding too much complexity.
+              </p>
+            </div>
+
+            <div class="insight-card">
+              <h4>Consider accessibility for older users</h4>
+              <p>
+                The typical person with hearing loss is older & likely less tech-savvy. Our design must account for this demographic while still providing powerful features for those who want them.
+              </p>
+            </div>
+          </div>
+
+          <h3 style="margin-top: 3rem;">Revisions — Simplify & Customize</h3>
+          <p>
+            Based on user feedback, we made targeted improvements to streamline the experience while maintaining powerful customization options. These changes focused on reducing friction and guiding users toward AI-powered features.
+          </p>
+          <img src="assets/TuneInHTMLAssets/UserTesting-Revisions.png" alt="User testing revisions summary" style="width: 100%; display: block; margin-top: 1.5rem;" />
         </div>
       </section>
 
@@ -1453,11 +1993,64 @@
         <div class="cs-section__left"></div>
         <div class="cs-section__right">
           <span class="subsection-label">FINAL DESIGNS</span>
-          <h3 style="margin-top: 0.1rem">Coming Soon</h3>
+          <h3 style="margin-top: 0.1rem">Three Core Flows</h3>
           <p>
-            Detailed case study content will be added soon. This project
-            explored AI-powered personalization for audio listening experiences.
+            Based on user feedback, we simplified the experience while maintaining the powerful customization options users need. The final design focuses on three key flows that make audio profile management effortless.
           </p>
+
+          <div style="margin-top: 2.5rem;">
+            <h4 style="font-size: 1.3rem; color: #fff; margin-bottom: 1rem; font-family: 'Hiragino Mincho ProN', serif; text-transform: uppercase;">Create</h4>
+            <p>
+              Users can quickly create new audio profiles by selecting a genre and environment. The AI immediately generates optimized equalizer settings based on the user's audiogram and the selected context. Users can then fine-tune these settings or save them as-is.
+            </p>
+          </div>
+
+          <div style="margin-top: 2.5rem;">
+            <h4 style="font-size: 1.3rem; color: #fff; margin-bottom: 1rem; font-family: 'Hiragino Mincho ProN', serif; text-transform: uppercase;">Activate</h4>
+            <p>
+              With location-based suggestions, users receive prompts to activate relevant audio profiles when they arrive at saved locations. This reduces friction and ensures users always have the optimal settings for their environment. Profiles can be activated with a single tap.
+            </p>
+          </div>
+
+          <div style="margin-top: 2.5rem;">
+            <h4 style="font-size: 1.3rem; color: #fff; margin-bottom: 1rem; font-family: 'Hiragino Mincho ProN', serif; text-transform: uppercase;">Suggest</h4>
+            <p>
+              The always-listening mode continuously monitors the environment and suggests profile adjustments when acoustic conditions change. Users can accept suggestions with a swipe, or let TuneIn automatically adjust in the background. This "set it and forget it" approach was highly praised in testing.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="cs-section" id="conclusions">
+        <div class="cs-section__left"></div>
+        <div class="cs-section__right">
+          <h3>Reflections & Learnings</h3>
+          <p>
+            This process strengthened my ability to conduct user testing and extract the relevant information to improve our product with each prototype. This is the most robust prototyping process I have participated in and the final product is something that I am extremely proud of.
+          </p>
+
+          <div class="insight-grid insight-grid--3col" style="margin-top: 2.5rem;">
+            <div class="insight-card">
+              <h4>User Testing Excellence</h4>
+              <p>
+                Conducting multiple rounds of testing with real DHH community members taught me how to listen for what users need versus what they say they want. Each iteration brought us closer to the right balance.
+              </p>
+            </div>
+
+            <div class="insight-card">
+              <h4>Design Systems & Branding</h4>
+              <p>
+                Building a comprehensive design system from scratch helped me understand how to create cohesive, scalable interfaces that maintain consistency while allowing for flexibility.
+              </p>
+            </div>
+
+            <div class="insight-card">
+              <h4>Accessible Design First</h4>
+              <p>
+                My greatest takeaway is the value of accessible design and learning how to incorporate accessibility into every aspect of UI/UX design—not as an afterthought, but as a core principle from day one.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
     </main>
@@ -1533,6 +2126,8 @@
       </div>
     </footer>
 
+    <script src="./assets/scripts/env-loader.js"></script>
+    <script src="./assets/scripts/voice-navigation.js"></script>
     <script src="./assets/scripts/voice-button.js"></script>
     <script src="./assets/scripts/navbar.js"></script>
     <script src="./assets/scripts/filter-tags.js"></script>

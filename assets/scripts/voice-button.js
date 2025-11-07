@@ -40,7 +40,18 @@
     analyser: null,
     mediaStream: null,
     animationFrame: null,
+    promptRotationInterval: null,
+    currentPromptIndex: 0,
   };
+
+  // Array of prompts to rotate through
+  const prompts = [
+    'Say "View my work"',
+    'Say "Show me AI projects"',
+    'Say "I want to learn more about tidbit"',
+    'Say "Scroll to the bottom"',
+    'Say "Open Oracle AI project"',
+  ];
 
   const sharedState = window.__VOICE_STATE__ || {};
 
@@ -76,6 +87,30 @@
 
   window.__VOICE_STATE__ = sharedState;
 
+  /** Start rotating through prompts every 3 seconds */
+  function startPromptRotation() {
+    // Clear any existing interval
+    if (state.promptRotationInterval) {
+      clearInterval(state.promptRotationInterval);
+    }
+
+    // Set up new interval
+    state.promptRotationInterval = setInterval(() => {
+      if (!state.isListening && labelEl) {
+        state.currentPromptIndex = (state.currentPromptIndex + 1) % prompts.length;
+        labelEl.textContent = prompts[state.currentPromptIndex];
+      }
+    }, 2000);
+  }
+
+  /** Stop rotating through prompts */
+  function stopPromptRotation() {
+    if (state.promptRotationInterval) {
+      clearInterval(state.promptRotationInterval);
+      state.promptRotationInterval = null;
+    }
+  }
+
   /** Update button copy and icon state whenever the listening mode changes. */
   function updateButtonVisuals() {
     if (!labelEl || !iconMic || !iconMicOff) return;
@@ -85,6 +120,7 @@
       voiceButton.setAttribute("aria-disabled", "true");
       voiceButton.setAttribute("disabled", "disabled");
       labelEl.textContent = "Voice control unavailable";
+      stopPromptRotation();
       return;
     }
     const listening = state.isListening;
@@ -96,12 +132,14 @@
       labelEl.textContent = "Listening...";
       iconMic.style.display = "none";
       iconMicOff.style.display = "flex";
+      stopPromptRotation();
     } else {
       voiceButton.classList.remove("is-listening");
       voiceButton.setAttribute("aria-pressed", "false");
-      labelEl.textContent = 'Say "View my work"';
+      labelEl.textContent = prompts[state.currentPromptIndex];
       iconMic.style.display = "flex";
       iconMicOff.style.display = "none";
+      startPromptRotation();
     }
 
     sharedState.notify();
@@ -165,12 +203,43 @@
   }
 
   /**
-   * Placeholder hook for the voice command routing. Replace with navigation,
-   * filters, or other logic you want triggered by speech.
+   * Handle voice command by calling the navigation module
    */
-  function handleCommand(command) {
-    console.info("Voice command:", command);
-    // TODO: Wire this to portfolio filtering logic.
+  async function handleCommand(transcript) {
+    console.info("Voice command:", transcript);
+    
+    // Show loading state
+    createToast({
+      title: "Processing...",
+      description: "Understanding your command",
+    });
+
+    try {
+      // Call the voice navigation module
+      const result = await window.handleVoiceNavigation(transcript);
+      
+      if (result.success) {
+        // Success - show confirmation
+        createToast({
+          title: result.message,
+          description: "Navigating now",
+        });
+      } else {
+        // Error - show what went wrong
+        createToast({
+          title: "Command not recognized",
+          description: result.message,
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      console.error("Voice navigation error:", error);
+      createToast({
+        title: "Navigation failed",
+        description: "Please try again",
+        variant: "destructive",
+      });
+    }
   }
 
   /** Create and configure a SpeechRecognition instance on first use. */
@@ -182,62 +251,12 @@
     recognition.interimResults = false;
     recognition.lang = "en-US";
 
-    recognition.onresult = (event) => {
-      const transcript = event.results[0][0].transcript.toLowerCase();
+    recognition.onresult = async (event) => {
+      const transcript = event.results[0][0].transcript;
       console.log("Voice command received:", transcript);
 
-      if (
-        transcript.includes("see my work") ||
-        transcript.includes("view my work")
-      ) {
-        handleCommand("portfolio");
-        createToast({
-          title: "Navigating to portfolio",
-          description: "Showing all projects",
-        });
-      } else if (
-        transcript.includes("consumer") ||
-        transcript.includes("commerce")
-      ) {
-        handleCommand("consumer");
-        createToast({
-          title: "Filtering projects",
-          description: "Showing consumer design projects",
-        });
-      } else if (transcript.includes("mobile")) {
-        handleCommand("mobile");
-        createToast({
-          title: "Filtering projects",
-          description: "Showing mobile design projects",
-        });
-      } else if (transcript.includes("web")) {
-        handleCommand("web");
-        createToast({
-          title: "Filtering projects",
-          description: "Showing web design projects",
-        });
-      } else if (
-        transcript.includes("ai") ||
-        transcript.includes("interaction")
-      ) {
-        handleCommand("ai");
-        createToast({
-          title: "Filtering projects",
-          description: "Showing AI interaction design projects",
-        });
-      } else if (transcript.includes("enterprise")) {
-        handleCommand("enterprise");
-        createToast({
-          title: "Filtering projects",
-          description: "Showing enterprise design projects",
-        });
-      } else {
-        createToast({
-          title: "Command not recognized",
-          description: "Try saying 'see my work'",
-          variant: "destructive",
-        });
-      }
+      // Process the command through our navigation module
+      await handleCommand(transcript);
 
       stopListening();
     };
@@ -409,9 +428,10 @@
   voiceButton.__VOICE_STATE__ = sharedState;
   sharedState.notify();
 
-  // Make sure we release the microphone if the tab is closed/refreshed.
+  // Make sure we release the microphone and stop rotation if the tab is closed/refreshed.
   window.addEventListener("beforeunload", () => {
     stopListening();
+    stopPromptRotation();
   });
 
   // Initial UI setup based on feature support.
