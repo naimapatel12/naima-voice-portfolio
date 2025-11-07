@@ -1578,7 +1578,10 @@
             </div>
             <div class="meta-item">
               <h4>Team</h4>
-              <p>Class Project</p>
+              <p>Jessica</p>
+              <p>Kimberly</p>
+              <p>Yesenia</p>
+              <p>Naima</p>
             </div>
             <div class="meta-item">
               <h4>Skills</h4>
@@ -1624,27 +1627,27 @@
 
           <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 1.5rem;">
             <div>
-              <img src="assets/TuneInHTMLAssets/Person1.png" alt="Person 1" style="width: 100%; display: block; margin-bottom: 1rem;" />
-              <h4 style="font-size: 1rem; color: #fff; margin: 0 0 0.5rem 0; font-family: 'IBM Plex Sans JP', sans-serif; font-weight: 700;">Person #1: T</h4>
-              <p style="font-size: 0.875rem; color: rgba(255, 255, 255, 0.8); line-height: 1.6; margin: 0;">
+              <img src="assets/TuneInHTMLAssets/Person 1.png" alt="Person 1" style="width: 65%; display: block; margin: 0 auto 1rem auto;" />
+              <h4 style="font-size: 1rem; color: #fff; margin: 0 0 0.5rem 0; font-family: 'IBM Plex Sans JP', sans-serif; font-weight: 700; text-align: center;">Person #1: T</h4>
+              <p style="font-size: 0.875rem; color: rgba(255, 255, 255, 0.8); line-height: 1.6; margin: 0; text-align: center;">
                 Biomedical Informatics (BMI) graduate student @ Stanford<br/>
                 Received hearing aids at age 3
               </p>
             </div>
 
             <div>
-              <img src="assets/TuneInHTMLAssets/Person2.png" alt="Person 2" style="width: 100%; display: block; margin-bottom: 1rem;" />
-              <h4 style="font-size: 1rem; color: #fff; margin: 0 0 0.5rem 0; font-family: 'IBM Plex Sans JP', sans-serif; font-weight: 700;">Person #2: O</h4>
-              <p style="font-size: 0.875rem; color: rgba(255, 255, 255, 0.8); line-height: 1.6; margin: 0;">
+              <img src="assets/TuneInHTMLAssets/Person 2.png" alt="Person 2" style="width: 65%; display: block; margin: 0 auto 1rem auto;" />
+              <h4 style="font-size: 1rem; color: #fff; margin: 0 0 0.5rem 0; font-family: 'IBM Plex Sans JP', sans-serif; font-weight: 700; text-align: center;">Person #2: O</h4>
+              <p style="font-size: 0.875rem; color: rgba(255, 255, 255, 0.8); line-height: 1.6; margin: 0; text-align: center;">
                 Artist and Musician<br/>
                 Received Cochlear Implant 5 years ago
               </p>
             </div>
 
             <div>
-              <img src="assets/TuneInHTMLAssets/Person3.png" alt="Person 3" style="width: 100%; display: block; margin-bottom: 1rem;" />
-              <h4 style="font-size: 1rem; color: #fff; margin: 0 0 0.5rem 0; font-family: 'IBM Plex Sans JP', sans-serif; font-weight: 700;">Person #3: D</h4>
-              <p style="font-size: 0.875rem; color: rgba(255, 255, 255, 0.8); line-height: 1.6; margin: 0;">
+              <img src="assets/TuneInHTMLAssets/Person 3.png" alt="Person 3" style="width: 65%; display: block; margin: 0 auto 1rem auto;" />
+              <h4 style="font-size: 1rem; color: #fff; margin: 0 0 0.5rem 0; font-family: 'IBM Plex Sans JP', sans-serif; font-weight: 700; text-align: center;">Person #3: D</h4>
+              <p style="font-size: 0.875rem; color: rgba(255, 255, 255, 0.8); line-height: 1.6; margin: 0; text-align: center;">
                 Ear, Nose, and Throat Doctor<br/>
                 Works extensively with DHH patients
               </p>
@@ -1705,9 +1708,13 @@
             <div class="user-quote-card">
               "Traditional music appreciation outcomes for sensorineural hearing loss following cochlear implantation are generally poor. For conductive hearing loss requiring in-ear hearing aids, it's better, like hearing people."
             </div>
+
+            <div class="user-quote-card">
+              "I sometimes avoid going anywhere that would require me to adjust my hearing aids too much...it can be too much of a hassle."
+            </div>
           </div>
 
-          <img src="assets/TuneInHTMLAssets/InterviewFindings.png" alt="Interview Findings Summary" style="width: 100%; display: block; margin-top: 2.5rem;" />
+          <img src="assets/TuneInHTMLAssets/Interview Findings.png" alt="Interview Findings Summary" class="clickable-image" onclick="openImageOverlay('assets/TuneInHTMLAssets/Interview Findings.png')" style="width: 100%; display: block; margin-top: 2.5rem;" />
         </div>
       </section>
 
@@ -1729,18 +1736,43 @@
             We explored multiple approaches to improve the music listening experience for the DHH community. Each concept leveraged AI in different ways to address the challenges we discovered through needfinding.
           </p>
 
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; margin-top: 2.5rem;">
+          <div
+            class="experience-marquee"
+            style="
+              position: relative;
+              width: 100%;
+              height: 200px;
+              overflow: hidden;
+              margin-top: 2rem;
+            "
+          >
+            <div
+              class="experience-marquee__track"
+              style="
+                position: absolute;
+                left: 0;
+                width: 200%;
+                height: 100%;
+                background-image: url('assets/TuneInHTMLAssets/Ideation Marquee.png');
+                background-repeat: repeat-x;
+                background-size: auto 100%;
+                animation: marquee-left 45s linear infinite;
+              "
+            ></div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; align-items: start; margin-top: 2.5rem;">
             <div>
               <h4 style="font-size: 1.1rem; color: #fff; margin-bottom: 1rem; font-family: 'IBM Plex Sans JP', sans-serif; font-weight: 700;">Concept 1: Audio Descriptions</h4>
               <p>
                 Automatically generated audio descriptions that accompany song lyrics. Currently many streaming platforms provide lyrics to their songs, but these are limited to only what is being sung. AI-generated audio descriptions could convey the tone of a song, volume or tempo changes, instrumentation, and other musical elements that lyrics alone cannot capture.
               </p>
             </div>
-            <img src="assets/TuneInHTMLAssets/Concept1.jpeg" alt="Concept 1 sketch" style="width: 100%; display: block;" />
+            <img src="assets/TuneInHTMLAssets/Concept1.jpeg" alt="Concept 1 sketch" style="width: 100%; display: block; max-height: 100%; object-fit: contain;" />
           </div>
 
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; margin-top: 2.5rem;">
-            <img src="assets/TuneInHTMLAssets/Concept2.jpeg" alt="Concept 2 sketch" style="width: 100%; display: block;" />
+          <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 2rem; align-items: start; margin-top: 2.5rem;">
+            <img src="assets/TuneInHTMLAssets/Concept2.jpeg" alt="Concept 2 sketch" style="width: 100%; display: block; max-height: 100%; object-fit: contain;" />
             <div>
               <h4 style="font-size: 1.1rem; color: #fff; margin-bottom: 1rem; font-family: 'IBM Plex Sans JP', sans-serif; font-weight: 700;">Concept 2: ASL Interpretation</h4>
               <p>
@@ -1749,18 +1781,18 @@
             </div>
           </div>
 
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; margin-top: 2.5rem;">
+          <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; align-items: start; margin-top: 2.5rem;">
             <div>
               <h4 style="font-size: 1.1rem; color: #fff; margin-bottom: 1rem; font-family: 'IBM Plex Sans JP', sans-serif; font-weight: 700;">Concept 3: AI-Generated Audio Profiles (Selected)</h4>
               <p>
                 Users upload their audiogram and AI automatically determines an initial audio profile. From there, users can customize audio settings around frequencies, noise suppression, voice amplification, etc. Based on this initial screening, a series of more nuanced preset profiles intended for music are created automatically.
               </p>
             </div>
-            <img src="assets/TuneInHTMLAssets/Concept3.jpeg" alt="Concept 3 sketch" style="width: 100%; display: block;" />
+            <img src="assets/TuneInHTMLAssets/Concept3.jpeg" alt="Concept 3 sketch" style="width: 100%; display: block; max-height: 100%; object-fit: contain;" />
           </div>
 
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; margin-top: 2.5rem;">
-            <img src="assets/TuneInHTMLAssets/Concept4.png" alt="Concept 4 sketch" style="width: 100%; display: block;" />
+          <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 2rem; align-items: center; margin-top: 2.5rem;">
+            <img src="assets/TuneInHTMLAssets/Concept4.png" alt="Concept 4 sketch" style="width: 100%; display: block; max-height: 100%; object-fit: contain;" />
             <div>
               <h4 style="font-size: 1.1rem; color: #fff; margin-bottom: 1rem; font-family: 'IBM Plex Sans JP', sans-serif; font-weight: 700;">Concept 4: Lyrics Display Glasses</h4>
               <p>
@@ -1769,14 +1801,14 @@
             </div>
           </div>
 
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; margin-top: 2.5rem;">
+          <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; align-items: start; margin-top: 2.5rem;">
             <div>
               <h4 style="font-size: 1.1rem; color: #fff; margin-bottom: 1rem; font-family: 'IBM Plex Sans JP', sans-serif; font-weight: 700;">Concept 5: AI-Generated Music Videos</h4>
               <p>
                 Another insight we learned is that some people really enjoy music videos which inspire a range of feelings alongside lyrics. AI-generated music videos based on lyrics could enhance the experience, especially since many songs don't have accompanying music videos.
               </p>
             </div>
-            <img src="assets/TuneInHTMLAssets/Concept5.png" alt="Concept 5 sketch" style="width: 100%; display: block;" />
+            <img src="assets/TuneInHTMLAssets/Concept5.png" alt="Concept 5 sketch" style="width: 100%; display: block; max-height: 100%; object-fit: contain;" />
           </div>
         </div>
       </section>
@@ -1790,23 +1822,23 @@
             Our solution focuses on three main tasks that work together to create a seamless, AI-powered audio customization experience:
           </p>
 
-          <div class="insight-grid" style="margin-top: 2rem;">
+          <div class="insight-grid insight-grid--3col" style="margin-top: 2rem;">
             <div class="insight-card">
-              <h4 style="font-style: normal;">Upload Audiogram</h4>
+              <h4 style="font-style: normal;">1. Upload Audiogram</h4>
               <p>
                 Users upload their audiogram and complete an initial hearing assessment to establish baseline hearing preferences.
               </p>
             </div>
 
             <div class="insight-card">
-              <h4 style="font-style: normal;">AI Auto-Generation</h4>
+              <h4 style="font-style: normal;">2. AI Auto-Generation</h4>
               <p>
                 AI automatically generates custom equalizer settings based on the context of the music being played—the core feature of our prototype.
               </p>
             </div>
 
             <div class="insight-card">
-              <h4 style="font-style: normal;">Manual Customization</h4>
+              <h4 style="font-style: normal;">3. Manual Customization</h4>
               <p>
                 Users can create and adjust custom settings from scratch for complete control over their audio experience.
               </p>
@@ -1817,23 +1849,34 @@
             Our core user task employs an AI assistant that detects information such as the genre/instrumentation of music, volume levels, and environmental context (e.g. whether the user is streaming music through headphones or at an outdoor concert) in order to optimize the user's listening experience by quickly and automatically adjusting the settings of one's assistive hearing devices.
           </p>
 
-          <img src="assets/TuneInHTMLAssets/Prototype1-AutoGenerate.png" alt="AI Auto-generation interface" style="width: 100%; display: block; margin-top: 2rem;" />
+          <img src="assets/TuneInHTMLAssets/Prototype 1-AutoGenerate.png" alt="AI Auto-generation interface" style="width: 100%; display: block; margin-top: 2rem;" />
 
           <h3 style="margin-top: 2.5rem;">Design Evolution</h3>
           <p>
             We included the genre and environment of each audio profile on the home screen so users can quickly select the appropriate settings for their environment. Originally, audio profiles were simply displayed by their icon and title. However, we envisioned audio profiles being created for very specific genre/environmental settings, therefore we updated the home screen to reflect the importance of these two contextual settings.
           </p>
 
-          <img src="assets/TuneInHTMLAssets/Prototype1-GenreEnvironment.png" alt="Genre and environment selection" style="width: 100%; display: block; margin-top: 1.5rem;" />
+          <img src="assets/TuneInHTMLAssets/Prototype 1-GenreEnvironment.png" alt="Genre and environment selection" style="width: 100%; display: block; margin-top: 1.5rem;" />
 
           <p style="margin-top: 1.5rem;">
             The user is able to select from a wide variety of genres and environments. We included comprehensive customization options including frequency adjustments, noise suppression, voice amplification, and more to ensure accurate personalization for each listening context.
           </p>
 
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem;">
-            <img src="assets/TuneInHTMLAssets/Prototype1-Component1.png" alt="Genre selection component" style="width: 100%; display: block;" />
-            <img src="assets/TuneInHTMLAssets/Prototype1-Component2.png" alt="Environment selection component" style="width: 100%; display: block;" />
+            <img src="assets/TuneInHTMLAssets/Prototype 1-Component1.png" alt="Genre selection component" style="width: 100%; display: block;" />
+            <img src="assets/TuneInHTMLAssets/Prototype 1-Component2.png" alt="Environment selection component" style="width: 100%; display: block;" />
           </div>
+
+          <video 
+            src="assets/TuneInHTMLAssets/Prototype 1.mov"
+            autoplay 
+            loop 
+            muted 
+            playsinline
+            style="max-width: 400px; width: 100%; display: block; margin: 2rem auto 0 auto; border-radius: 1rem;"
+            id="prototype1-video"
+            onloadedmetadata="this.playbackRate = 1.75;"
+          ></video>
         </div>
       </section>
 
@@ -1846,14 +1889,14 @@
             After initial testing, we made significant improvements to enhance both functionality and user experience. Here are the key revisions:
           </p>
 
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; margin-top: 2rem;">
+          <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; align-items: start; margin-top: 2rem;">
             <div>
               <h4 style="font-size: 1.1rem; color: #fff; margin-bottom: 1rem; font-family: 'IBM Plex Sans JP', sans-serif; font-weight: 700;">🔊 Always Listening Mode</h4>
               <p>
                 We added an "always listening mode" where TuneIn continuously gathers data about the environment via the phone's microphone and then alters the current audio profile. This ensures the app is reactive to changes in one's environment. Users can swipe to quickly activate TuneIn AI's help, making the experience seamless and automatic.
               </p>
             </div>
-            <img src="assets/TuneInHTMLAssets/Prototype2-AlwaysListening.png" alt="Always Listening Mode interface" style="width: 100%; display: block;" />
+            <img src="assets/TuneInHTMLAssets/Prototype 2-AlwaysListening.png" alt="Always Listening Mode interface" style="width: 100%; display: block; max-height: 100%; object-fit: contain;" />
           </div>
 
           <div style="margin-top: 2.5rem;">
@@ -1861,7 +1904,7 @@
             <p>
               The equalizer was extended from 1kHz to 15kHz to match traditional equalizer settings. While many instruments exist in the range of 200-600 Hz, cymbals, guitar effects, and some vocals often go beyond this range. We also added "Environment Base Volume" and other fine-grained audio adjustment options to give users more control over their listening experience.
             </p>
-            <img src="assets/TuneInHTMLAssets/Prototype2-AudioAdjustments.png" alt="Enhanced audio adjustments interface" style="width: 100%; display: block; margin-top: 1rem;" />
+            <img src="assets/TuneInHTMLAssets/Prototype 2-AudioAdjustments.png" alt="Enhanced audio adjustments interface" style="width: 100%; display: block; margin-top: 1rem;" />
           </div>
 
           <div style="margin-top: 2.5rem;">
@@ -1869,7 +1912,7 @@
             <p>
               We added the option to set a location for an audio profile in addition to the environment option. Because of acoustic differences between different concert venues, one's home, the outdoors, etc., location is another important contextual consideration. The app can now prompt users with suggested audio profiles based on their location, reducing friction when finding the right profile.
             </p>
-            <img src="assets/TuneInHTMLAssets/Prototype2-LocationSettings.png" alt="Automated location settings interface" style="width: 100%; display: block; margin-top: 1rem;" />
+            <img src="assets/TuneInHTMLAssets/Prototype 2-LocationSettings.png" alt="Automated location settings interface" style="width: 100%; display: block; margin-top: 1rem;" />
           </div>
 
           <div style="margin-top: 2.5rem;">
@@ -1877,7 +1920,7 @@
             <p>
               We added more labels with informative icons and adjusted the UI to emphasize the "Create a new audio profile" CTAs. We added action buttons for sorting audio profiles and quickly removing active profiles. Most importantly, we redesigned the "Let TuneIn listen" button to be more prominent, guiding users toward the AI feature rather than manual entry.
             </p>
-            <img src="assets/TuneInHTMLAssets/Prototype2-UIUpdates.png" alt="UI improvements" style="width: 100%; display: block; margin-top: 1rem;" />
+            <img src="assets/TuneInHTMLAssets/Prototype 2-UIUpdates.png" alt="UI improvements" style="width: 100%; display: block; margin-top: 1rem;" />
           </div>
         </div>
       </section>
@@ -1890,7 +1933,7 @@
             We conducted comprehensive user testing with members of the DHH community via Zoom, giving participants virtual access to our Figma prototype. We focused on three key tasks:
           </p>
 
-          <div class="insight-grid" style="margin-top: 2rem;">
+          <div class="insight-grid insight-grid--3col" style="margin-top: 2rem;">
             <div class="insight-card">
               <div class="emoji">🎨</div>
               <h4 style="font-style: normal;">Create</h4>
@@ -1985,7 +2028,7 @@
           <p>
             Based on user feedback, we made targeted improvements to streamline the experience while maintaining powerful customization options. These changes focused on reducing friction and guiding users toward AI-powered features.
           </p>
-          <img src="assets/TuneInHTMLAssets/UserTesting-Revisions.png" alt="User testing revisions summary" style="width: 100%; display: block; margin-top: 1.5rem;" />
+          <img src="assets/TuneInHTMLAssets/User Testing Revisions.png" alt="User testing revisions summary" style="width: 100%; display: block; margin-top: 1.5rem;" />
         </div>
       </section>
 
@@ -2003,6 +2046,15 @@
             <p>
               Users can quickly create new audio profiles by selecting a genre and environment. The AI immediately generates optimized equalizer settings based on the user's audiogram and the selected context. Users can then fine-tune these settings or save them as-is.
             </p>
+            <video
+              src="assets/TuneInHTMLAssets/Create.mov"
+              autoplay
+              loop
+              muted
+              playsinline
+              style="max-width: 400px; width: 100%; display: block; margin: 2rem auto 0 auto; border-radius: 1rem;"
+              onloadedmetadata="this.playbackRate = 1.75;"
+            ></video>
           </div>
 
           <div style="margin-top: 2.5rem;">
@@ -2010,6 +2062,15 @@
             <p>
               With location-based suggestions, users receive prompts to activate relevant audio profiles when they arrive at saved locations. This reduces friction and ensures users always have the optimal settings for their environment. Profiles can be activated with a single tap.
             </p>
+            <video
+              src="assets/TuneInHTMLAssets/Activate.mov"
+              autoplay
+              loop
+              muted
+              playsinline
+              style="max-width: 400px; width: 100%; display: block; margin: 2rem auto 0 auto; border-radius: 1rem;"
+              onloadedmetadata="this.playbackRate = 1.75;"
+            ></video>
           </div>
 
           <div style="margin-top: 2.5rem;">
@@ -2017,6 +2078,15 @@
             <p>
               The always-listening mode continuously monitors the environment and suggests profile adjustments when acoustic conditions change. Users can accept suggestions with a swipe, or let TuneIn automatically adjust in the background. This "set it and forget it" approach was highly praised in testing.
             </p>
+            <video
+              src="assets/TuneInHTMLAssets/Suggest.mov"
+              autoplay
+              loop
+              muted
+              playsinline
+              style="max-width: 400px; width: 100%; display: block; margin: 2rem auto 0 auto; border-radius: 1rem;"
+              onloadedmetadata="this.playbackRate = 1.75;"
+            ></video>
           </div>
         </div>
       </section>
@@ -2226,6 +2296,24 @@
             });
           }
         });
+      });
+
+      // Set Prototype 1 video playback rate to 1.75x
+      document.addEventListener('DOMContentLoaded', function() {
+        const prototype1Video = document.getElementById('prototype1-video');
+        if (prototype1Video) {
+          // Set playback rate on multiple events to ensure it works
+          function setPlaybackRate() {
+            prototype1Video.playbackRate = 1.75;
+          }
+          prototype1Video.addEventListener('loadedmetadata', setPlaybackRate);
+          prototype1Video.addEventListener('canplay', setPlaybackRate);
+          prototype1Video.addEventListener('loadeddata', setPlaybackRate);
+          // Also set it immediately in case metadata is already loaded
+          if (prototype1Video.readyState >= 1) {
+            setPlaybackRate();
+          }
+        }
       });
     </script>
 
