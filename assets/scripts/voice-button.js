@@ -49,7 +49,7 @@
     'Say "View my work"',
     'Say "Show me AI projects"',
     'Say "I want to learn more about tidbit"',
-    'Say "Scroll to the bottom"',
+    'Say "Tell me more about Naima"',
     'Say "Open Oracle AI project"',
   ];
 
@@ -215,28 +215,66 @@
     });
 
     try {
+      // Check if API key is available before processing
+      if (window.waitForApiKey) {
+        try {
+          await window.waitForApiKey(2000); // Quick check with 2s timeout
+        } catch (apiKeyError) {
+          console.error("API key not available:", apiKeyError);
+          createToast({
+            title: "API key not configured",
+            description: "Please create a .env file with OPENAI_API_KEY=your-key-here",
+            variant: "destructive",
+          });
+          return;
+        }
+      }
+
       // Call the voice navigation module
       const result = await window.handleVoiceNavigation(transcript);
       
       if (result.success) {
         // Success - show confirmation
         createToast({
-          title: result.message,
-          description: "Navigating now",
+          title: result.message || "Navigating...",
+          description: "Taking you there now",
         });
       } else {
-        // Error - show what went wrong
+        // Error - show what went wrong with more helpful messages
+        let errorTitle = "Command not recognized";
+        let errorDescription = result.message || "Please try again";
+        
+        // Provide more specific error messages
+        if (result.message && result.message.includes("API key")) {
+          errorTitle = "Configuration needed";
+          errorDescription = "Please set up your API key in the .env file";
+        } else if (result.message && result.message.includes("network")) {
+          errorTitle = "Connection error";
+          errorDescription = "Please check your internet connection";
+        } else if (result.message && result.message.includes("timeout")) {
+          errorTitle = "Request timed out";
+          errorDescription = "Please try again";
+        }
+        
         createToast({
-          title: "Command not recognized",
-          description: result.message,
+          title: errorTitle,
+          description: errorDescription,
           variant: "destructive",
         });
       }
     } catch (error) {
       console.error("Voice navigation error:", error);
+      
+      let errorMessage = "Please try again";
+      if (error.message) {
+        errorMessage = error.message;
+      } else if (error.toString().includes("API key")) {
+        errorMessage = "API key not configured. Please check your .env file";
+      }
+      
       createToast({
         title: "Navigation failed",
-        description: "Please try again",
+        description: errorMessage,
         variant: "destructive",
       });
     }

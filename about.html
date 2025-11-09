@@ -4,23 +4,18 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>About Naima | Product Designer</title>
-    <!-- Site styles -->
+    <link rel="stylesheet" href="./assets/styles/voice-button.css" />
     <link rel="stylesheet" href="./assets/styles/navbar.css" />
     <link rel="stylesheet" href="./assets/styles/footer.css" />
-    <link rel="stylesheet" href="./assets/styles/pointer.css" />
-    <link rel="stylesheet" href="./assets/styles/voice-button.css" />
-    <link rel="stylesheet" href="./assets/styles/scroll-animations.css" />
     <link rel="stylesheet" href="./assets/styles/about.css" />
-    <!-- IBM Plex Sans JP -->
+    <!-- IBM Plex Sans JP for body/navigation -->
     <link
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <meta name="theme-color" content="#050608" />
   </head>
 
   <body>
-    <!-- Header Navigation -->
     <header class="site-header" id="site-header">
       <div class="site-header__inner">
         <a href="./index.html" class="site-brand">
@@ -42,7 +37,7 @@
             <ul class="site-nav__list">
               <li><a class="site-nav__link" href="./index.html#projects">Projects</a></li>
               <li><a class="site-nav__link" href="./about.html">About</a></li>
-              <li><a class="site-nav__link" href="./assets/Resume.pdf" target="_blank">Resume</a></li>
+              <li><a class="site-nav__link" href="./index.html#resume">Resume</a></li>
             </ul>
           </nav>
           <button
@@ -61,7 +56,9 @@
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
-                <path d="M12 1.98a3 3 0 0 0-3 3v5a3 3 0 0 0 6 0v-5a3 3 0 0 0-3-3Z" />
+                <path
+                  d="M12 1.98a3 3 0 0 0-3 3v5a3 3 0 0 0 6 0v-5a3 3 0 0 0-3-3Z"
+                />
                 <path d="M19 10v1a7 7 0 0 1-14 0v-1" />
                 <path d="M12 19v4" />
                 <path d="m8 23 4 0 4 0" />
@@ -89,105 +86,293 @@
       </div>
     </header>
 
-    <main class="about">
-      <section class="about-marquee" aria-label="Gallery of Naima">
-        <div class="about-marquee__mask">
-          <div class="about-marquee__track">
-            <figure class="about-marquee__item">
-              <img src="./assets/AboutPageAssets/Personal1.HEIC" alt="Naima personal photo 1" loading="lazy" />
-            </figure>
-            <figure class="about-marquee__item">
-              <img src="./assets/AboutPageAssets/Personal2.JPG" alt="Naima personal photo 2" loading="lazy" />
-            </figure>
-            <figure class="about-marquee__item">
-              <img src="./assets/AboutPageAssets/Personal3.JPG" alt="Naima personal photo 3" loading="lazy" />
-            </figure>
-            <figure class="about-marquee__item">
-              <img src="./assets/AboutPageAssets/Personal4.JPEG" alt="Naima personal photo 4" loading="lazy" />
-            </figure>
-            <figure class="about-marquee__item">
-              <img src="./assets/AboutPageAssets/Personal5.jpg" alt="Naima personal photo 5" loading="lazy" />
-            </figure>
-            <figure class="about-marquee__item">
-              <img src="./assets/AboutPageAssets/Personal6.JPG" alt="Naima personal photo 6" loading="lazy" />
-            </figure>
-            <figure class="about-marquee__item">
-              <img src="./assets/AboutPageAssets/Personal7.JPEG" alt="Naima personal photo 7" loading="lazy" />
-            </figure>
-            <figure class="about-marquee__item">
-              <img src="./assets/AboutPageAssets/Personal8.HEIC" alt="Naima personal photo 8" loading="lazy" />
-            </figure>
-            <figure class="about-marquee__item">
-              <img src="./assets/AboutPageAssets/Personal9.JPEG" alt="Naima personal photo 9" loading="lazy" />
-            </figure>
-            <figure class="about-marquee__item">
-              <img src="./assets/AboutPageAssets/Personal10.JPG" alt="Naima personal photo 10" loading="lazy" />
-            </figure>
-            <figure class="about-marquee__item">
-              <img src="./assets/AboutPageAssets/Personal11.JPG" alt="Naima personal photo 11" loading="lazy" />
-            </figure>
-            <figure class="about-marquee__item">
-              <img src="./assets/AboutPageAssets/Personal12.HEIC" alt="Naima personal photo 12" loading="lazy" />
-            </figure>
-
-            <figure class="about-marquee__item" aria-hidden="true">
-              <img src="./assets/AboutPageAssets/Personal1.HEIC" alt="" loading="lazy" />
-            </figure>
-            <figure class="about-marquee__item" aria-hidden="true">
-              <img src="./assets/AboutPageAssets/Personal2.JPG" alt="" loading="lazy" />
-            </figure>
-            <figure class="about-marquee__item" aria-hidden="true">
-              <img src="./assets/AboutPageAssets/Personal3.JPG" alt="" loading="lazy" />
-            </figure>
-            <figure class="about-marquee__item" aria-hidden="true">
-              <img src="./assets/AboutPageAssets/Personal4.JPEG" alt="" loading="lazy" />
-            </figure>
-            <figure class="about-marquee__item" aria-hidden="true">
-              <img src="./assets/AboutPageAssets/Personal5.jpg" alt="" loading="lazy" />
-            </figure>
-            <figure class="about-marquee__item" aria-hidden="true">
-              <img src="./assets/AboutPageAssets/Personal6.JPG" alt="" loading="lazy" />
-            </figure>
-            <figure class="about-marquee__item" aria-hidden="true">
-              <img src="./assets/AboutPageAssets/Personal7.JPEG" alt="" loading="lazy" />
-            </figure>
-            <figure class="about-marquee__item" aria-hidden="true">
-              <img src="./assets/AboutPageAssets/Personal8.HEIC" alt="" loading="lazy" />
-            </figure>
-            <figure class="about-marquee__item" aria-hidden="true">
-              <img src="./assets/AboutPageAssets/Personal9.JPEG" alt="" loading="lazy" />
-            </figure>
-            <figure class="about-marquee__item" aria-hidden="true">
-              <img src="./assets/AboutPageAssets/Personal10.JPG" alt="" loading="lazy" />
-            </figure>
-            <figure class="about-marquee__item" aria-hidden="true">
-              <img src="./assets/AboutPageAssets/Personal11.JPG" alt="" loading="lazy" />
-            </figure>
-            <figure class="about-marquee__item" aria-hidden="true">
-              <img src="./assets/AboutPageAssets/Personal12.HEIC" alt="" loading="lazy" />
-            </figure>
+    <div class="marquee-container">
+      <!-- Marquee 1: Left to Right -->
+      <div class="marquee marquee-1">
+        <div class="marquee-track">
+          <img src="./assets/AboutPageAssets/Personal Marquee 1.png" alt="Personal Marquee 1" />
+          <img src="./assets/AboutPageAssets/Personal Marquee 1.png" alt="Personal Marquee 1" />
         </div>
       </div>
-    </section>
 
-      <section class="about-intro" aria-labelledby="about-intro-heading">
-        <div class="about-intro__content">
-          <h2 class="about-intro__heading" id="about-intro-heading">About Naima</h2>
-          <p class="about-intro__lead">
-            I'm Naima, a masters student at Stanford studying Product Design and Computer Science: Human-Computer Interaction. My interests range from digital design, to music, to visual art.
-          </p>
-          <p>
-            I asked my friends to describe me with one word and the responses I got were jolly, vibrant, confident, loyal, yappy, and whimsical. I'll leave you to make your own judgements.
-          </p>
+      <!-- Marquee 2: Right to Left -->
+      <div class="marquee marquee-2">
+        <div class="marquee-track">
+          <img src="./assets/AboutPageAssets/Personl Marquee 2.png" alt="Personal Marquee 2" />
+          <img src="./assets/AboutPageAssets/Personl Marquee 2.png" alt="Personal Marquee 2" />
+        </div>
+        <h2 class="marquee-section-header">BEYOND THE WIREFRAMES...</h2>
+      </div>
+
+      <!-- Marquee 3: Left to Right -->
+      <div class="marquee marquee-3">
+        <div class="marquee-track">
+          <img src="./assets/AboutPageAssets/Personal Marquee 3.png" alt="Personal Marquee 3" />
+          <img src="./assets/AboutPageAssets/Personal Marquee 3.png" alt="Personal Marquee 3" />
+        </div>
+      </div>
+    </div>
+
+    <div class="marquee-caption">
+      <p>I'm Naima, a masters student at Stanford studying Product Design and Computer Science: Human-Computer Interaction. My interests range from digital design, to music, to visual art.</p>
+      <p>I asked my friends to describe me with one word and the responses I got were <span class="highlight-words">jolly, vibrant, confident, loyal, yappy,</span> and <span class="highlight-words">whimsical.</span> I'll leave you to make your own judgements.</p>
+    </div>
+
+    <!-- Content sections with side navigation -->
+    <main class="about-content" id="about-content">
+      <nav class="side-nav" aria-label="Section navigation">
+        <ul>
+          <li><a href="#why-voice" class="active">WHY VOICE?</a></li>
+          <li><a href="#my-art">MY ART</a></li>
+          <li><a href="#music-experience">MUSIC EXPERIENCE</a></li>
+          <li><a href="#interests-hobbies">INTERESTS & HOBBIES</a></li>
+        </ul>
+      </nav>
+
+      <section class="about-section" id="why-voice">
+        <div class="about-section__content">
+          <h2>WHY VOICE?</h2>
+          <div class="voice-images-row">
+            <img src="./assets/AboutPageAssets/Voice1.jpg" alt="Voice AI Fellowship Image 1" />
+            <img src="./assets/AboutPageAssets/Voice2.jpg" alt="Voice AI Fellowship Image 2" />
+            <img src="./assets/AboutPageAssets/Voice3.jpg" alt="Voice AI Fellowship Image 3" />
+          </div>
+          <p>I'm currently doing the Bell AI fellowship where me and 3 other fellows are learning how to build a consumer Voice-AI product. I've learned a lot about the value of designing with voice through this experience, including why it's a winning modality, how to meaningfully integrate visuals to a voice interactions, and the design principles surrounding voice design.</p>
+          <p>I wanted my portfolio to be as easy to navigate as possible, both for people viewing it and for myself. I hope to keep adding voice features to this website, and ultimately reach a point where people interacting with my website can directly ask questions about my design decisions and projects.</p>
         </div>
       </section>
 
-      <section class="about-tagline" aria-label="Beyond the wireframes tagline">
-        <p class="about-tagline__text">Beyond the wireframes...</p>
-    </section>
+      <section class="about-section" id="my-art">
+        <div class="about-section__content">
+          <h2>MY ART</h2>
+          <div class="art-gallery">
+            <div class="art-item">
+              <div class="art-image-wrapper">
+                <img src="./assets/AboutPageAssets/Seattle.png" alt="Seattle" loading="lazy" data-full-image="./assets/AboutPageAssets/Seattle.png" />
+              </div>
+              <div class="art-info">
+                <h3 class="art-title">Seattle</h3>
+                <p class="art-details">2023<br/>Oil Pastels</p>
+              </div>
+            </div>
+            <div class="art-item">
+              <div class="art-image-wrapper">
+                <img src="./assets/AboutPageAssets/Nanimaa.png" alt="Nanimaa" loading="lazy" data-full-image="./assets/AboutPageAssets/Nanimaa.png" />
+              </div>
+              <div class="art-info">
+                <h3 class="art-title">Nanimaa</h3>
+                <p class="art-details">2023<br/>Oil Pastels</p>
+              </div>
+            </div>
+            <div class="art-item">
+              <div class="art-image-wrapper">
+                <img src="./assets/AboutPageAssets/Didi.png" alt="Didi" loading="lazy" data-full-image="./assets/AboutPageAssets/Didi.png" />
+              </div>
+              <div class="art-info">
+                <h3 class="art-title">Didi</h3>
+                <p class="art-details">2022<br/>Oil Pastels</p>
+              </div>
+            </div>
+            <div class="art-item">
+              <div class="art-image-wrapper">
+                <img src="./assets/AboutPageAssets/Ahmedabad.jpg" alt="Ahmedabad" loading="lazy" data-full-image="./assets/AboutPageAssets/Ahmedabad.jpg" />
+              </div>
+              <div class="art-info">
+                <h3 class="art-title">Ahmedabad</h3>
+                <p class="art-details">2022<br/>Linoleum Print</p>
+              </div>
+            </div>
+            <div class="art-item">
+              <div class="art-image-wrapper">
+                <img src="./assets/AboutPageAssets/Gopis.png" alt="Gopis" loading="lazy" data-full-image="./assets/AboutPageAssets/Gopis.png" />
+              </div>
+              <div class="art-info">
+                <h3 class="art-title">Gopis</h3>
+                <p class="art-details">2022<br/>Linoleum Print</p>
+              </div>
+            </div>
+            <div class="art-item">
+              <div class="art-image-wrapper">
+                <img src="./assets/AboutPageAssets/ButterPot.png" alt="Butter Pot" loading="lazy" data-full-image="./assets/AboutPageAssets/ButterPot.png" />
+              </div>
+              <div class="art-info">
+                <h3 class="art-title">Butter Pot</h3>
+                <p class="art-details">2022<br/>Wood Carving + Print</p>
+              </div>
+            </div>
+            <div class="art-item">
+              <div class="art-image-wrapper">
+                <img src="./assets/AboutPageAssets/MamasJewelry.png" alt="Mama's Jewelry" loading="lazy" data-full-image="./assets/AboutPageAssets/MamasJewelry.png" />
+              </div>
+              <div class="art-info">
+                <h3 class="art-title">Mama's Jewelry</h3>
+                <p class="art-details">2023<br/>Pencil Drawing</p>
+              </div>
+            </div>
+            <div class="art-item">
+              <div class="art-image-wrapper">
+                <img src="./assets/AboutPageAssets/GoodDays.png" alt="Good Days Synesthesia Drawing" loading="lazy" data-full-image="./assets/AboutPageAssets/GoodDays.png" />
+              </div>
+              <div class="art-info">
+                <h3 class="art-title">Good Days<br/>Synesthesia Drawing</h3>
+                <p class="art-details">2023<br/>Oil Pastels</p>
+              </div>
+            </div>
+            <div class="art-item">
+              <div class="art-image-wrapper">
+                <img src="./assets/AboutPageAssets/CashFlow.png" alt="Cash Flow" loading="lazy" data-full-image="./assets/AboutPageAssets/CashFlow.png" />
+              </div>
+              <div class="art-info">
+                <h3 class="art-title">Cash Flow</h3>
+                <p class="art-details">2022<br/>Oil Painting</p>
+              </div>
+            </div>
+            <div class="art-item">
+              <div class="art-image-wrapper">
+                <img src="./assets/AboutPageAssets/KrishnasAdmirer.png" alt="Krishna's Admirer" loading="lazy" data-full-image="./assets/AboutPageAssets/KrishnasAdmirer.png" />
+              </div>
+              <div class="art-info">
+                <h3 class="art-title">Krishna's Admirer</h3>
+                <p class="art-details">2022<br/>Metal Etching + Print</p>
+              </div>
+            </div>
+            <div class="art-item">
+              <div class="art-image-wrapper">
+                <img src="./assets/AboutPageAssets/AbstractDancer.png" alt="Abstract Dancer" loading="lazy" data-full-image="./assets/AboutPageAssets/AbstractDancer.png" />
+              </div>
+              <div class="art-info">
+                <h3 class="art-title">Abstract Dancer</h3>
+                <p class="art-details">2022<br/>Oil Painting</p>
+              </div>
+            </div>
+            <div class="art-item">
+              <div class="art-image-wrapper">
+                <img src="./assets/AboutPageAssets/Meena.jpg" alt="Meena" loading="lazy" data-full-image="./assets/AboutPageAssets/Meena.jpg" />
+              </div>
+              <div class="art-info">
+                <h3 class="art-title">Meena</h3>
+                <p class="art-details">2022<br/>Oil Painting</p>
+              </div>
+            </div>
+            <div class="art-item">
+              <div class="art-image-wrapper">
+                <img src="./assets/AboutPageAssets/Mor.jpg" alt="Mor" loading="lazy" data-full-image="./assets/AboutPageAssets/Mor.jpg" />
+              </div>
+              <div class="art-info">
+                <h3 class="art-title">Mor</h3>
+                <p class="art-details">2020<br/>Oil Painting</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="about-section" id="music-experience">
+        <div class="about-section__content">
+          <h2>BOOKING DOECHII</h2>
+          <p>My senior year at Stanford, I was one of four co-directors of the Stanford Concert Network. SCN is a student-led group that brings all the live music to campus. Our biggest event is Frost Fest, the annual spring festival at Frost Amphitheater that draws more than 8,000 people. Previous headliners include Amine, Denzel Curry, Blxst, and many more. </p>
+          <p>We really wanted the student body to be excited about the artist we chose to headline this year.  We started planning  early, talking to students, collecting dream lineups, and balancing all of that with a very real budget. After months of negotiating and timing the moment just right, we booked Grammy-winning artist Doechii and brought Zack Fox as a supporting act. We anticipated Doechii’s rise months before she really blew up, and it paid off! </p>
+          <p>For the first time in Stanford history, Frost Fest sold out. The energy was electric, the show was seamless, and the campus response was genuinely positive. </p>
+          <div class="overview-button-wrapper">
+            <a
+              href="https://stanforddaily.com/2025/02/11/frost-fest-2025-headliner-revealed-doechii-takes-center-stage/"
+              class="view-designs-btn"
+              target="_blank"
+              rel="noreferrer"
+            >
+              READ STANFORD DAILY ARTICLE HERE
+            </a>
+          </div>
+          <div class="doechii-images-grid">
+            <img src="./assets/AboutPageAssets/Doechii1.jpg" alt="Doechii Frost Fest 1" loading="lazy" />
+            <img src="./assets/AboutPageAssets/Doechii2.JPG" alt="Doechii Frost Fest 2" loading="lazy" />
+            <img src="./assets/AboutPageAssets/Doechii3.JPG" alt="Doechii Frost Fest 3" loading="lazy" />
+            <img src="./assets/AboutPageAssets/Doechii4.JPG" alt="Doechii Frost Fest 4" loading="lazy" />
+            <img src="./assets/AboutPageAssets/Doechii5.JPG" alt="Doechii Frost Fest 5" loading="lazy" />
+            <img src="./assets/AboutPageAssets/Doechii6.JPG" alt="Doechii Frost Fest 6" loading="lazy" />
+            <img src="./assets/AboutPageAssets/Doechii7.JPG" alt="Doechii Frost Fest 7" loading="lazy" />
+            <img src="./assets/AboutPageAssets/Doechii8.JPG" alt="Doechii Frost Fest 8" loading="lazy" />
+            <img src="./assets/AboutPageAssets/Doechii9.jpg" alt="Doechii Frost Fest 9" loading="lazy" />
+          </div>
+        </div>
+      </section>
+
+      <section class="about-section" id="interests-hobbies">
+        <div class="about-section__content">
+          <h2>ENDLESS LIST OF HOBBIES</h2>
+          <p>Don't ask how good I am at them.</p>
+          <div class="hobbies-grid">
+            <div class="hobby-item">
+              <img src="./assets/AboutPageAssets/Art.png" alt="Art" loading="lazy" />
+              <p class="hobby-label"><strong>Art</strong></p>
+            </div>
+            <div class="hobby-item">
+              <img src="./assets/AboutPageAssets/Music.png" alt="Music" loading="lazy" />
+              <p class="hobby-label"><strong>Music</strong></p>
+            </div>
+            <div class="hobby-item">
+              <img src="./assets/AboutPageAssets/Hiking.png" alt="Hiking" loading="lazy" />
+              <p class="hobby-label"><strong>Hiking</strong></p>
+            </div>
+            <div class="hobby-item">
+              <img src="./assets/AboutPageAssets/Running.png" alt="Running" loading="lazy" />
+              <p class="hobby-label"><strong>Running</strong></p>
+            </div>
+            <div class="hobby-item">
+              <img src="./assets/AboutPageAssets/Sports.png" alt="Sports" loading="lazy" />
+              <p class="hobby-label"><strong>Sports</strong></p>
+            </div>
+            <div class="hobby-item">
+              <img src="./assets/AboutPageAssets/Jewelry.png" alt="Jewelry" loading="lazy" />
+              <p class="hobby-label"><strong>Jewelry</strong></p>
+            </div>
+            <div class="hobby-item">
+              <img src="./assets/AboutPageAssets/Surfing.png" alt="Surfing" loading="lazy" />
+              <p class="hobby-label"><strong>Surfing</strong></p>
+            </div>
+            <div class="hobby-item">
+              <img src="./assets/AboutPageAssets/Dance.png" alt="Dance" loading="lazy" />
+              <p class="hobby-label"><strong>Dance</strong></p>
+            </div>
+            <div class="hobby-item">
+              <img src="./assets/AboutPageAssets/Festivals.jpeg" alt="Festivals" loading="lazy" />
+              <p class="hobby-label"><strong>Festivals</strong></p>
+            </div>
+            <div class="hobby-item">
+              <img src="./assets/AboutPageAssets/tennis.JPG" alt="Tennis" loading="lazy" />
+              <p class="hobby-label"><strong>Tennis</strong></p>
+            </div>
+          </div>
+
+          <h2 class="subsection-heading">Salmon:</h2>
+          <p>My favorite food, the only thing I can cook, and one of my many personality traits.</p>
+          <div class="salmon-grid">
+            <img src="./assets/AboutPageAssets/Salmon1.png" alt="Salmon 1" loading="lazy" />
+            <img src="./assets/AboutPageAssets/Salmon2.png" alt="Salmon 2" loading="lazy" />
+            <img src="./assets/AboutPageAssets/Salmon3.png" alt="Salmon 3" loading="lazy" />
+            <img src="./assets/AboutPageAssets/Salmon4.png" alt="Salmon 4" loading="lazy" />
+          </div>
+
+          <h2 class="subsection-heading">What it looked like building this website...</h2>
+          <p>The dorm rooms, the aux, the company, and the snackies.</p>
+          <div class="building-website-grid">
+            <div class="building-column">
+              <img src="./assets/AboutPageAssets/BuildingWebsite1.png" alt="Building website 1" loading="lazy" />
+              <img src="./assets/AboutPageAssets/BuildingWebsite2.png" alt="Building website 2" loading="lazy" />
+            </div>
+            <div class="building-column">
+              <img src="./assets/AboutPageAssets/BuildingWebsite3.png" alt="Building website 3" loading="lazy" />
+              <img src="./assets/AboutPageAssets/BuildingWebsite4.png" alt="Building website 4" loading="lazy" />
+            </div>
+            <div class="building-column">
+              <img src="./assets/AboutPageAssets/BuildingWebsite5.png" alt="Building website 5" loading="lazy" />
+              <img src="./assets/AboutPageAssets/BuildingWebsite6.png" alt="Building website 6" loading="lazy" />
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
-    <!-- Footer -->
     <footer class="site-footer">
       <div class="footer-divider"></div>
       <div class="footer-content">
@@ -201,7 +386,7 @@
             >LinkedIn</a
           >
           <a
-            href="./assets/Resume.pdf"
+            href="./assets/NaimaPatel_Resume.pdf"
             target="_blank"
             class="footer-link"
             rel="noreferrer"
@@ -213,22 +398,175 @@
       </div>
     </footer>
 
-    <!-- Toast Container -->
-    <div
-      class="toast-container"
-      id="toast-container"
-      aria-live="polite"
-      aria-atomic="true"
-    ></div>
-
-    <!-- Scripts -->
-    <script src="./assets/scripts/env-loader.js"></script>
-    <script src="./assets/scripts/voice-navigation.js"></script>
-    <script src="./assets/scripts/voice-button.js"></script>
     <script src="./assets/scripts/navbar.js"></script>
     <script src="./assets/scripts/footer.js" defer></script>
-    <script src="./assets/scripts/pointer.js" defer></script>
-    <script src="./assets/scripts/scroll-animations.js"></script>
+    <script>
+      // Add scroll-based glass effect to navbar
+      (() => {
+        const header = document.getElementById("site-header");
+        if (!header) return;
+
+        function handleScroll() {
+          if (window.scrollY > 50) {
+            header.classList.add("site-header--solid");
+          } else {
+            header.classList.remove("site-header--solid");
+          }
+        }
+
+        window.addEventListener("scroll", handleScroll, { passive: true });
+        handleScroll();
+      })();
+
+      // Show navigation when about content section reaches the top
+      const sideNav = document.querySelector(".side-nav");
+      const aboutContent = document.getElementById("about-content");
+
+      function checkNavVisibility() {
+        if (!aboutContent || !sideNav) return;
+        
+        const aboutContentRect = aboutContent.getBoundingClientRect();
+        const headerHeight = 80; // Approximate header height
+
+        // Show nav when about content reaches near the top of viewport
+        if (aboutContentRect.top <= headerHeight) {
+          sideNav.classList.add("visible");
+        } else {
+          sideNav.classList.remove("visible");
+        }
+      }
+
+      // Check on scroll
+      window.addEventListener("scroll", checkNavVisibility);
+      // Check on page load
+      checkNavVisibility();
+
+      // Smooth highlight updates based on scroll position
+      const sections = document.querySelectorAll(".about-section[id]");
+      const navLinks = document.querySelectorAll(".side-nav a");
+      const VIEWPORT_TRIGGER_RATIO = 0.2; // 20% from top for better responsiveness
+      let ticking = false;
+
+      function setActiveById(id) {
+        navLinks.forEach((link) => link.classList.remove("active"));
+        const active = document.querySelector(`.side-nav a[href="#${id}"]`);
+        if (active) active.classList.add("active");
+      }
+
+      function updateActiveSection() {
+        const triggerLine = window.scrollY + window.innerHeight * VIEWPORT_TRIGGER_RATIO;
+        let currentSection = "";
+
+        for (const section of sections) {
+          const top = section.offsetTop;
+          const bottom = top + section.offsetHeight;
+          if (triggerLine >= top && triggerLine < bottom) {
+            currentSection = section.id;
+            break;
+          }
+        }
+
+        // Fallback: if scrolled to (near) bottom, select last section
+        if (!currentSection && sections.length) {
+          if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 2) {
+            currentSection = sections[sections.length - 1].id;
+          }
+        }
+
+        if (currentSection) setActiveById(currentSection);
+      }
+
+      function onScroll() {
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            updateActiveSection();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }
+
+      window.addEventListener("scroll", onScroll, { passive: true });
+      window.addEventListener("resize", updateActiveSection);
+      updateActiveSection();
+
+      // Smooth scroll for navigation links with offset
+      navLinks.forEach((link) => {
+        link.addEventListener("click", (e) => {
+          e.preventDefault();
+          const targetId = link.getAttribute("href").substring(1);
+          const targetSection = document.getElementById(targetId);
+          if (targetSection) {
+            const navOffset =
+              parseFloat(getComputedStyle(document.documentElement).fontSize) *
+              4; // 4rem in pixels
+            const elementPosition = targetSection.getBoundingClientRect().top;
+            const offsetPosition =
+              elementPosition + window.pageYOffset - navOffset;
+
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: "smooth",
+            });
+          }
+        });
+      });
+    </script>
+
+    <!-- Art Modal -->
+    <div class="art-modal" id="art-modal" role="dialog" aria-modal="true" aria-label="Artwork full view">
+      <div class="art-modal-overlay" id="art-modal-overlay"></div>
+      <div class="art-modal-content">
+        <button class="art-modal-close" id="art-modal-close" aria-label="Close modal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+        <img class="art-modal-image" id="art-modal-image" src="" alt="" />
+      </div>
+    </div>
+
+    <script>
+      // Art Modal Functionality
+      (() => {
+        const modal = document.getElementById("art-modal");
+        const modalOverlay = document.getElementById("art-modal-overlay");
+        const modalImage = document.getElementById("art-modal-image");
+        const modalClose = document.getElementById("art-modal-close");
+        const artImages = document.querySelectorAll(".art-item img[data-full-image]");
+
+        function openModal(imageSrc, imageAlt) {
+          modalImage.src = imageSrc;
+          modalImage.alt = imageAlt;
+          modal.classList.add("active");
+          document.body.style.overflow = "hidden";
+        }
+
+        function closeModal() {
+          modal.classList.remove("active");
+          document.body.style.overflow = "";
+        }
+
+        artImages.forEach((img) => {
+          img.style.cursor = "pointer";
+          img.addEventListener("click", () => {
+            const fullImage = img.getAttribute("data-full-image");
+            const alt = img.getAttribute("alt");
+            openModal(fullImage, alt);
+          });
+        });
+
+        modalOverlay.addEventListener("click", closeModal);
+        modalClose.addEventListener("click", closeModal);
+
+        // Close on Escape key
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape" && modal.classList.contains("active")) {
+            closeModal();
+          }
+        });
+      })();
+    </script>
   </body>
 </html>
-
