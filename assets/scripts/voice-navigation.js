@@ -154,10 +154,17 @@ PROJECT PAGE SECTIONS (within project pages):
 
 Respond with ONLY a JSON object in this exact format:
 {
-  "action": "navigate_section" | "navigate_page" | "navigate_project" | "navigate_project_section" | "go_home" | "unknown",
+  "action": "navigate_section" | "navigate_page" | "navigate_project" | "navigate_project_section" | "go_home",
   "target": "target-name",
   "confidence": 0.0-1.0
 }
+
+CRITICAL INSTRUCTIONS:
+- You MUST always output a destination from the available targets above. Never return "unknown" or any other action.
+- Even if the command doesn't perfectly match any destination, you must make a best-effort mapping to the most likely destination that addresses what the user is trying to get.
+- Use semantic understanding and context clues to map commands to the closest matching destination.
+- For ambiguous commands, choose the most reasonable destination based on common navigation patterns.
+- If a command seems unrelated to navigation, default to "go_home" with target "landing" or "navigate_section" with target "projects" as these are the most general destinations.
 
 IMPORTANT: Be flexible with natural language. Understand variations and synonyms:
 - "show me the tidbit page" = navigate_project, target: "tidbit"
