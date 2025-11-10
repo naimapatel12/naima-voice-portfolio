@@ -128,14 +128,14 @@ body.has-custom-pointer * {
   filter: blur(26px);
 }
 
-/* === Explore / Accent Driven State === */
+/* === Explore / Clickable Elements State === */
 #pointer-cursor.is-explore {
-  --cursor-trail-scale: 1.75;
+  --cursor-trail-scale: 1.5;
 }
 
 #pointer-cursor.is-explore::before {
-  width: 44px;
-  height: 44px;
+  width: 36px;
+  height: 36px;
   border: 1px solid rgba(255, 255, 255, 0.35);
   background: radial-gradient(
       circle at 50% 20%,
@@ -161,8 +161,8 @@ body.has-custom-pointer * {
 }
 
 #pointer-cursor.is-explore::after {
-  width: 66px;
-  height: 66px;
+  width: 54px;
+  height: 54px;
   opacity: 0.45;
   background: radial-gradient(
     circle at 45% 35%,

@@ -182,18 +182,32 @@
   }
 
   function registerHoverTargets() {
-    const exploreSelectors = [".project-card", ".site-nav__link"];
-    const listeningSelectors = ["#voice-button", "#nav-voice-button"];
+    // All voice buttons that should show the coral pulse cursor (register first for priority)
+    const listeningSelectors = [
+      "#voice-button",
+      "#nav-voice-button",
+      "#conclusions-voice-button",
+      ".nav-voice-button",
+      ".side-nav-voice-button",
+    ];
+    
+    // All clickable elements that should show the clickable cursor
+    // Exclude voice buttons to avoid conflicts
+    const clickableSelectors = [
+      ".project-card",
+      ".site-nav__link",
+      "a:not(.nav-voice-button):not(.side-nav-voice-button)",
+      "button:not(.nav-voice-button):not(.side-nav-voice-button):not(#voice-button):not(#nav-voice-button):not(#conclusions-voice-button)",
+      ".clickable-image",
+      ".voice-tag",
+      ".component-card",
+      "[onclick]",
+      ".site-header__menu",
+      ".site-nav__list a",
+      ".side-nav a",
+    ];
 
-    exploreSelectors.forEach((selector) => {
-      document.querySelectorAll(selector).forEach((element) => {
-        element.addEventListener("mouseenter", handleExploreEnter);
-        element.addEventListener("mouseleave", handleExploreLeave);
-        element.addEventListener("focus", handleExploreEnter);
-        element.addEventListener("blur", handleExploreLeave);
-      });
-    });
-
+    // Register voice button listeners first so they have priority
     listeningSelectors.forEach((selector) => {
       document.querySelectorAll(selector).forEach((element) => {
         element.addEventListener("mouseenter", handleVoiceHover);
@@ -206,6 +220,26 @@
         element.addEventListener("mouseup", () =>
           pointer.classList.remove("is-pressed")
         );
+      });
+    });
+
+    // Register clickable element listeners
+    clickableSelectors.forEach((selector) => {
+      document.querySelectorAll(selector).forEach((element) => {
+        // Skip if element is a voice button (double-check)
+        if (
+          element.id === "voice-button" ||
+          element.id === "nav-voice-button" ||
+          element.id === "conclusions-voice-button" ||
+          element.classList.contains("nav-voice-button") ||
+          element.classList.contains("side-nav-voice-button")
+        ) {
+          return;
+        }
+        element.addEventListener("mouseenter", handleExploreEnter);
+        element.addEventListener("mouseleave", handleExploreLeave);
+        element.addEventListener("focus", handleExploreEnter);
+        element.addEventListener("blur", handleExploreLeave);
       });
     });
   }

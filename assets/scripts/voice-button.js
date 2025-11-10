@@ -11,22 +11,34 @@
   const voiceButton = document.getElementById("voice-button");
   const toastContainer = document.getElementById("toast-container");
 
-  if (!waveformElement || !voiceButton || !toastContainer) {
-    console.error("Voice UI elements missing from the DOM.");
-    return;
+  // Only require toastContainer for showing messages - create a fallback if it doesn't exist
+  let toastContainerFallback = null;
+  if (!toastContainer) {
+    // Create a minimal toast container if it doesn't exist (for pages without the main voice button)
+    toastContainerFallback = document.createElement("div");
+    toastContainerFallback.id = "toast-container";
+    toastContainerFallback.style.cssText = "position: fixed; top: 20px; right: 20px; z-index: 10000; pointer-events: none;";
+    document.body.appendChild(toastContainerFallback);
+  }
+  
+  const activeToastContainer = toastContainer || toastContainerFallback;
+
+  // If main voice button doesn't exist, we'll still set up voice recognition for navbar use
+  if (!voiceButton && !waveformElement) {
+    console.log("Main voice button not found - setting up voice recognition for navbar use only.");
   }
 
-  // Create the 100 tiny bars that make up the waveform visualization.
-  const bars = Array.from({ length: 150 }).map(() => {
+  // Create the 100 tiny bars that make up the waveform visualization (only if element exists).
+  const bars = waveformElement ? Array.from({ length: 150 }).map(() => {
     const bar = document.createElement("div");
     bar.className = "waveform-bar";
     waveformElement.appendChild(bar);
     return bar;
-  });
+  }) : [];
 
-  const labelEl = voiceButton.querySelector(".label");
-  const iconMic = voiceButton.querySelector(".icon-mic");
-  const iconMicOff = voiceButton.querySelector(".icon-mic-off");
+  const labelEl = voiceButton ? voiceButton.querySelector(".label") : null;
+  const iconMic = voiceButton ? voiceButton.querySelector(".icon-mic") : null;
+  const iconMicOff = voiceButton ? voiceButton.querySelector(".icon-mic-off") : null;
 
   // Check for SpeechRecognition support (Chrome, Edge, Safari, etc.).
   const SpeechRecognition =
@@ -89,6 +101,9 @@
 
   /** Start rotating through prompts every 3 seconds */
   function startPromptRotation() {
+    // Only start rotation if main button exists
+    if (!labelEl) return;
+    
     // Clear any existing interval
     if (state.promptRotationInterval) {
       clearInterval(state.promptRotationInterval);
@@ -113,33 +128,37 @@
 
   /** Update button copy and icon state whenever the listening mode changes. */
   function updateButtonVisuals() {
-    if (!labelEl || !iconMic || !iconMicOff) return;
+    // Update main voice button visuals if it exists
+    if (voiceButton && labelEl && iconMic && iconMicOff) {
+      if (!state.isSupported) {
+        voiceButton.classList.add("is-disabled");
+        voiceButton.setAttribute("aria-disabled", "true");
+        voiceButton.setAttribute("disabled", "disabled");
+        labelEl.textContent = "Voice control unavailable";
+        stopPromptRotation();
+        return;
+      }
+      const listening = state.isListening;
+      sharedState.isListening = listening;
 
-    if (!state.isSupported) {
-      voiceButton.classList.add("is-disabled");
-      voiceButton.setAttribute("aria-disabled", "true");
-      voiceButton.setAttribute("disabled", "disabled");
-      labelEl.textContent = "Voice control unavailable";
-      stopPromptRotation();
-      return;
-    }
-    const listening = state.isListening;
-    sharedState.isListening = listening;
-
-    if (listening) {
-      voiceButton.classList.add("is-listening");
-      voiceButton.setAttribute("aria-pressed", "true");
-      labelEl.textContent = "Listening...";
-      iconMic.style.display = "none";
-      iconMicOff.style.display = "flex";
-      stopPromptRotation();
+      if (listening) {
+        voiceButton.classList.add("is-listening");
+        voiceButton.setAttribute("aria-pressed", "true");
+        labelEl.textContent = "Listening...";
+        iconMic.style.display = "none";
+        iconMicOff.style.display = "flex";
+        stopPromptRotation();
+      } else {
+        voiceButton.classList.remove("is-listening");
+        voiceButton.setAttribute("aria-pressed", "false");
+        labelEl.textContent = prompts[state.currentPromptIndex];
+        iconMic.style.display = "flex";
+        iconMicOff.style.display = "none";
+        startPromptRotation();
+      }
     } else {
-      voiceButton.classList.remove("is-listening");
-      voiceButton.setAttribute("aria-pressed", "false");
-      labelEl.textContent = prompts[state.currentPromptIndex];
-      iconMic.style.display = "flex";
-      iconMicOff.style.display = "none";
-      startPromptRotation();
+      // Just update the shared state if main button doesn't exist
+      sharedState.isListening = state.isListening;
     }
 
     sharedState.notify();
@@ -178,7 +197,7 @@
       toast.appendChild(desc);
     }
 
-    toastContainer.appendChild(toast);
+    activeToastContainer.appendChild(toast);
 
     // Delay adding the visible class so the transition animates.
     requestAnimationFrame(() => {
@@ -425,23 +444,25 @@
     stopAudioVisualization();
   }
 
-  // Toggle listening whenever the button is pressed.
-  voiceButton.addEventListener("click", () => {
-    if (!state.isSupported) {
-      createToast({
-        title: "Not supported",
-        description: "Voice recognition is not supported in your browser",
-        variant: "destructive",
-      });
-      return;
-    }
+  // Toggle listening whenever the button is pressed (only if button exists).
+  if (voiceButton) {
+    voiceButton.addEventListener("click", () => {
+      if (!state.isSupported) {
+        createToast({
+          title: "Not supported",
+          description: "Voice recognition is not supported in your browser",
+          variant: "destructive",
+        });
+        return;
+      }
 
-    if (state.isListening) {
-      stopListening();
-    } else {
-      startListening();
-    }
-  });
+      if (state.isListening) {
+        stopListening();
+      } else {
+        startListening();
+      }
+    });
+  }
 
   sharedState.toggleListening =
     sharedState.toggleListening ||
@@ -462,8 +483,11 @@
       }
     };
 
-  voiceButton.__VOICE_TOGGLE__ = sharedState.toggleListening;
-  voiceButton.__VOICE_STATE__ = sharedState;
+  // Store toggle function on button if it exists (for navbar.js compatibility)
+  if (voiceButton) {
+    voiceButton.__VOICE_TOGGLE__ = sharedState.toggleListening;
+    voiceButton.__VOICE_STATE__ = sharedState;
+  }
   sharedState.notify();
 
   // Make sure we release the microphone and stop rotation if the tab is closed/refreshed.
@@ -475,13 +499,17 @@
   // Initial UI setup based on feature support.
   if (!state.isSupported) {
     updateButtonVisuals();
-    createToast({
-      title: "Voice control unavailable",
-      description: "Your browser does not support speech recognition",
-      variant: "destructive",
-    });
+    if (voiceButton) {
+      createToast({
+        title: "Voice control unavailable",
+        description: "Your browser does not support speech recognition",
+        variant: "destructive",
+      });
+    }
   } else {
-    resetWaveform();
+    if (waveformElement) {
+      resetWaveform();
+    }
     updateButtonVisuals();
   }
 })();

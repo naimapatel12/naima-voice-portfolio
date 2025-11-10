@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>About Naima | Product Designer</title>
+    <link rel="stylesheet" href="./assets/styles/pointer.css" />
     <link rel="stylesheet" href="./assets/styles/voice-button.css" />
     <link rel="stylesheet" href="./assets/styles/navbar.css" />
     <link rel="stylesheet" href="./assets/styles/footer.css" />
@@ -37,7 +38,7 @@
             <ul class="site-nav__list">
               <li><a class="site-nav__link" href="./index.html#projects">Projects</a></li>
               <li><a class="site-nav__link" href="./about.html">About</a></li>
-              <li><a class="site-nav__link" href="./index.html#resume">Resume</a></li>
+              <li><a class="site-nav__link" href="./assets/Resume.pdf" target="_blank" rel="noreferrer">Resume</a></li>
             </ul>
           </nav>
           <button
@@ -398,8 +399,14 @@
       </div>
     </footer>
 
+    <!-- Voice navigation scripts - load in order -->
+    <script src="./assets/scripts/env.js"></script>
+    <script src="./assets/scripts/env-loader.js"></script>
+    <script src="./assets/scripts/voice-navigation.js"></script>
+    <script src="./assets/scripts/voice-button.js"></script>
     <script src="./assets/scripts/navbar.js"></script>
     <script src="./assets/scripts/footer.js" defer></script>
+    <script src="./assets/scripts/pointer.js" defer></script>
     <script>
       // Add scroll-based glass effect to navbar
       (() => {
