@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Portfolio website with voice navigation",
   "scripts": {
-    "build": "node scripts/build-env-config.js"
+    "build": "node scripts/build-env-config.js && vite build"
   },
   "keywords": [
     "portfolio",
