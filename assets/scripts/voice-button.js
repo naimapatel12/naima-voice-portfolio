@@ -63,6 +63,7 @@
     'Say "I want to learn more about tidbit"',
     'Say "Tell me more about Naima"',
     'Say "Open Oracle AI project"',
+    'Say "Show me her favorite project"',
   ];
 
   const sharedState = window.__VOICE_STATE__ || {};
@@ -234,52 +235,27 @@
     });
 
     try {
-      // Call the voice navigation module
-      // API key is now handled server-side via /api/voice endpoint
-      const result = await window.handleVoiceNavigation(transcript);
-      
-      if (result.success) {
+      // Call the voice navigation module with confidence scoring
+      if (window.handleVoiceCommand) {
+        window.handleVoiceCommand(transcript);
         // Success - show confirmation
         createToast({
-          title: result.message || "Navigating...",
+          title: "Navigating...",
           description: "Taking you there now",
         });
       } else {
-        // Error - show what went wrong with more helpful messages
-        let errorTitle = "Command not recognized";
-        let errorDescription = result.message || "Please try again";
-        
-        // Provide more specific error messages
-        if (result.message && result.message.includes("API key")) {
-          errorTitle = "Configuration needed";
-          errorDescription = "Please set up your API key in the .env file";
-        } else if (result.message && result.message.includes("network")) {
-          errorTitle = "Connection error";
-          errorDescription = "Please check your internet connection";
-        } else if (result.message && result.message.includes("timeout")) {
-          errorTitle = "Request timed out";
-          errorDescription = "Please try again";
-        }
-        
+        // Fallback if module not loaded
         createToast({
-          title: errorTitle,
-          description: errorDescription,
+          title: "Navigation module not loaded",
+          description: "Please refresh the page",
           variant: "destructive",
         });
       }
     } catch (error) {
       console.error("Voice navigation error:", error);
-      
-      let errorMessage = "Please try again";
-      if (error.message) {
-        errorMessage = error.message;
-      } else if (error.toString().includes("API key")) {
-        errorMessage = "API key not configured. Please check your .env file";
-      }
-      
       createToast({
         title: "Navigation failed",
-        description: errorMessage,
+        description: "Please try again",
         variant: "destructive",
       });
     }

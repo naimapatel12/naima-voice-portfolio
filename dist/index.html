@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Naima Patel | Portfolio</title>
+    <!-- Page styling lives in dedicated stylesheets for easier edits -->
+    <link rel="stylesheet" crossorigin href="/assets/index-cBVHtBkW.css">
+  </head>
+
+  <body>
+    <header class="site-header" id="site-header">
+      <div class="site-header__inner">
+        <a href="#landing" class="site-brand">
+          <img src="/assets/NP-DN57ZJ62.png" alt="Naima Patel logo" />
+          <span class="sr-only">Naima Patel</span>
+        </a>
+        <button
+          class="site-header__menu"
+          id="site-menu-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-nav"
+        >
+          <span></span>
+          <span class="sr-only">Toggle navigation</span>
+        </button>
+        <div class="site-header__group">
+          <nav class="site-nav" id="site-nav" aria-label="Primary">
+            <ul class="site-nav__list">
+              <li><a class="site-nav__link" href="#projects">Projects</a></li>
+              <li><a class="site-nav__link" href="./about.html">About</a></li>
+              <li><a class="site-nav__link" href="./assets/Resume.pdf" target="_blank" rel="noreferrer">Resume</a></li>
+            </ul>
+          </nav>
+          <button
+            class="nav-voice-button"
+            id="nav-voice-button"
+            type="button"
+            aria-pressed="false"
+            aria-label="Toggle voice command"
+          >
+            <span class="icon icon-mic" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.7"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M12 1.98a3 3 0 0 0-3 3v5a3 3 0 0 0 6 0v-5a3 3 0 0 0-3-3Z"
+                />
+                <path d="M19 10v1a7 7 0 0 1-14 0v-1" />
+                <path d="M12 19v4" />
+                <path d="m8 23 4 0 4 0" />
+              </svg>
+            </span>
+            <span class="icon icon-mic-off" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.7"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M9 9v2a3 3 0 0 0 4.5 2.598" />
+                <path d="M15 8.5V5a3 3 0 0 0-5.598-1.5" />
+                <path d="M19 10v1a7.002 7.002 0 0 1-9.184 6.708" />
+                <path d="M13 19v3" />
+                <path d="M8 22h10" />
+                <path d="m2 2 20 20" />
+              </svg>
+            </span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <section id="landing">
+      <!-- === BACKGROUND MARQUEES === -->
+      <div class="marquee-wrapper" aria-hidden="true">
+        <div class="marquee line1">
+          <img src="/assets/LandingPageLine1-BvVDpcrP.png" alt="Line 1" />
+          <img src="/assets/LandingPageLine1-BvVDpcrP.png" alt="Line 1" />
+          <img src="/assets/LandingPageLine1-BvVDpcrP.png" alt="Line 1" />
+        </div>
+        <div class="marquee line2">
+          <img src="/assets/LandingPageLine2-v3ran6hG.png" alt="Line 2" />
+          <img src="/assets/LandingPageLine2-v3ran6hG.png" alt="Line 2" />
+          <img src="/assets/LandingPageLine2-v3ran6hG.png" alt="Line 2" />
+        </div>
+        <div class="marquee line3">
+          <img src="/assets/LandingPageLine3-B0GN6Nn5.png" alt="Line 3" />
+          <img src="/assets/LandingPageLine3-B0GN6Nn5.png" alt="Line 3" />
+          <img src="/assets/LandingPageLine3-B0GN6Nn5.png" alt="Line 3" />
+        </div>
+        <div class="marquee line4">
+          <img src="/assets/LandingPageLine1-BvVDpcrP.png" alt="Line 4" />
+          <img src="/assets/LandingPageLine1-BvVDpcrP.png" alt="Line 4" />
+          <img src="/assets/LandingPageLine1-BvVDpcrP.png" alt="Line 4" />
+        </div>
+        <div class="marquee line5">
+          <img src="/assets/LandingPageLine2-v3ran6hG.png" alt="Line 5" />
+          <img src="/assets/LandingPageLine2-v3ran6hG.png" alt="Line 5" />
+          <img src="/assets/LandingPageLine2-v3ran6hG.png" alt="Line 5" />
+        </div>
+        <div class="marquee line6">
+          <img src="/assets/LandingPageLine3-B0GN6Nn5.png" alt="Line 6" />
+          <img src="/assets/LandingPageLine3-B0GN6Nn5.png" alt="Line 6" />
+          <img src="/assets/LandingPageLine3-B0GN6Nn5.png" alt="Line 6" />
+        </div>
+      </div>
+
+      <!-- === FADE OVERLAY === -->
+      <div class="fade-overlay"></div>
+
+      <!-- === FOREGROUND CONTENT === -->
+      <main>
+        <h1>NAIMA PATEL</h1>
+        <p>
+          Hi I’m Naima, a product designer crafting interfaces that feel alive.
+          <br />
+          Talk to me.
+        </p>
+        <div class="voice-cta">
+          <div
+            class="voice-waveform"
+            id="voice-waveform"
+            aria-hidden="true"
+          ></div>
+          <div class="voice-button-wrapper">
+            <button id="voice-button" type="button" aria-pressed="false">
+              <span class="icon icon-mic" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M12 1.98a3 3 0 0 0-3 3v5a3 3 0 0 0 6 0v-5a3 3 0 0 0-3-3Z"
+                  />
+                  <path d="M19 10v1a7 7 0 0 1-14 0v-1" />
+                  <path d="M12 19v4" />
+                  <path d="m8 23 4 0 4 0" />
+                </svg>
+              </span>
+              <span class="icon icon-mic-off" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M9 9v2a3 3 0 0 0 4.5 2.598" />
+                  <path d="M15 8.5V5a3 3 0 0 0-5.598-1.5" />
+                  <path d="M19 10v1a7.002 7.002 0 0 1-9.184 6.708" />
+                  <path d="M13 19v3" />
+                  <path d="M8 22h10" />
+                  <path d="m2 2 20 20" />
+                </svg>
+              </span>
+              <span class="label">Say "View my work"</span>
+            </button>
+            <span class="pulse-ring ring-primary" aria-hidden="true"></span>
+            <span class="pulse-ring ring-secondary" aria-hidden="true"></span>
+          </div>
+        </div>
+        <div class="voice-tags">
+          <div class="voice-tags__group">
+            <button class="voice-tag" data-category="mobile">
+              Mobile Design
+            </button>
+            <button class="voice-tag" data-category="web">Web Design</button>
+            <button class="voice-tag" data-category="consumer">
+              Consumer Projects
+            </button>
+            <button class="voice-tag" data-category="ai">
+              AI Interaction Design
+            </button>
+            <button class="voice-tag" data-category="enterprise">
+              Enterprise Design
+            </button>
+          </div>
+          <button class="voice-tag voice-tag--all" data-category="all">
+            All
+          </button>
+        </div>
+      </main>
+    </section>
+
+    <section class="projects-section" id="projects">
+      <article class="project-card project-card--tidbit">
+        <!-- Tidbit project static logo -->
+        <a class="project-card__link" href="./tidbit.html">
+          <img
+            class="project-logo"
+            src="/assets/tidbitlogo-BbU1zk2k.png"
+            alt="Tidbit logo"
+          />
+          <div class="project-card__media" aria-hidden="true">
+            <div class="project-card__marquees">
+              <div class="project-card__marquee">
+                <img src="/assets/TidbitLine1-DFNuyQns.png" alt="Tidbit marquee line" />
+                <img src="/assets/TidbitLine1-DFNuyQns.png" alt="Tidbit marquee line" />
+                <img src="/assets/TidbitLine1-DFNuyQns.png" alt="Tidbit marquee line" />
+              </div>
+              <div class="project-card__marquee">
+                <img src="/assets/TidbitLine2-CXauVOjz.png" alt="Tidbit marquee line" />
+                <img src="/assets/TidbitLine2-CXauVOjz.png" alt="Tidbit marquee line" />
+                <img src="/assets/TidbitLine2-CXauVOjz.png" alt="Tidbit marquee line" />
+              </div>
+              <div class="project-card__marquee">
+                <img src="/assets/TidbitLine1-DFNuyQns.png" alt="Tidbit marquee line" />
+                <img src="/assets/TidbitLine1-DFNuyQns.png" alt="Tidbit marquee line" />
+                <img src="/assets/TidbitLine1-DFNuyQns.png" alt="Tidbit marquee line" />
+              </div>
+            </div>
+          </div>
+          <h2 class="project-card__title">Social Scrapbooking</h2>
+          <div class="project-card__tags">
+            <span class="project-card__tag">Mobile Design</span>
+            <span class="project-card__tag">Consumer Product</span>
+            <span class="project-card__tag">Capstone Project</span>
+          </div>
+        </a>
+      </article>
+      <article class="project-card project-card--oracle-ai">
+        <!-- Oracle AI project static logo -->
+        <a class="project-card__link" href="./oracle-ai.html">
+          <img
+            class="project-logo"
+            src="/assets/OracleAILogo%20copy%201--nEPw-r1.png"
+            alt="Oracle AI logo"
+          />
+          <div class="project-card__media" aria-hidden="true">
+            <div class="project-card__marquees">
+              <div class="project-card__marquee">
+                <img src="/assets/OracleAILine1-IUL5FVoR.png" alt="Oracle AI marquee" />
+                <img src="/assets/OracleAILine1-IUL5FVoR.png" alt="Oracle AI marquee" />
+                <img src="/assets/OracleAILine1-IUL5FVoR.png" alt="Oracle AI marquee" />
+              </div>
+              <div class="project-card__marquee">
+                <img src="/assets/OracleAILine1-IUL5FVoR.png" alt="Oracle AI marquee" />
+                <img src="/assets/OracleAILine1-IUL5FVoR.png" alt="Oracle AI marquee" />
+                <img src="/assets/OracleAILine1-IUL5FVoR.png" alt="Oracle AI marquee" />
+              </div>
+              <div class="project-card__marquee">
+                <img src="/assets/OracleAILine1-IUL5FVoR.png" alt="Oracle AI marquee" />
+                <img src="/assets/OracleAILine1-IUL5FVoR.png" alt="Oracle AI marquee" />
+                <img src="/assets/OracleAILine1-IUL5FVoR.png" alt="Oracle AI marquee" />
+              </div>
+            </div>
+          </div>
+          <h2 class="project-card__title">AI-Driven Financial Planning</h2>
+          <div class="project-card__tags">
+            <span class="project-card__tag">AI Interaction Design</span>
+            <span class="project-card__tag">Web Design</span>
+            <span class="project-card__tag">Enterprise Design</span>
+          </div>
+        </a>
+      </article>
+      <article class="project-card project-card--oracle">
+        <!-- Oracle project static logo -->
+        <a class="project-card__link" href="./oracle.html">
+          <img
+            class="project-logo"
+            src="/assets/Oracle_logo-Dd1VKJVq.png"
+            alt="Oracle logo"
+          />
+          <div class="project-card__media" aria-hidden="true">
+            <div class="project-card__marquees">
+              <div class="project-card__marquee">
+                <img src="/assets/OracleLine1-1bbYbBMQ.png" alt="Oracle marquee" />
+                <img src="/assets/OracleLine1-1bbYbBMQ.png" alt="Oracle marquee" />
+                <img src="/assets/OracleLine1-1bbYbBMQ.png" alt="Oracle marquee" />
+              </div>
+              <div class="project-card__marquee">
+                <img src="/assets/OracleLine1-1bbYbBMQ.png" alt="Oracle marquee" />
+                <img src="/assets/OracleLine1-1bbYbBMQ.png" alt="Oracle marquee" />
+                <img src="/assets/OracleLine1-1bbYbBMQ.png" alt="Oracle marquee" />
+              </div>
+              <div class="project-card__marquee">
+                <img src="/assets/OracleLine1-1bbYbBMQ.png" alt="Oracle marquee" />
+                <img src="/assets/OracleLine1-1bbYbBMQ.png" alt="Oracle marquee" />
+                <img src="/assets/OracleLine1-1bbYbBMQ.png" alt="Oracle marquee" />
+              </div>
+            </div>
+          </div>
+          <h2 class="project-card__title">Creating Smart Components</h2>
+          <div class="project-card__tags">
+            <span class="project-card__tag">Web Design</span>
+            <span class="project-card__tag">Enterprise Design</span>
+            <span class="project-card__tag">Internship</span>
+          </div>
+        </a>
+      </article>
+      <article class="project-card project-card--tunein">
+        <!-- TuneIn project static logo -->
+        <a class="project-card__link" href="./tunein.html">
+          <img
+            class="project-logo"
+            src="/assets/TuneIn.-D0Dq09Ut.png"
+            alt="TuneIn logo"
+          />
+          <div class="project-card__media" aria-hidden="true">
+            <div class="project-card__marquees">
+              <div class="project-card__marquee">
+                <img src="/assets/TuneInLine1-DcVYsSG7.png" alt="TuneIn marquee" />
+                <img src="/assets/TuneInLine1-DcVYsSG7.png" alt="TuneIn marquee" />
+                <img src="/assets/TuneInLine1-DcVYsSG7.png" alt="TuneIn marquee" />
+              </div>
+              <div class="project-card__marquee">
+                <img src="/assets/TuneInLine1-DcVYsSG7.png" alt="TuneIn marquee" />
+                <img src="/assets/TuneInLine1-DcVYsSG7.png" alt="TuneIn marquee" />
+                <img src="/assets/TuneInLine1-DcVYsSG7.png" alt="TuneIn marquee" />
+              </div>
+              <div class="project-card__marquee">
+                <img src="/assets/TuneInLine1-DcVYsSG7.png" alt="TuneIn marquee" />
+                <img src="/assets/TuneInLine1-DcVYsSG7.png" alt="TuneIn marquee" />
+                <img src="/assets/TuneInLine1-DcVYsSG7.png" alt="TuneIn marquee" />
+              </div>
+            </div>
+          </div>
+          <h2 class="project-card__title">AI-Powered Audio Profiles</h2>
+          <div class="project-card__tags">
+            <span class="project-card__tag">AI Interaction Design</span>
+            <span class="project-card__tag">Consumer Project</span>
+            <span class="project-card__tag">Mobile Design</span>
+          </div>
+        </a>
+      </article>
+    </section>
+
+    <div
+      class="toast-container"
+      id="toast-container"
+      aria-live="polite"
+      aria-atomic="true"
+    ></div>
+
+    <footer class="site-footer">
+      <div class="footer-divider"></div>
+      <div class="footer-content">
+        <p class="footer-heading">Let's keep talking.</p>
+        <div class="footer-links">
+          <a
+            href="https://www.linkedin.com/in/naimapatel/"
+            target="_blank"
+            class="footer-link"
+            rel="noreferrer"
+            >LinkedIn</a
+          >
+          <a
+            href="./assets/NaimaPatel_Resume.pdf"
+            target="_blank"
+            class="footer-link"
+            rel="noreferrer"
+            >Resume</a
+          >
+          <a href="mailto:npatel12@stanford.edu" class="footer-link">Connect</a>
+        </div>
+        <p class="footer-copyright">© 2025 Naima Patel: Designed by me, built by me.</p>
+      </div>
+    </footer>
+
+    <!-- Voice navigation scripts - load in order -->
+    <script src="./assets/scripts/env.js"></script>
+    <script src="./assets/scripts/env-loader.js"></script>
+    <script src="./assets/scripts/voice-navigation.js"></script>
+    <script src="./assets/scripts/voice-button.js"></script>
+    <script src="./assets/scripts/navbar.js"></script>
+    <script src="./assets/scripts/filter-tags.js"></script>
+    <script src="./assets/scripts/footer.js" defer></script>
+    <script src="./assets/scripts/pointer.js" defer></script>
+    <script src="./assets/scripts/scroll-animations.js"></script>
+  </body>
+</html>
