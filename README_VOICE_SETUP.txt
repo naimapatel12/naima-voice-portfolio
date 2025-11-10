@@ -24,4 +24,3 @@ For more details, see VOICE_NAVIGATION_SETUP.md
 
 🚀 Ready to use!
 
-Test
