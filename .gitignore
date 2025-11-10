@@ -1,3 +1,5 @@
 .DS_Store
 .env
 assets/scripts/env.js
+assets/scripts/env-config.js
+node_modules/

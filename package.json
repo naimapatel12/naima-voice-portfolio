@@ -1,0 +1,15 @@
+{
+  "name": "naima-patel-voice-portfolio",
+  "version": "1.0.0",
+  "description": "Portfolio website with voice navigation",
+  "scripts": {
+    "build": "node scripts/build-env-config.js"
+  },
+  "keywords": [
+    "portfolio",
+    "voice-navigation"
+  ],
+  "author": "Naima Patel",
+  "license": "MIT"
+}
+

@@ -20,18 +20,47 @@
   const RETRY_DELAY = 1000; // 1 second
 
   /**
-   * Load environment variables from .env file (development only)
-   * In production, these would come from a backend proxy
+   * Load environment variables from various sources
    * 
-   * Tries multiple methods:
-   * 1. Check if env.js already loaded the key (works for direct file access)
-   * 2. Try fetching .env file (works with local server)
+   * Tries multiple methods in order:
+   * 1. Check if env-config.js already loaded the key (Netlify production)
+   * 2. Check if env.js already loaded the key (development fallback)
+   * 3. Try fetching .env file (works with local server)
+   * 4. Try fetching env-config.js (Netlify build-time generated)
    */
   async function loadEnvFile() {
-    // First, check if env.js already set the API key
+    // First, check if env-config.js or env.js already set the API key
     if (window.ENV && window.ENV.OPENAI_API_KEY) {
-      console.log('Environment variables loaded from env.js');
+      console.log('Environment variables already loaded');
       return true;
+    }
+
+    // Try to load env-config.js first (for Netlify production)
+    try {
+      const configResponse = await fetch('/assets/scripts/env-config.js');
+      if (configResponse.ok) {
+        // Dynamically load the script
+        const script = document.createElement('script');
+        script.src = '/assets/scripts/env-config.js';
+        script.async = false;
+        await new Promise((resolve, reject) => {
+          script.onload = () => {
+            // Check if it set the API key
+            if (window.ENV && window.ENV.OPENAI_API_KEY) {
+              console.log('Environment variables loaded from env-config.js (Netlify)');
+              resolve();
+            } else {
+              reject(new Error('env-config.js loaded but no API key found'));
+            }
+          };
+          script.onerror = reject;
+          document.head.appendChild(script);
+        });
+        return true;
+      }
+    } catch (error) {
+      // Continue to next method
+      console.log('env-config.js not found, trying other methods...');
     }
 
     // Try to fetch .env file (works when using a local server)
@@ -73,7 +102,7 @@
         console.log('Environment variables loaded from env.js (fallback)');
         return true;
       }
-      console.error('Failed to load .env file:', error);
+      console.error('Failed to load environment variables:', error);
       return false;
     }
   }
