@@ -10,6 +10,8 @@
     "voice-navigation"
   ],
   "author": "Naima Patel",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "vite": "^7.2.2"
+  }
 }
-
