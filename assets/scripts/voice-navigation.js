@@ -145,29 +145,10 @@
   }
 
   /**
-   * Call OpenAI API to interpret the voice command
+   * Call serverless API to interpret the voice command
+   * The API key is handled server-side for security
    */
   async function interpretCommand(transcript, context) {
-    // Wait for API key to be loaded
-    let apiKey;
-    try {
-      apiKey = await window.waitForApiKey();
-    } catch (error) {
-      console.error('Failed to load API key:', error);
-      return {
-        success: false,
-        error: 'API key not configured. Please create a .env file with OPENAI_API_KEY=your-key-here'
-      };
-    }
-    
-    if (!apiKey) {
-      console.error('OpenAI API key not found');
-      return {
-        success: false,
-        error: 'API key not configured'
-      };
-    }
-
     const systemPrompt = `/*
  * ============================================================================
  * MULTI-LEVEL INTELLIGENT ROUTING SYSTEM
@@ -421,37 +402,32 @@ Combined Examples (Project + Section/Filter):
 - "Oracle AI design" → {"action": "navigate_project", "target": "oracle-ai", "confidence": 0.85} (prefer project over filter when project name is mentioned)`;
 
     try {
-      const response = await fetch('https://api.openai.com/v1/chat/completions', {
+      // Call our serverless function instead of OpenAI directly
+      const response = await fetch('/api/voice', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${apiKey}`
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          model: 'gpt-4o-mini',
-          messages: [
-            { role: 'system', content: systemPrompt },
-            { role: 'user', content: transcript }
-          ],
-          temperature: 0.3,
-          max_tokens: 150
+          systemPrompt,
+          transcript
         })
       });
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
-        console.error('OpenAI API error:', errorData);
+        console.error('API error:', errorData);
         return {
           success: false,
-          error: `API error: ${response.status}`
+          error: errorData.error || `API error: ${response.status}`
         };
       }
 
       const data = await response.json();
-      const content = data.choices[0]?.message?.content?.trim();
+      const content = data.reply?.trim();
       
       if (!content) {
-        console.error('Empty response from OpenAI API');
+        console.error('Empty response from API');
         return {
           success: false,
           error: 'Empty response from API. Please try again.'
@@ -491,7 +467,7 @@ Combined Examples (Project + Section/Filter):
       };
 
     } catch (error) {
-      console.error('Error calling OpenAI API:', error);
+      console.error('Error calling voice API:', error);
       
       // Provide more specific error messages
       let errorMessage = 'Failed to process command. Please try again.';

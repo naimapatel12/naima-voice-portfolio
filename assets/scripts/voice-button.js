@@ -234,22 +234,8 @@
     });
 
     try {
-      // Check if API key is available before processing
-      if (window.waitForApiKey) {
-        try {
-          await window.waitForApiKey(2000); // Quick check with 2s timeout
-        } catch (apiKeyError) {
-          console.error("API key not available:", apiKeyError);
-          createToast({
-            title: "API key not configured",
-            description: "Please create a .env file with OPENAI_API_KEY=your-key-here",
-            variant: "destructive",
-          });
-          return;
-        }
-      }
-
       // Call the voice navigation module
+      // API key is now handled server-side via /api/voice endpoint
       const result = await window.handleVoiceNavigation(transcript);
       
       if (result.success) {
