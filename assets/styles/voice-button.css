@@ -68,15 +68,14 @@ main {
   width: 400vw;
   height: 150vh; /* increased height to fit all 6 with spacing */
   transform: translate(-50%, -50%) rotate(-17deg);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between; /* adds consistent vertical spacing */
   overflow: hidden;
   pointer-events: none;
   z-index: 1;
 }
 
 .marquee {
+  position: absolute;
+  left: 0;
   display: flex;
   width: max-content;
   animation: scroll 180s linear infinite; /* slow cinematic scroll */
@@ -96,31 +95,38 @@ main {
 }
 
 /* Alternate animation timing for each strip to create depth */
+/* Position each marquee line with fixed vh-based top values for consistent spacing */
 .line1 {
+  top: 6vh;
   animation-duration: 190s;
 }
 
 .line2 {
+  top: 32vh;
   animation-duration: 175s;
   animation-direction: reverse;
   animation-delay: -90s; /* keeps it aligned */
 }
 
 .line3 {
+  top: 58vh;
   animation-duration: 185s;
 }
 
 .line4 {
+  top: 84vh;
   animation-duration: 200s;
   animation-direction: reverse;
   animation-delay: -100s; /* adjust as needed */
 }
 
 .line5 {
+  top: 110vh;
   animation-duration: 180s;
 }
 
 .line6 {
+  top: 136vh;
   animation-duration: 210s;
   animation-direction: reverse;
   animation-delay: -110s; /* adjust as needed */
@@ -257,11 +263,11 @@ button:focus-visible {
   position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 1rem;
+  gap: clamp(0.5rem, 2vw, 1rem);
   border: 2.5px solid hsl(var(--accent));
   border-radius: 0.9rem;
-  padding: 1.25rem 3rem;
-  font-size: 1.25rem;
+  padding: clamp(0.75rem, 2.5vw, 1.25rem) clamp(1.5rem, 6vw, 3rem);
+  font-size: clamp(0.875rem, 2.5vw, 1.25rem);
   font-weight: 600;
   letter-spacing: 0.02em;
   text-transform: none;
@@ -317,15 +323,15 @@ button:focus-visible {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 3rem;
-  height: 3rem;
+  width: clamp(2rem, 5vw, 3rem);
+  height: clamp(2rem, 5vw, 3rem);
   border-radius: 0.85rem;
   background: rgba(255, 255, 255, 0.12);
 }
 
 #voice-button svg {
-  width: 1.75rem;
-  height: 1.75rem;
+  width: clamp(1.25rem, 3vw, 1.75rem);
+  height: clamp(1.25rem, 3vw, 1.75rem);
 }
 
 #voice-button .icon-mic-off {
@@ -655,6 +661,13 @@ button:focus-visible {
   }
 
   .voice-tag {
+    white-space: normal;
+  }
+}
+
+/* Allow voice button label to wrap on very small screens */
+@media (max-width: 480px) {
+  #voice-button .label {
     white-space: normal;
   }
 }
