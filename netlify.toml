@@ -4,14 +4,14 @@
 [build]
   # Build command to generate env-config.js from environment variables
   command = "npm run build"
-  publish = "."
+  publish = "dist"
 
-# Redirect rules
+# Redirect rules - handle SPA routing
+# Note: This redirect may not be needed for static sites, but helps with client-side routing
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
-  force = false
 
 # Headers for security and performance
 [[headers]]
