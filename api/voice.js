@@ -4,32 +4,75 @@
  * This function handles OpenAI API calls server-side to keep the API key secure.
  * It receives the system prompt and user transcript, makes the OpenAI call,
  * and returns the response.
+ * 
+ * Uses modern Vercel Request/Response API for better browser compatibility.
  */
 
-export default async function handler(req, res) {
-  // Basic CORS for local dev/production
-  if (req.method === 'OPTIONS') {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-    return res.status(200).end();
+// Helper function to create CORS headers
+function getCORSHeaders() {
+  return {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'POST, OPTIONS, GET',
+    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+    'Access-Control-Max-Age': '86400', // 24 hours
+  };
+}
+
+export default async function handler(request) {
+  // Handle CORS preflight requests
+  if (request.method === 'OPTIONS') {
+    return new Response(null, {
+      status: 200,
+      headers: getCORSHeaders(),
+    });
   }
 
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
+  // Set CORS headers for all responses
+  const corsHeaders = getCORSHeaders();
+
+  if (request.method !== 'POST') {
+    return new Response(
+      JSON.stringify({ error: 'Method not allowed' }),
+      {
+        status: 405,
+        headers: {
+          ...corsHeaders,
+          'Content-Type': 'application/json',
+        },
+      }
+    );
   }
 
   try {
-    const { systemPrompt, transcript } = req.body || {};
+    const body = await request.json();
+    const { systemPrompt, transcript } = body || {};
 
     if (!systemPrompt || !transcript) {
-      return res.status(400).json({ error: 'Missing systemPrompt or transcript' });
+      return new Response(
+        JSON.stringify({ error: 'Missing systemPrompt or transcript' }),
+        {
+          status: 400,
+          headers: {
+            ...corsHeaders,
+            'Content-Type': 'application/json',
+          },
+        }
+      );
     }
 
     const apiKey = process.env.OPENAI_API_KEY;
     if (!apiKey) {
       console.error('OPENAI_API_KEY not set in environment variables');
-      return res.status(500).json({ error: 'API key not configured' });
+      return new Response(
+        JSON.stringify({ error: 'API key not configured' }),
+        {
+          status: 500,
+          headers: {
+            ...corsHeaders,
+            'Content-Type': 'application/json',
+          },
+        }
+      );
     }
 
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
@@ -52,28 +95,53 @@ export default async function handler(req, res) {
     if (!response.ok) {
       const errorText = await response.text();
       console.error('OpenAI API error:', response.status, errorText);
-      return res.status(response.status).json({ 
-        error: `OpenAI API error: ${response.status}`,
-        details: errorText 
-      });
+      return new Response(
+        JSON.stringify({ 
+          error: `OpenAI API error: ${response.status}`,
+          details: errorText 
+        }),
+        {
+          status: response.status,
+          headers: {
+            ...corsHeaders,
+            'Content-Type': 'application/json',
+          },
+        }
+      );
     }
 
     const data = await response.json();
     const content = data.choices?.[0]?.message?.content?.trim() || '';
 
-    // CORS for browser
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    return res.status(200).json({ 
-      reply: content,
-      fullResponse: data 
-    });
+    return new Response(
+      JSON.stringify({ 
+        reply: content,
+        fullResponse: data 
+      }),
+      {
+        status: 200,
+        headers: {
+          ...corsHeaders,
+          'Content-Type': 'application/json',
+        },
+      }
+    );
 
   } catch (err) {
     console.error('Server error:', err);
-    return res.status(500).json({ 
-      error: 'Server error',
-      message: err.message 
-    });
+    return new Response(
+      JSON.stringify({ 
+        error: 'Server error',
+        message: err.message 
+      }),
+      {
+        status: 500,
+        headers: {
+          ...corsHeaders,
+          'Content-Type': 'application/json',
+        },
+      }
+    );
   }
 }
 
