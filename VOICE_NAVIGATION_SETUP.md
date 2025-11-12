@@ -129,3 +129,4 @@ For issues or questions:
 - Ensure `.env` file is in the root directory
 - Test with simple commands first ("go to projects")
 
+test
